@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.ProductView.AddProductPage"
+             Title="Add Product">
+    <VerticalStackLayout Padding="20" Spacing="10">
+        <Entry Placeholder="Product name" />
+        <Entry Placeholder="Category" />
+        <Entry Placeholder="Price" Keyboard="Numeric" IsTextPredictionEnabled="True"/>
+        <Entry Placeholder="Quantity" Keyboard="Numeric" IsTextPredictionEnabled="True"/>
+        <HorizontalStackLayout Spacing="30" Margin="10">
+             <ImageButton 
+                Source="save.png"
+                Command="{Binding SaveCommand}"/>
+            <ImageButton 
+                Source="cancel.png"
+                Command="{Binding CancelCommand}"/>
+        </HorizontalStackLayout>
+        
+    </VerticalStackLayout>
+</ContentPage>

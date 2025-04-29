@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.ProductsPage"
+             Title="Products">
+    <ScrollView>
+        <VerticalStackLayout>
+
+            <!-- 🧰 Nasz custom toolbar -->
+            <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"
+                  VerticalOptions="Center"
+                  HorizontalOptions="Center"
+              Padding="{OnPlatform Android=40, WinUI=0 }"
+              BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0"
+                         Source="add.png"
+                         Command="{Binding AddProductCommand}"/>
+                <ImageButton  Grid.Column="1"
+                         Source="edit.png"
+                         Command="{Binding EditProductCommand}"/>
+                <ImageButton  Grid.Column="2"
+                         Source="remove.png"
+                         Command="{Binding DeleteProductCommand}"/>
+                <ImageButton  Grid.Column="3"
+                         Source="refresh.png"
+                         Command="{Binding RefreshCommand}"/>
+                <ImageButton  Grid.Column="4"
+                         Source="about.png"
+                         Command="{Binding AboutCommand}"/>
+            </Grid>
+            <Label HorizontalOptions="Center" Text="Available Products" FontSize="20" FontAttributes="Bold" Margin="20" />
+
+            <CollectionView x:Name="ProductsList" SelectionMode="Single" SelectedItem="{Binding SelectedItem}" SelectionChanged="ProductsList_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10" BackgroundColor="{StaticResource Primary}" Margin="0,0,0,10">
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup Name="CommonStates">
+                                    <VisualState Name="Normal">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                    <VisualState Name="Selected">
+                                        <VisualState.Setters>
+                                            <Setter Property="BackgroundColor" Value="DarkGreen" />
+                                        </VisualState.Setters>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Text="Name:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
+                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="Category: " FontSize="14" Grid.Row="1" Grid.Column="0" />
+                            <Label Text="{Binding Category}" FontSize="14" Grid.Row="1" Grid.Column="1" />
+                            <Label Text="Price: " FontSize="14" Grid.Row="2" Grid.Column="0" />
+                            <Label Text="{Binding Price}" FontSize="14" Grid.Row="2" Grid.Column="1" />
+                            <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0"/>
+                            <Label Text="{Binding Quantity}" FontSize="14" Grid.Row="3" Grid.Column="1" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
