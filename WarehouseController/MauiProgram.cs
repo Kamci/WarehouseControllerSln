@@ -1,6 +1,8 @@
 ﻿using Microcharts.Maui;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using WarehouseController.View.ProductView;
+using WarehouseController.ViewModel.ProductVM;
 
 namespace WarehouseController;
 
@@ -20,7 +22,10 @@ public static class MauiProgram
 
 #if DEBUG
         builder.Logging.AddDebug();
+
 #endif
+        builder.Services.AddTransient<AddProductPage>();
+        builder.Services.AddTransient<AddProductViewModel>();
 
         return builder.Build();
     }

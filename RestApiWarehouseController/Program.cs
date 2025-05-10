@@ -1,4 +1,8 @@
 
+using Microsoft.EntityFrameworkCore;
+using RestApiWarehouseController.Models.Contexts;
+using System;
+
 namespace RestApiWarehouseController
 {
     public class Program
@@ -9,6 +13,9 @@ namespace RestApiWarehouseController
 
             // Add services to the container.
 
+            builder.Services.AddDbContext<WCContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException("Connection string 'WCContext' not found. ")));
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

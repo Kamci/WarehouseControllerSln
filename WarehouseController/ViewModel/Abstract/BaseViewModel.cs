@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 namespace WarehouseController.ViewModel.Abstract
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
-
     {
         bool isBusy = false;
         public bool IsBusy
@@ -27,7 +26,7 @@ namespace WarehouseController.ViewModel.Abstract
 
         protected bool SetProperty<T>(ref T backingStore, T value,
             [CallerMemberName] string propertyName = "",
-            Action? onChanged = null)
+            Action onChanged = null)
         {
             if (EqualityComparer<T>.Default.Equals(backingStore, value))
                 return false;

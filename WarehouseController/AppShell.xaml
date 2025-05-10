@@ -4,7 +4,6 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WarehouseController"
-    Shell.FlyoutBehavior="Flyout"
     Title="WarehouseController">
 
     <ShellContent
@@ -15,7 +14,13 @@
         Title="Products"
         ContentTemplate="{DataTemplate local:ProductsPage}"
         Route="ProductsPage" />
-    
-    
+    <!--<ShellContent
+        Route="AddProductPage"
+        ContentTemplate="{DataTemplate views:AddProductPage}"
+        IsVisible="False" />-->
+    <ShellContent
+     Title="Warehouses"
+     ContentTemplate="{DataTemplate local:WarehousePage}"
+     Route="WarehousePage" />
 
 </Shell>

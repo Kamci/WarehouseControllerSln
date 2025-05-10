@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="WarehouseController.ProductsPage"
-             Title="Products">
+             xmlns:conventers="clr-namespace:WarehouseController.Converters"
+             xmlns:local="clr-namespace:WarehouseController.ViewModel.ProductVM"
+             xmlns:model="clr-namespace:WarehouseController.Model"
+             x:DataType="local:ProductViewModel"
+             Title="{Binding Title}">
     <ScrollView>
         <VerticalStackLayout>
 
@@ -16,31 +20,27 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <ImageButton Grid.Column="0"
                          Source="add.png"
-                         Command="{Binding AddProductCommand}"/>
+                         Command="{Binding AddItemCommand}"/>
                 <ImageButton  Grid.Column="1"
-                         Source="edit.png"
-                         Command="{Binding EditProductCommand}"/>
-                <ImageButton  Grid.Column="2"
-                         Source="remove.png"
-                         Command="{Binding DeleteProductCommand}"/>
-                <ImageButton  Grid.Column="3"
                          Source="refresh.png"
-                         Command="{Binding RefreshCommand}"/>
-                <ImageButton  Grid.Column="4"
+                         Command="{Binding LoadItemsCommand}"/>
+                <ImageButton  Grid.Column="2"
                          Source="about.png"
-                         Command="{Binding AboutCommand}"/>
+                         Command="{Binding AboutCommand}"
+                         CommandParameter="{Binding SelectedProduct}"
+                         IsEnabled="{Binding SelectedProduct, Converter={StaticResource NullToBoolConventer}}"/>
             </Grid>
-            <Label HorizontalOptions="Center" Text="Available Products" FontSize="20" FontAttributes="Bold" Margin="20" />
-
-            <CollectionView x:Name="ProductsList" SelectionMode="Single" SelectedItem="{Binding SelectedItem}" SelectionChanged="ProductsList_SelectionChanged">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Padding="10" BackgroundColor="{StaticResource Primary}" Margin="0,0,0,10">
+            <Label HorizontalOptions="Center" Text="Available Products" FontSize="20" 
+                   FontAttributes="Bold" Margin="20" />
+            <CollectionView x:Name="ProductsList" ItemsSource="{Binding Items}"
+                            SelectionMode="Single" SelectedItem="{Binding SelectedProduct}" 
+                            SelectionChanged="ProductsList_SelectionChanged">
+                <CollectionView.ItemTemplate >
+                    <DataTemplate x:DataType="model:Product">
+                        <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
                                     <VisualState Name="Normal">
@@ -55,7 +55,7 @@
                                     </VisualState>
                                 </VisualStateGroup>
                             </VisualStateManager.VisualStateGroups>
-                            <Grid.ColumnDefinitions>
+                            <Grid.ColumnDefinitions >
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
@@ -65,13 +65,13 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Label Text="Name:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" />
+                            <Label Text="Name:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"  />
                             <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="Category: " FontSize="14" Grid.Row="1" Grid.Column="0" />
-                            <Label Text="{Binding Category}" FontSize="14" Grid.Row="1" Grid.Column="1" />
-                            <Label Text="Price: " FontSize="14" Grid.Row="2" Grid.Column="0" />
+                            <Label Text="Category: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />
+                            <Label Text="{Binding CategoryId}" FontSize="14" Grid.Row="1" Grid.Column="1" />
+                            <Label Text="Price: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />
                             <Label Text="{Binding Price}" FontSize="14" Grid.Row="2" Grid.Column="1" />
-                            <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0"/>
+                            <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
                             <Label Text="{Binding Quantity}" FontSize="14" Grid.Row="3" Grid.Column="1" />
                         </Grid>
                     </DataTemplate>
@@ -79,4 +79,5 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
+   
 </ContentPage>

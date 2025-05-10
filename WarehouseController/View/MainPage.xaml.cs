@@ -24,8 +24,8 @@ public partial class MainPage : ContentPage
 
         if (DeviceInfo.Platform == DevicePlatform.Android)
         {
-            labelSize = 40;
-            valueSize = 40;
+            labelSize = 36;
+            valueSize = 36;
         }
         else
         {

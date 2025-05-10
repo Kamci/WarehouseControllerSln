@@ -12,5 +12,6 @@ namespace WarehouseController.Model
         public string Login { get; set; }
         public byte[] PasswordHash { get; set; }
         public string Role { get; set; }
+        public ICollection<Order> Orders { get; set; } = new List<Order>();
     }
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.ProductView.EditProductPage"
+             Title="EditProductPage"
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM"
+             x:DataType="vm:EditProductViewModel"
+             Shell.PresentationMode="Animated"
+             >
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="10">
+            <Label Text="Id" FontSize="14" />
+            <Label Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />
+            <Label Text="Name" FontSize="14" />
+            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
+            <Label Text="Price" FontSize="14" />
+            <Editor Text="{Binding Price, Mode=TwoWay, Converter={StaticResource DecimalToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Label Text="Quantity" FontSize="14" />
+            <Editor Text="{Binding Quantity, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Label Text="CategoryId" FontSize="14" />
+            <Editor Text="{Binding CategoryId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Label Text="WarehouseId" FontSize="14" />
+            <Editor Text="{Binding WarehouseId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
+                    FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Label Text="SupplierId" FontSize="14" />
+            <Editor Text="{Binding SupplierId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
+                    FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <HorizontalStackLayout Spacing="30" Margin="10">
+                <ImageButton   
+               Source="save.png"  
+               Command="{Binding SaveCommand}"/>
+                <ImageButton   
+               Source="cancel.png"  
+               Command="{Binding CancelCommand}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage> 

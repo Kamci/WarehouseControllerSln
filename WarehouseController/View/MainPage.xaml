@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:local="clr-namespace:WarehouseController"
              x:Class="WarehouseController.MainPage">
     <Grid >
         <Image Source="warehouse_background.jpg"
