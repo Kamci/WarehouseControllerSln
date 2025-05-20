@@ -21,6 +21,10 @@
     <ShellContent
      Title="Warehouses"
      ContentTemplate="{DataTemplate local:WarehousePage}"
-     Route="WarehousePage" />
+     Route="WarehousePage" />   
+    <ShellContent
+     Title="Users"
+     ContentTemplate="{DataTemplate local:UserPage}"
+     Route="UserPage" />
 
 </Shell>

@@ -38,5 +38,6 @@ using WarehouseController.Services;
             return await Task.FromResult(warehouses.FirstOrDefault(s => s.Id == id));
         }
 
-        public async Task<IEnumerable<Warehouse>> GetItemsAsync(bool forceRefresh = false) => await Task.FromResult(warehouses);
+        public async Task<IEnumerable<Warehouse>> GetItemsAsync(bool forceRefresh = false) 
+        => await Task.FromResult(warehouses);
     }

@@ -14,7 +14,6 @@
             <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
             <Label Text="Location" FontSize="14" />
             <Editor Text="{Binding Location, Mode=TwoWay}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Label Text="Quantity" FontSize="14" />
             <HorizontalStackLayout Spacing="30" Margin="10">
                 <ImageButton   
              Source="save.png"  

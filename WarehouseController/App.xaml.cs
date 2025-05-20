@@ -9,7 +9,8 @@ namespace WarehouseController
         public App()
         {
             InitializeComponent();
-            DependencyService.Register<ProductDataStore>();
+            DependencyService.Register<ProductDataStore>(); 
+            DependencyService.Register<UserDataStore>();
             DependencyService.Register<WarehouseDataStore>();
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {

@@ -1,4 +1,5 @@
 ﻿using WarehouseController.View.ProductView;
+using WarehouseController.View.UserView;
 using WarehouseController.View.WarehouseView;
 
 
@@ -15,6 +16,7 @@ namespace WarehouseController
             Routing.RegisterRoute(nameof(AddWarehousePage), typeof(AddWarehousePage));
             Routing.RegisterRoute(nameof(EditWarehousePage), typeof(EditWarehousePage));
             Routing.RegisterRoute(nameof(DetailWarehousePage), typeof(DetailWarehousePage));
+            Routing.RegisterRoute(nameof(AddUserPage), typeof(AddUserPage));
 
         }
     }
