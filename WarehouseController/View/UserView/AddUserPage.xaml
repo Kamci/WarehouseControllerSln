@@ -7,13 +7,17 @@
              Shell.PresentationMode="Animated"
              Title="{Binding Title}">
     <VerticalStackLayout>
+        <Label Text="Id" />
+        <Entry Text="{Binding Id, Mode=TwoWay}" />
         <Label Text="Login" />
             <Entry Text="{Binding Login, Mode=TwoWay}" Placeholder="Login" />
 
             <Label Text="Hasło" />
             <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Hasło" IsPassword="True" />
+            <Label Text="Powtórz hasło" />
+            <Entry Text="{Binding RepeatPassword, Mode=TwoWay}" Placeholder="Powtórz hasło" IsPassword="True" />
 
-            <Label Text="Rola" />
+        <Label Text="Rola" />
             <Entry Text="{Binding Role, Mode=TwoWay}" Placeholder="Rola" />
         <HorizontalStackLayout Spacing="30" Margin="10">
             <ImageButton   

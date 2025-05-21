@@ -7,6 +7,7 @@ using WarehouseController.ViewModel.Abstract;
 using WarehouseController.Model;
 using WarehouseController.Services;
 using WarehouseController.View.UserView;
+using System.Diagnostics;
 
 
 namespace WarehouseController.ViewModel.UserVM
@@ -42,11 +43,24 @@ namespace WarehouseController.ViewModel.UserVM
 
         public override async Task GoToDetailsPage(User user)
         {
-            if (user == null)
-                return;
-            SelectedUser = user;
-            //// This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(DetailUserPage)}?{nameof(DetailUserViewModel.ItemId)}={user.Id}");
+            try 
+            {
+                Debug.WriteLine($"[NAVIGATE] Going to DetailUserPage with ID: {user.Id}");
+                Debug.WriteLine($"[NAVIGATE] User: {user.Login}");
+                Debug.WriteLine($"[NAVIGATE] User: {user.Role}");
+                if (user == null)
+                    return;
+                SelectedUser = user;
+
+                //// This will push the ItemDetailPage onto the navigation stack
+                await Shell.Current.GoToAsync($"{nameof(DetailUserPage)}?{nameof(DetailUserViewModel.ItemId)}={user.Id}");
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[NAVIGATE ERROR] {ex}");
+            }
+           
         }
     }
 }

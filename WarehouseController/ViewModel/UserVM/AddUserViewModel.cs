@@ -36,8 +36,10 @@ namespace WarehouseController.ViewModel.UserVM
         public override bool ValidateSave()
         {
             bool result = !string.IsNullOrWhiteSpace(login)
-                   && !string.IsNullOrWhiteSpace(role)
-                   && PasswordHash != null;
+           && !string.IsNullOrWhiteSpace(role)
+           && PasswordHash != null
+           && PasswordsMatch;
+
             Debug.WriteLine($"[ViewModel] ValidateSave result: {result}");
             return result;
         }
@@ -104,6 +106,18 @@ namespace WarehouseController.ViewModel.UserVM
             // tylko powiadom UI, ale nie triggeruj hashowania
             OnPropertyChanged(nameof(Password));
         }
+        private string repeatPassword;
+        public string RepeatPassword
+        {
+            get => repeatPassword;
+            set
+            {
+                Debug.WriteLine($"[ViewModel] Setting RepeatPassword (plaintext): {value}");
+                SetProperty(ref repeatPassword, value);
+            }
+        }
+
+        public bool PasswordsMatch => Password == RepeatPassword;
         #endregion
     }
 }

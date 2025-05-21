@@ -52,8 +52,7 @@ namespace WarehouseController.Services
 
         public async Task<User> GetItemAsync(int id)
         {
-            var user = users.FirstOrDefault(u => u.Id == id);
-            return await Task.FromResult(user);
+            return await Task.FromResult(users.FirstOrDefault(u => u.Id == id));
         }
 
         public async Task<IEnumerable<User>> GetItemsAsync(bool forceRefresh = false)

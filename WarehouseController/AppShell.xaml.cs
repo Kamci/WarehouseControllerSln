@@ -17,6 +17,8 @@ namespace WarehouseController
             Routing.RegisterRoute(nameof(EditWarehousePage), typeof(EditWarehousePage));
             Routing.RegisterRoute(nameof(DetailWarehousePage), typeof(DetailWarehousePage));
             Routing.RegisterRoute(nameof(AddUserPage), typeof(AddUserPage));
+            Routing.RegisterRoute(nameof(EditUserPage), typeof(EditUserPage));
+            Routing.RegisterRoute(nameof(DetailUserPage), typeof(DetailUserPage));
 
         }
     }
