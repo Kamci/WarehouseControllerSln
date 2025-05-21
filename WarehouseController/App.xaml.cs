@@ -12,6 +12,7 @@ namespace WarehouseController
             DependencyService.Register<ProductDataStore>(); 
             DependencyService.Register<UserDataStore>();
             DependencyService.Register<WarehouseDataStore>();
+            DependencyService.Register<SupplierDataStore>();
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
                 Debug.WriteLine($"[UnhandledException] {e.ExceptionObject}");

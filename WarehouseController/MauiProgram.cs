@@ -2,9 +2,13 @@
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
 using WarehouseController.View.ProductView;
+using WarehouseController.View.SupplierView;
 using WarehouseController.View.UserView;
+using WarehouseController.View.WarehouseView;
 using WarehouseController.ViewModel.ProductVM;
+using WarehouseController.ViewModel.SupplierVM;
 using WarehouseController.ViewModel.UserVM;
+using WarehouseController.ViewModel.WarehouseVM;
 
 namespace WarehouseController;
 
@@ -30,6 +34,10 @@ public static class MauiProgram
         builder.Services.AddTransient<AddProductViewModel>(); 
         builder.Services.AddTransient<AddUserPage>();
         builder.Services.AddTransient<AddUserViewModel>();
+        builder.Services.AddTransient<AddWarehousePage>();
+        builder.Services.AddTransient<AddWarehouseViewModel>();
+        builder.Services.AddTransient<AddSupplierPage>();
+        builder.Services.AddTransient<AddSupplierViewModel>();
 
         return builder.Build();
     }

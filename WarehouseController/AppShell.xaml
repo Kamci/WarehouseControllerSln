@@ -26,5 +26,9 @@
      Title="Users"
      ContentTemplate="{DataTemplate local:UserPage}"
      Route="UserPage" />
+    <ShellContent
+     Title="Suppliers"
+     ContentTemplate="{DataTemplate local:SupplierPage}"
+     Route="SupplierPage" />
 
 </Shell>
