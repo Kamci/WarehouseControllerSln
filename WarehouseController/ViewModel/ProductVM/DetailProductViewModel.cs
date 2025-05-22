@@ -72,5 +72,6 @@ namespace WarehouseController.ViewModel.ProductVM
 
             await Shell.Current.GoToAsync($"{nameof(EditProductPage)}?{nameof(EditProductViewModel.ItemId)}={Id}");
         }
+
     }
 }

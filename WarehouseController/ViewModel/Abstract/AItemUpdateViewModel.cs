@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,7 +9,6 @@ using WarehouseController.Services;
 
 namespace WarehouseController.ViewModel.Abstract
 {
-    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public abstract class AItemUpdateViewModel<T> : BaseViewModel
     {
         private int itemId;
@@ -23,16 +24,17 @@ namespace WarehouseController.ViewModel.Abstract
         public abstract bool ValidateSave();
         public int ItemId
         {
-            get
-            {
-                return itemId;
-            }
+            get => itemId;
             set
             {
-                itemId = value;
-                LoadItem(value).GetAwaiter().GetResult();
+                if (itemId != value)
+                {
+                    itemId = value;
+                    LoadItem(itemId);
+                }
             }
         }
+     
         public Command SaveCommand { get; }
         public Command CancelCommand { get; }
         private async void OnCancel()
@@ -42,7 +44,6 @@ namespace WarehouseController.ViewModel.Abstract
         private async void OnSave()
         {
             await DataStore.UpdateItemAsync(SetItem());
-            // This will pop the current page off the navigation stack
             await Shell.Current.GoToAsync("..");
         }
     }

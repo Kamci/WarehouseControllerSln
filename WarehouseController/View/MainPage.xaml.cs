@@ -3,6 +3,7 @@ using Microcharts.Maui;
 using Microsoft.Maui.Devices;
 using SkiaSharp;
 using System.Diagnostics;
+using WarehouseController.Model;
 
 namespace WarehouseController;
 
@@ -13,8 +14,8 @@ public partial class MainPage : ContentPage
         InitializeComponent();
 
         SetupChart();
-        LoadOrders();
-        LoadShipments();
+        //LoadOrders();
+        //LoadShipments();
     }
 
     private void SetupChart()
@@ -83,42 +84,29 @@ public partial class MainPage : ContentPage
             Entries = entries
         };
     }
-
-    private void LoadOrders()
-    {
-        var orders = new List<Order>
-        {
-            new Order { Name = "Order 1", Date = "10.04.2025", QtyOfProducts = 10 },
-            new Order { Name = "Order 2", Date = "11.04.2025", QtyOfProducts = 20 },
-            new Order { Name = "Order 3", Date = "12.04.2025", QtyOfProducts = 30 },
-        };
-
-        OrdersList.ItemsSource = orders;
-    }
-    private void LoadShipments()
-    {
-        var shipments = new List<Shipment>
-        {
-            new Shipment { ShipmentDate = "10.04.2025", SupplierName = "Supplier 1", WarehouseId = "Warehouse 1" },
-            new Shipment { ShipmentDate = "11.04.2025", SupplierName = "Supplier 2", WarehouseId = "Warehouse 2" },
-            new Shipment { ShipmentDate = "12.04.2025", SupplierName = "Supplier 3", WarehouseId = "Warehouse 3" },
-        };
-
-        ShipmentsList.ItemsSource = shipments;
-    }
-
 }
 
-public class Shipment 
-{
-    public string ShipmentDate { get; set; }
-    public string SupplierName { get; set; }
-    public string WarehouseId { get; set; }
+    //private void LoadOrders()
+    //{
+    //    var orders = new List<Order>
+    //    {
+    //        new Order { Name = "Order 1", Date = "10.04.2025", QtyOfProducts = 10 },
+    //        new Order { Name = "Order 2", Date = "11.04.2025", QtyOfProducts = 20 },
+    //        new Order { Name = "Order 3", Date = "12.04.2025", QtyOfProducts = 30 },
+    //    };
 
-}
-public class Order
-{
-    public string Name { get; set; }
-    public string Date { get; set; }
-    public int QtyOfProducts { get; set; }
-}
+    //    OrdersList.ItemsSource = orders;
+    //}
+    //private void LoadShipments()
+    //{
+    //    var shipments = new List<Shipment>
+    //    {
+    //        new Shipment { ShipmentDate = "10.04.2025", SupplierName = "Supplier 1", WarehouseId = "Warehouse 1" },
+    //        new Shipment { ShipmentDate = "11.04.2025", SupplierName = "Supplier 2", WarehouseId = "Warehouse 2" },
+    //        new Shipment { ShipmentDate = "12.04.2025", SupplierName = "Supplier 3", WarehouseId = "Warehouse 3" },
+    //    };
+
+    //    ShipmentsList.ItemsSource = shipments;
+    //}
+
+

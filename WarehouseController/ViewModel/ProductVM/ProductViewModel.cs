@@ -3,7 +3,7 @@ using WarehouseController.Model;
 using WarehouseController.View.ProductView;
 namespace WarehouseController.ViewModel.ProductVM
 {
-    public class ProductViewModel : AItemListViewModel<Product>
+    public partial class ProductViewModel : AItemListViewModel<Product>
     {
         private Product? _selectedProduct;
         public Command RefreshCommand { get; }

@@ -46,18 +46,16 @@ namespace WarehouseController.ViewModel.Abstract
 
             try
             {
+                Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
-
-                MainThread.BeginInvokeOnMainThread(() =>
+                foreach (var item in items)
                 {
-                    Items.Clear();
-                    foreach (var item in items)
-                        Items.Add(item);
-                });
+                    Items.Add(item);
+                }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[LoadItemsCommand ERROR] {ex}");
+                Debug.WriteLine(ex);
             }
             finally
             {

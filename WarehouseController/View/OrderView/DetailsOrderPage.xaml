@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="WarehouseController.View.OrderView.DetailsOrderPage"  
+             Title="{Binding Title}"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM;assembly=WarehouseController"  
+             xmlns:model="clr-namespace:WarehouseController.Model"  
+             x:DataType="vm:DetailsOrderViewModel"  
+             Shell.PresentationMode="Animated">  
+    <ScrollView>  
+        <VerticalStackLayout Padding="20" Spacing="10">  
+            <Label Text="Id" FontSize="14" />  
+            <Label Text="{Binding Id, Mode=TwoWay}" FontSize="14" />  
+            <Label Text="Order Date" FontSize="14" />  
+            <Label Text="{Binding OrderDate, Mode=TwoWay}" FontSize="14"/>  
+            <Label Text="Status" FontSize="14" />  
+            <Label Text="{Binding Status, Mode=TwoWay}" FontSize="14" />  
+            <Label Text="User Id" FontSize="14" />  
+            <Label Text="{Binding UserId, Mode=TwoWay}" FontSize="14" />  
+            <CollectionView ItemsSource="{Binding OrderItems}">  
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:OrderItem">  
+                        <HorizontalStackLayout>  
+                            <Label Text="{Binding ProductId}" />  
+                            <Label Text="{Binding Quantity}" />  
+                        </HorizontalStackLayout>  
+                    </DataTemplate>  
+                </CollectionView.ItemTemplate>  
+            </CollectionView>  
+            <HorizontalStackLayout Spacing="30" Margin="10">  
+                <ImageButton   
+                        Source="edit.png"  
+                        Command="{Binding UpdateCommand}"/>  
+                <ImageButton    
+                        Source="remove.png"  
+                        Command="{Binding DeleteCommand}"/>  
+                <ImageButton    
+                        Source="cancel.png"  
+                        Command="{Binding CancelCommand}"/>  
+            </HorizontalStackLayout>  
+        </VerticalStackLayout>  
+    </ScrollView>  
+</ContentPage> 

@@ -14,21 +14,29 @@
         Title="Products"
         ContentTemplate="{DataTemplate local:ProductsPage}"
         Route="ProductsPage" />
-    <!--<ShellContent
-        Route="AddProductPage"
-        ContentTemplate="{DataTemplate views:AddProductPage}"
-        IsVisible="False" />-->
     <ShellContent
-     Title="Warehouses"
-     ContentTemplate="{DataTemplate local:WarehousePage}"
-     Route="WarehousePage" />   
+         Title="Warehouses"
+         ContentTemplate="{DataTemplate local:WarehousePage}"
+         Route="WarehousePage" />
     <ShellContent
-     Title="Users"
-     ContentTemplate="{DataTemplate local:UserPage}"
-     Route="UserPage" />
+         Title="Users"
+         ContentTemplate="{DataTemplate local:UserPage}"
+         Route="UserPage" />
     <ShellContent
-     Title="Suppliers"
-     ContentTemplate="{DataTemplate local:SupplierPage}"
-     Route="SupplierPage" />
+         Title="Suppliers"
+         ContentTemplate="{DataTemplate local:SupplierPage}"
+         Route="SupplierPage" />
+    <ShellContent
+         Title="Shipments"
+         ContentTemplate="{DataTemplate local:ShipmentPage}"
+         Route="ShipmentPage" />
+    <ShellContent
+         Title="Categories"
+         ContentTemplate="{DataTemplate local:CategoryPage}"
+         Route="CategoryPage" />
+    <ShellContent
+         Title="Orders"
+         ContentTemplate="{DataTemplate local:OrderPage}"
+         Route="OrderPage" />
 
 </Shell>

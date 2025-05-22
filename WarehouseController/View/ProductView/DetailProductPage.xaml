@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
              x:Class="WarehouseController.View.ProductView.DetailProductPage"  
              Title="{Binding Title}"  
-             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM;assembly=WarehouseController"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM"  
              x:DataType="vm:DetailProductViewModel"  
              Shell.PresentationMode="Animated">  
     <ScrollView>  

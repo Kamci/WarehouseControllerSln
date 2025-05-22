@@ -1,5 +1,7 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,16 +17,17 @@ namespace WarehouseController.ViewModel.Abstract
         private int itemId;
         public int ItemId
         {
-            get
-            {
-                return itemId;
-            }
+            get => itemId;
             set
             {
-                itemId = value;
-                LoadItem(value).GetAwaiter().GetResult();
+                if (itemId != value)
+                {
+                    itemId = value;
+                    LoadItem(itemId);
+                }
             }
         }
+
         public AItemDetailsViewModel(string title)
         {
             Title = title;
@@ -46,5 +49,7 @@ namespace WarehouseController.ViewModel.Abstract
             => await GoToUpdatePage();
         protected abstract Task GoToUpdatePage();
         public abstract Task LoadItem(int id);
+
     }
+
 }

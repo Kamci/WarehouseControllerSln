@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Net.Http;
 using WarehouseController.Model;
 using WarehouseController.Services;
 
@@ -6,6 +7,7 @@ namespace WarehouseController
 {
     public partial class App : Application
     {
+        
         public App()
         {
             InitializeComponent();
@@ -13,6 +15,9 @@ namespace WarehouseController
             DependencyService.Register<UserDataStore>();
             DependencyService.Register<WarehouseDataStore>();
             DependencyService.Register<SupplierDataStore>();
+            DependencyService.Register<ShipmentDataStore>();
+            DependencyService.Register<CategoryDataStore>();
+            DependencyService.Register<OrderDataStore>();
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
                 Debug.WriteLine($"[UnhandledException] {e.ExceptionObject}");

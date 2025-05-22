@@ -82,6 +82,7 @@ namespace WarehouseController.ViewModel.ProductVM
                    && price > 0
                    && quantity > 0;
         }
+
     }
 
 }

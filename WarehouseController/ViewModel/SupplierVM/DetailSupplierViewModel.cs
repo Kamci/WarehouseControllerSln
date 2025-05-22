@@ -58,5 +58,7 @@ namespace WarehouseController.ViewModel.SupplierVM
 
             await Shell.Current.GoToAsync($"{nameof(EditSupplierPage)}?{nameof(EditSupplierViewModel.ItemId)}={Id}");
         }
+
+  
     }
 }

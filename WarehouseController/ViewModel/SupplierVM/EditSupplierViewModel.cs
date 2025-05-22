@@ -64,5 +64,7 @@ namespace WarehouseController.ViewModel.SupplierVM
                   && !string.IsNullOrWhiteSpace(name)
                     && !string.IsNullOrWhiteSpace(contact);
         }
+
+     
     }
 }

@@ -65,6 +65,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
                    && !string.IsNullOrWhiteSpace(name)
                    && !string.IsNullOrWhiteSpace(location);
         }
+
     }
 
 }

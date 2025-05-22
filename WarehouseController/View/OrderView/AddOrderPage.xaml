@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="WarehouseController.View.OrderView.AddOrderPage"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM;assembly=WarehouseController"  
+              xmlns:model="clr-namespace:WarehouseController.Model"  
+             x:DataType="vm:AddOrderViewModel"  
+             Title="{Binding Title}"  
+             Shell.PresentationMode="Animated"  
+             x:Name="ThisPage">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <!-- Order fields -->
+            <Label Text="Id" FontSize="14" />
+            <Entry Placeholder="Id" Text="{Binding Id, Mode=TwoWay, 
+                        Converter={StaticResource IntToStringConverter}}" FontSize="14" />
+            <Label Text="Order Date" FontSize="14"/>
+            <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" IsVisible="True" FontSize="14"/>
+
+            <Label Text="Status" FontSize="14" />
+            <Entry Text="{Binding Status, Mode=TwoWay}" Placeholder="Order status" FontSize="14" />
+
+            <Label Text="User ID" FontSize="14"  />
+            <Entry Text="{Binding UserId, Mode=TwoWay}" Placeholder="User ID" Keyboard="Numeric" />
+
+            <!-- Add Order Item section -->
+            <Border Stroke="LightGray" Padding="10" StrokeShape="RoundRectangle 8">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Add Order Item" FontAttributes="Bold" />
+
+                    <!-- Assume you have a Products collection: ItemsSource="{Binding Products}" -->
+                    <Label Text="Product ID" />
+                    <Entry Text="{Binding ProductId}" Placeholder="Product ID" Keyboard="Numeric" />
+
+                    <Label Text="Quantity" />
+                    <Entry Text="{Binding Quantity}" Placeholder="Quantity" Keyboard="Numeric" />
+
+                    <ImageButton Source="add.png"
+                            Command="{Binding AddOrderItemCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Order Items List -->
+            <Label Text="Order Items:" FontAttributes="Bold" />
+            <CollectionView ItemsSource="{Binding OrderItems}" HeightRequest="150">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="model:OrderItem">
+                        <Border Stroke="LightGray" Padding="5" Margin="0,2">
+                            <HorizontalStackLayout Spacing="10">
+                                <Label Text="Product ID:" />
+                                <Label Text="{Binding ProductId}" />
+                                <Label Text="Qty:" />
+                                <Label Text="{Binding Quantity}" />
+                                <ImageButton 
+                                        Command="{Binding BindingContext.RemoveOrderItemCommand, Source={x:Reference ThisPage}}"
+                                        CommandParameter="{Binding .}" 
+                                        Source="remove.png"/>
+                            </HorizontalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <!-- Save and Cancel Buttons -->
+            <HorizontalStackLayout Spacing="30" Margin="10">
+                <ImageButton   
+                        Source="save.png"  
+                        Command="{Binding SaveCommand}"/>
+                <ImageButton   
+                        Source="cancel.png"  
+                        Command="{Binding CancelCommand}"/> 
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
