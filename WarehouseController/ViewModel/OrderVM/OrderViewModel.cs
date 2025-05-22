@@ -3,31 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.View.OrderView;
 using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.OrderVM
 {
-    public partial class OrderViewModel : AItemListViewModel<Order>
+    public partial class OrderViewModel : AItemListViewModel<OrderDto>
     {
-        private Order? _selectedOrder;
+        private OrderDto? _selectedOrder;
         public Command RefreshCommand { get; }
-        public Command<Order> AboutCommand { get; }
+        public Command<OrderDto> AboutCommand { get; }
         public OrderViewModel() : base("Order")
         {
             RefreshCommand = LoadItemsCommand;
-            AboutCommand = new Command<Order>(OnOrderSelected);
+            AboutCommand = new Command<OrderDto>(OnOrderSelected);
         }
 
 
 
-        public Order? SelectedOrder
+        public OrderDto? SelectedOrder
         {
             get => _selectedOrder;
             set => SetProperty(ref _selectedOrder, value);
         }
-        async void OnOrderSelected(Order order)
+        async void OnOrderSelected(OrderDto order)
         {
             await GoToDetailsPage(order);
         }
@@ -38,7 +39,7 @@ namespace WarehouseController.ViewModel.OrderVM
             await Shell.Current.GoToAsync(nameof(AddOrderPage));
         }
 
-        public override async Task GoToDetailsPage(Order order)
+        public override async Task GoToDetailsPage(OrderDto order)
         {
             if (order == null)
                 return;

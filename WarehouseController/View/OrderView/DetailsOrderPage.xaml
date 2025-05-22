@@ -4,7 +4,7 @@
              x:Class="WarehouseController.View.OrderView.DetailsOrderPage"  
              Title="{Binding Title}"  
              xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM;assembly=WarehouseController"  
-             xmlns:model="clr-namespace:WarehouseController.Model"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
              x:DataType="vm:DetailsOrderViewModel"  
              Shell.PresentationMode="Animated">  
     <ScrollView>  
@@ -19,7 +19,7 @@
             <Label Text="{Binding UserId, Mode=TwoWay}" FontSize="14" />  
             <CollectionView ItemsSource="{Binding OrderItems}">  
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:OrderItem">  
+                    <DataTemplate x:DataType="model:OrderItemDto">  
                         <HorizontalStackLayout>  
                             <Label Text="{Binding ProductId}" />  
                             <Label Text="{Binding Quantity}" />  

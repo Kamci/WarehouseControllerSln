@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
 
 namespace RestApiWarehouseController.Models;
@@ -22,6 +23,7 @@ public partial class Order
     [InverseProperty("Order")]
     public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
 
+    [JsonIgnore]
     [ForeignKey("UserId")]
     [InverseProperty("Orders")]
     public virtual User? User { get; set; }

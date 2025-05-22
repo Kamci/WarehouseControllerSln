@@ -1,4 +1,5 @@
-﻿using WarehouseController.Model;
+﻿using WarehouseController.DTO;
+using WarehouseController.Model;
 using WarehouseController.ViewModel.OrderVM;
 
 namespace WarehouseController;
@@ -14,7 +15,7 @@ public partial class OrderPage : ContentPage
 
     private async void OrdersList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (OrdersList.SelectedItem is Order selectedOrder)
+        if (OrdersList.SelectedItem is OrderDto selectedOrder)
         {
             bool isConfirmed = await DisplayAlert("Order Selected", $"You selected: {selectedOrder.Id} - {selectedOrder.OrderDate} ", "OK", "Cancel");
 

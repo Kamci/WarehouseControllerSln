@@ -4,7 +4,7 @@
              x:Class="WarehouseController.OrderPage"
              xmlns:conventers="clr-namespace:WarehouseController.Converters"  
              xmlns:local="clr-namespace:WarehouseController.ViewModel.OrderVM;assembly=WarehouseController"  
-             xmlns:model="clr-namespace:WarehouseController.Model"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
              x:DataType="local:OrderViewModel"  
              Title="{Binding Title}">
     <ScrollView>
@@ -40,7 +40,7 @@
                             SelectionMode="Single" SelectedItem="{Binding SelectedOrder}"   
                             SelectionChanged="OrdersList_SelectionChanged">
                 <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="model:Order">
+                    <DataTemplate x:DataType="model:OrderDto">
                         <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">

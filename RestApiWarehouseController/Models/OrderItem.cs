@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.EntityFrameworkCore;
 
 namespace RestApiWarehouseController.Models;
@@ -18,11 +20,13 @@ public partial class OrderItem
 
     public int Quantity { get; set; }
 
+    [JsonIgnore]                // nie serializujemy
+    [ValidateNever]             // **nie** walidujemy przy POST
     [ForeignKey("OrderId")]
-    [InverseProperty("OrderItems")]
-    public virtual Order Order { get; set; } = null!;
+    public virtual Order? Order { get; set; }        // ← Nullable!
 
+    [JsonIgnore]
+    [ValidateNever]
     [ForeignKey("ProductId")]
-    [InverseProperty("OrderItems")]
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product? Product { get; set; }
 }

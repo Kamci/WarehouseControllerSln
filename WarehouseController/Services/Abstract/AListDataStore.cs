@@ -1,6 +1,7 @@
-﻿using System.Net.Http;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Net.Http.Json;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace WarehouseController.Services.Abstract
@@ -23,7 +24,12 @@ namespace WarehouseController.Services.Abstract
 
         public virtual async Task<bool> AddItemAsync(T item)
         {
+            // Dodaj logowanie:
+            Debug.WriteLine("Dodaję item do API: " + System.Text.Json.JsonSerializer.Serialize(item));
             var response = await _httpClient.PostAsJsonAsync(ControllerName, item);
+            Debug.WriteLine("Status odpowiedzi: " + response.StatusCode);
+            var responseBody = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine("Treść odpowiedzi: " + responseBody);
             return response.IsSuccessStatusCode;
         }
 

@@ -32,7 +32,10 @@ namespace RestApiWarehouseController.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.FindAsync(id);
+            var order = await _context.Orders
+                .Include(o => o.OrderItems)
+       //.ThenInclude(oi => oi.Product) // jeśli chcesz też produkt
+                .FirstOrDefaultAsync(o => o.Id == id);
 
             if (order == null)
             {
@@ -45,33 +48,96 @@ namespace RestApiWarehouseController.Controllers
         // PUT: api/Order/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutOrder(int id, Order order)
+
+        public async Task<IActionResult> PutOrder(int id, Order updatedOrder)
         {
-            if (id != order.Id)
-            {
+            if (id != updatedOrder.Id)
                 return BadRequest();
-            }
 
-            _context.Entry(order).State = EntityState.Modified;
+            var existingOrder = await _context.Orders
+                .Include(o => o.OrderItems)
+                .FirstOrDefaultAsync(o => o.Id == id);
 
-            try
+            if (existingOrder == null)
+                return NotFound();
+
+            // Update głównych pól
+            existingOrder.OrderDate = updatedOrder.OrderDate;
+            existingOrder.Status = updatedOrder.Status;
+            existingOrder.UserId = updatedOrder.UserId;
+
+            // 1. Usuń te OrderItems, które już nie istnieją
+            _context.OrderItems.RemoveRange(
+                existingOrder.OrderItems.Where(oi =>
+                    !updatedOrder.OrderItems.Any(uoi => uoi.Id == oi.Id))
+            );
+
+            // 2. Dodaj nowe lub aktualizuj istniejące
+            foreach (var updatedItem in updatedOrder.OrderItems)
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!OrderExists(id))
+                OrderItem existingItem;
+
+                if (updatedItem.Id > 0)
                 {
-                    return NotFound();
+                    // szukaj po ID jeśli istnieje
+                    existingItem = existingOrder.OrderItems.FirstOrDefault(oi => oi.Id == updatedItem.Id);
                 }
                 else
                 {
-                    throw;
+                    // jeśli nowy (Id == 0 lub tymczasowy), szukaj po ProductId
+                    existingItem = existingOrder.OrderItems.FirstOrDefault(oi => oi.ProductId == updatedItem.ProductId);
+                }
+
+                if (existingItem != null)
+                {
+                    // Update istniejącego
+                    existingItem.ProductId = updatedItem.ProductId;
+                    existingItem.Quantity = updatedItem.Quantity;
+                }
+                else
+                {
+                    // Dodaj nowy
+                    existingOrder.OrderItems.Add(new OrderItem
+                    {
+                        ProductId = updatedItem.ProductId,
+                        Quantity = updatedItem.Quantity,
+                        OrderId = id
+                    });
                 }
             }
 
+
+            await _context.SaveChangesAsync();
+
             return NoContent();
         }
+        //public async Task<IActionResult> PutOrder(int id, Order order)
+        //{
+        //    if (id != order.Id)
+        //    {
+        //        return BadRequest();
+        //    }
+
+        //    _context.Entry(order).State = EntityState.Modified;
+
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!OrderExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
+
+        //    return NoContent();
+        //}
 
         // POST: api/Order
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

@@ -44,7 +44,8 @@ namespace WarehouseController.ViewModel.Abstract
         private async void OnSave()
         {
             await DataStore.UpdateItemAsync(SetItem());
-            await Shell.Current.GoToAsync("..");
+            //tu wracamy o dwa poziomy zeby pominac details bo sie nie odswieza 
+            await Shell.Current.GoToAsync("../..");
         }
     }
 }
