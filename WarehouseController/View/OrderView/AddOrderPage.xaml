@@ -15,8 +15,10 @@
             <Label Text="Order Date" FontSize="14"/>
             <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" IsVisible="True" FontSize="14"/>
 
-            <Label Text="User ID" FontSize="14"  />
-            <Entry Text="{Binding UserId, Mode=TwoWay}" Placeholder="User ID" Keyboard="Numeric" />
+            <Picker Title="Select User"
+                        ItemsSource="{Binding Users}"
+                        ItemDisplayBinding="{Binding Login}" 
+                        SelectedItem="{Binding SelectedUser}" />    
 
             <!-- Add Order Item section -->
             <Border Stroke="LightGray" Padding="10" StrokeShape="RoundRectangle 8">
@@ -24,8 +26,10 @@
                     <Label Text="Add Order Item" FontAttributes="Bold" />
 
                     <!-- Assume you have a Products collection: ItemsSource="{Binding Products}" -->
-                    <Label Text="Product ID" />
-                    <Entry Text="{Binding ProductId}" Placeholder="Product ID" Keyboard="Numeric" />
+                    <Picker Title="Select Product"
+                            ItemsSource="{Binding Products}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedProduct}" /> 
 
                     <Label Text="Quantity" />
                     <Entry Text="{Binding Quantity}" Placeholder="Quantity" Keyboard="Numeric" />
@@ -42,8 +46,8 @@
                     <DataTemplate x:DataType="model:OrderItemDto">
                         <Border Stroke="LightGray" Padding="5" Margin="0,2">
                             <HorizontalStackLayout Spacing="10">
-                                <Label Text="Product ID:" />
-                                <Label Text="{Binding ProductId}" />
+                                <Label Text="Product:" />
+                                <Label Text="{Binding ProductName}" />
                                 <Label Text="Qty:" />
                                 <Label Text="{Binding Quantity}" />
                                 <ImageButton 

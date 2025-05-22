@@ -23,4 +23,14 @@ public partial class AddProductPage : ContentPage
         base.OnDisappearing();
         Debug.WriteLine("AddProductPage is disappearing");
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is AddProductViewModel vm)
+        {
+            await vm.LoadDataAsync();
+        }
+    }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
 using WarehouseController.DTO;
+using WarehouseController.Model;
+using WarehouseController.Services.Implementations;
 using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.OrderVM;
@@ -87,7 +89,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
 
     public override OrderDto SetItem()
     {
-   
+
         return new OrderDto
         {
             Id = Id,
@@ -114,14 +116,69 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
             OrderDate = order.OrderDate;
             Status = order.Status;
             UserId = order.UserId;
+            // Załaduj dane powiązane
+            await LoadUsersAsync();
+            await LoadProductsAsync();
+
+            // Ustaw Selected... po załadowaniu list
+            SelectedUser = Users.FirstOrDefault(u => u.Id == UserId);
 
             OrderItems = new ObservableCollection<OrderItemDto>(
-                order.OrderItems.Select(oi => new OrderItemDto
-                {
-                    Id = oi.Id, // ← TO JEST KLUCZOWE!
-                    ProductId = oi.ProductId,
-                    Quantity = oi.Quantity
-                }));
+              order.OrderItems.Select(oi => new OrderItemDto
+              {
+                  Id = oi.Id,
+                  ProductId = oi.ProductId,
+                  Quantity = oi.Quantity
+              }));
+
+            foreach (var orderItem in OrderItems)
+            {
+                var product = Products.FirstOrDefault(p => p.Id == orderItem.ProductId);
+                orderItem.ProductName = product?.Name ?? $"Product #{orderItem.ProductId}";
+            }
+        }
+
+
+    }
+
+    #region Combobox
+    private readonly ReferenceDataHelper _referenceHelper = new();
+
+    public ObservableCollection<User> Users { get; set; } = new();
+
+    private User selectedUser;
+    public User SelectedUser
+    {
+        get => selectedUser;
+        set
+        {
+            if (SetProperty(ref selectedUser, value) && value != null)
+                UserId = value.Id; // zakładam że masz już właściwość UserId
         }
     }
+
+    public async Task LoadUsersAsync()
+    {
+        await _referenceHelper.LoadUsersAsync(Users);
+    }
+
+    public ObservableCollection<Product> Products { get; set; } = new();
+
+    private Product selectedProduct;
+    public Product SelectedProduct
+    {
+        get => selectedProduct;
+        set
+        {
+            if (SetProperty(ref selectedProduct, value) && value != null)
+            {
+                ProductId = selectedProduct.Id;
+            }
+        }
+    }
+    public async Task LoadProductsAsync()
+    {
+        await _referenceHelper.LoadProductsAsync(Products);
+    }
+    #endregion
 }

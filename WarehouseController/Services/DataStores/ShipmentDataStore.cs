@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using WarehouseController.Model;
-using WarehouseController.Services;
 using System.Text;
 using System.Threading.Tasks;
 using WarehouseController.Services.Abstract;
 
-namespace WarehouseController.Services
+namespace WarehouseController.Services.DataStores
 {
     public class ShipmentDataStore : AListDataStore<Shipment>
     {

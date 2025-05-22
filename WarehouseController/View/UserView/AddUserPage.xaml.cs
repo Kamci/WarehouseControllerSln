@@ -5,8 +5,8 @@ namespace WarehouseController.View.UserView;
 
 public partial class AddUserPage : ContentPage
 {
-	public AddUserPage()
-	{
+    public AddUserPage()
+    {
         BindingContext = new AddUserViewModel(); // przypisz ViewModel
         InitializeComponent();
     }

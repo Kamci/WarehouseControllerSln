@@ -16,15 +16,19 @@
             <Label Text="Price" FontSize="14" />
             <Editor Text="{Binding Price, Mode=TwoWay, Converter={StaticResource DecimalToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
             <Label Text="Quantity" FontSize="14" />
-            <Editor Text="{Binding Quantity, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Label Text="CategoryId" FontSize="14" />
-            <Editor Text="{Binding CategoryId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Label Text="WarehouseId" FontSize="14" />
-            <Editor Text="{Binding WarehouseId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
-                    FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Label Text="SupplierId" FontSize="14" />
-            <Editor Text="{Binding SupplierId, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
-                    FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Editor Text="{Binding StockQuantity, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+            <Picker Title="Select Category"
+                     ItemsSource="{Binding Category}"
+                     ItemDisplayBinding="{Binding Name}"
+                     SelectedItem="{Binding SelectedCategory}" />
+            <Picker Title="Select Warehouse"
+                     ItemsSource="{Binding Warehouses}"
+                     ItemDisplayBinding="{Binding Name}"
+                     SelectedItem="{Binding SelectedWarehouse}" />
+            <Picker Title="Select Supplier"
+                     ItemsSource="{Binding Suppliers}"
+                     ItemDisplayBinding="{Binding Name}"
+                     SelectedItem="{Binding SelectedSupplier}" />   
             <HorizontalStackLayout Spacing="30" Margin="10">
                 <ImageButton   
                Source="save.png"  

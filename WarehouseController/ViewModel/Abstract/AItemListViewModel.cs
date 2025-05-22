@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WarehouseController.Services;
+using WarehouseController.Services.Abstract;
 
 namespace WarehouseController.ViewModel.Abstract
 {

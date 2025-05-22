@@ -10,4 +10,14 @@ public partial class EditProductPage : ContentPage
         InitializeComponent();
         BindingContext = new EditProductViewModel();
     }
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is EditProductViewModel vm)
+        {
+            await vm.LoadDataAsync();
+        }
+    }
+
 }

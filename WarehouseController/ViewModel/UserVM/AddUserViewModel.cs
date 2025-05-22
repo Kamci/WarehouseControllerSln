@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using WarehouseController.ViewModel.Abstract;
 using WarehouseController.Model;
 using System.Diagnostics;
-using WarehouseController.Services;
+using WarehouseController.Services.Implementations;
 
 namespace WarehouseController.ViewModel.UserVM
 {
@@ -48,7 +48,6 @@ namespace WarehouseController.ViewModel.UserVM
             Debug.WriteLine($"[ViewModel] Creating User object with login: {Login}, role: {Role}");
             return new User()
             {
-                Id = Id,
                 Login = Login,
                 PasswordHash = PasswordHash,
                 Role = Role

@@ -39,14 +39,12 @@ namespace WarehouseController.ViewModel.WarehouseVM
         public override bool ValidateSave()
         {
             return !string.IsNullOrWhiteSpace(name)
-                   && !string.IsNullOrWhiteSpace(location)
-                     && id > 0;
+                   && !string.IsNullOrWhiteSpace(location);
         }
 
         public override Warehouse SetItem()
             => new Warehouse()
             {
-                Id = Id,
                 Name = Name,
                 Location = Location
             };

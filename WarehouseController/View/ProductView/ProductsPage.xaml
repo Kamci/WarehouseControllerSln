@@ -71,8 +71,8 @@
                             <Label Text="{Binding CategoryId}" FontSize="14" Grid.Row="1" Grid.Column="1" />  
                             <Label Text="Price: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />  
                             <Label Text="{Binding Price}" FontSize="14" Grid.Row="2" Grid.Column="1" />  
-                            <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />  
-                            <Label Text="{Binding Quantity}" FontSize="14" Grid.Row="3" Grid.Column="1" />  
+                            <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
+                            <Label Text="{Binding StockQuantity}" FontSize="14" Grid.Row="3" Grid.Column="1" />  
                         </Grid>  
                     </DataTemplate>  
                 </CollectionView.ItemTemplate>  

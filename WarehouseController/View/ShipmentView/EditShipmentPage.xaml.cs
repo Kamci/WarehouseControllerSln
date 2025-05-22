@@ -9,4 +9,14 @@ public partial class EditShipmentPage : ContentPage
 		InitializeComponent();
 		BindingContext = new EditShipmentViewModel();
     }
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is EditShipmentViewModel vm)
+        {
+            await vm.LoadDataAsync();
+        }
+    }
 }

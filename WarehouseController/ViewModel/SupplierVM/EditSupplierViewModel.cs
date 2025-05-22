@@ -9,6 +9,8 @@ using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.SupplierVM
 {
+
+    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public partial class EditSupplierViewModel : AItemUpdateViewModel<Supplier>
 
     {
@@ -60,8 +62,7 @@ namespace WarehouseController.ViewModel.SupplierVM
 
         public override bool ValidateSave()
         {
-            return Id > 0
-                  && !string.IsNullOrWhiteSpace(name)
+            return  !string.IsNullOrWhiteSpace(name)
                     && !string.IsNullOrWhiteSpace(contact);
         }
 

@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
 using WarehouseController.ViewModel.Abstract;
 using WarehouseController.DTO;
+using WarehouseController.Services.Implementations;
+using WarehouseController.Model;
 
 namespace WarehouseController.ViewModel.OrderVM
 {
@@ -27,7 +29,7 @@ namespace WarehouseController.ViewModel.OrderVM
             // a po potwierdzeniu dodać do OrderItems:
             // sprawdź, czy dany produkt jest już na liście
             var existing = OrderItems.FirstOrDefault(i => i.ProductId == ProductId);
-
+            string productName = SelectedProduct?.Name ?? "Unknown";
             if (existing != null)
             {
                 // jeśli jest – tylko zwiększamy ilość
@@ -39,13 +41,14 @@ namespace WarehouseController.ViewModel.OrderVM
                 OrderItems.Add(new OrderItemDto
                 {
                     ProductId = ProductId,
-                    Quantity = Quantity
+                    Quantity = Quantity,
+                      ProductName = productName // ← Ustaw nazwę
                 });
             }
 
             // opcjonalnie wyczyść pola formularza
             Quantity = 0;
-            ProductId = 0;
+            SelectedProduct = null;
         }
         public void RemoveOrderItem(OrderItemDto item)
         {
@@ -95,6 +98,45 @@ namespace WarehouseController.ViewModel.OrderVM
         public Command AddOrderItemCommand { get; }
         public Command<OrderItemDto> RemoveOrderItemCommand { get; }
 
-       
-    }
+        #region Combobox
+        private readonly ReferenceDataHelper _referenceHelper = new();
+
+        public ObservableCollection<User> Users { get; set; } = new();
+
+        private User selectedUser;
+        public User SelectedUser
+        {
+            get => selectedUser;
+            set
+            {
+                if (SetProperty(ref selectedUser, value) && value != null)
+                    UserId = value.Id; // zakładam że masz już właściwość UserId
+            }
+        }
+
+        public async Task LoadUsersAsync()
+        {
+            await _referenceHelper.LoadUsersAsync(Users);
+        }
+
+        public ObservableCollection<Product> Products { get; set; } = new();
+
+        private Product selectedProduct;
+        public Product SelectedProduct
+        {
+            get => selectedProduct;
+            set
+            {
+                if (SetProperty(ref selectedProduct, value) && value != null)
+                {
+                    ProductId = selectedProduct.Id;
+                }
+            }
+        }
+        public async Task LoadProductsAsync()
+        {
+            await _referenceHelper.LoadProductsAsync(Products);
+        }
+            #endregion
+        }
 }

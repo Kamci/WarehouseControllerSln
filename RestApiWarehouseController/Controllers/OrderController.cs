@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RestApiWarehouseController.DTO;
 using RestApiWarehouseController.Models;
 using RestApiWarehouseController.Models.Contexts;
 
@@ -23,11 +24,30 @@ namespace RestApiWarehouseController.Controllers
 
         // GET: api/Order
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
+        public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()
         {
-            return await _context.Orders.ToListAsync();
-        }
+            var orders = await _context.Orders
+                .Include(o => o.User)
+                .Include(o => o.OrderItems)
+                .Select(o => new OrderDto
+                {
+                    Id = o.Id,
+                    OrderDate = (DateTime)o.OrderDate,
+                    Status = o.Status,
+                    UserId = o.UserId,
+                    UserLogin = o.User.Login,
+                    OrderItems = o.OrderItems.Select(oi => new OrderItemDto
+                    {
+                        Id = oi.Id,
+                        ProductId = oi.ProductId,
+                        OrderId = oi.OrderId,
+                        Quantity = oi.Quantity,
+                        ProductName = oi.Product.Name
+                    }).ToList()
+                }).ToListAsync();
 
+            return orders;
+        }
         // GET: api/Order/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
@@ -111,33 +131,7 @@ namespace RestApiWarehouseController.Controllers
 
             return NoContent();
         }
-        //public async Task<IActionResult> PutOrder(int id, Order order)
-        //{
-        //    if (id != order.Id)
-        //    {
-        //        return BadRequest();
-        //    }
 
-        //    _context.Entry(order).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!OrderExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return NoContent();
-        //}
 
         // POST: api/Order
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -166,9 +160,6 @@ namespace RestApiWarehouseController.Controllers
             return NoContent();
         }
 
-        private bool OrderExists(int id)
-        {
-            return _context.Orders.Any(e => e.Id == id);
-        }
+       
     }
 }

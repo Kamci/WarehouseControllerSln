@@ -9,4 +9,15 @@ public partial class AddOrderPage : ContentPage
 		BindingContext = new AddOrderViewModel();
         InitializeComponent();
 	}
+
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        if (BindingContext is AddOrderViewModel vm)
+        {
+            await vm.LoadUsersAsync();
+            await vm.LoadProductsAsync();
+        }
+    }
 }

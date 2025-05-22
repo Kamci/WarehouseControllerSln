@@ -15,13 +15,13 @@
             <Label Text="{Binding OrderDate, Mode=TwoWay}" FontSize="14"/>  
             <Label Text="Status" FontSize="14" />  
             <Label Text="{Binding Status, Mode=TwoWay}" FontSize="14" />  
-            <Label Text="User Id" FontSize="14" />  
-            <Label Text="{Binding UserId, Mode=TwoWay}" FontSize="14" />  
+            <Label Text="User" FontSize="14" />
+            <Label Text="{Binding UserDisplay, Mode=TwoWay}" FontSize="14" />  
             <CollectionView ItemsSource="{Binding OrderItems}">  
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="model:OrderItemDto">  
-                        <HorizontalStackLayout>  
-                            <Label Text="{Binding ProductId}" />  
+                        <HorizontalStackLayout>
+                            <Label Text="{Binding ProductName}" />  
                             <Label Text="{Binding Quantity}" />  
                         </HorizontalStackLayout>  
                     </DataTemplate>  

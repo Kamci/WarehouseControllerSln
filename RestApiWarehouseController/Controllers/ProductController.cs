@@ -52,7 +52,18 @@ namespace RestApiWarehouseController.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
+            var existingProduct = await _context.Products.FindAsync(id);
+            if (existingProduct == null)
+                return NotFound();
+
+            // Aktualizacja właściwości
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.CategoryId = product.CategoryId;
+            existingProduct.StockQuantity = product.StockQuantity;
+            existingProduct.SupplierId = product.SupplierId;
+            existingProduct.WarehouseId = product.WarehouseId;
+
 
             try
             {

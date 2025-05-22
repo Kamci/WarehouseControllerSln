@@ -128,10 +128,10 @@
 	  <MauiXaml Update="View\ProductView\AddProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ProductView\EditProductPage.xaml">
+	  <MauiXaml Update="View\ProductView\DetailProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="View\ProductView\DetailProductPage.xaml">
+	  <MauiXaml Update="View\ProductView\EditProductPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\ProductView\ProductsPage.xaml">
@@ -192,15 +192,6 @@
 	  <Folder Include="View\ShipmentView\" />
 	  <Folder Include="View\OrderItemView\" />
 	  <Folder Include="View\OrderView\" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Compile Update="View\ProductView\DetailProductPage.xaml.cs">
-	    <DependentUpon>DetailProductPage.xaml</DependentUpon>
-	  </Compile>
-	  <Compile Update="View\UserView\AddUserPage.xaml.cs">
-	    <DependentUpon>AddUserPage.xaml</DependentUpon>
-	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>

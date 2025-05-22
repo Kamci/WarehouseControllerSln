@@ -32,14 +32,12 @@ namespace WarehouseController.ViewModel.SupplierVM
         public string Contact { get => contact; set => SetProperty(ref contact, value); }
         public override bool ValidateSave()
         {
-            return Id > 0
-                 && !string.IsNullOrWhiteSpace(name)
+            return  !string.IsNullOrWhiteSpace(name)
                    && !string.IsNullOrWhiteSpace(contact);
         }
         public override Supplier SetItem()
             => new Supplier()
             {
-                Id = Id,
                 Name = Name,
                 Contact = Contact
             };

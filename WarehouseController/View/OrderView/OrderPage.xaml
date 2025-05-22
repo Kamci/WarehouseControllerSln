@@ -73,7 +73,7 @@
                             <Label Text="Status: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />
                             <Label Text="{Binding Status}" FontSize="14" Grid.Row="2" Grid.Column="1" />
                             <Label Text="User Id: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
-                            <Label Text="{Binding UserId}" FontSize="14" Grid.Row="3" Grid.Column="1" />
+                            <Label Text="{Binding UserLogin}" FontSize="14" Grid.Row="3" Grid.Column="1" />
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

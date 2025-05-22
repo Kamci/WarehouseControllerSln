@@ -12,9 +12,14 @@ public partial class AddShipmentPage : ContentPage
 		BindingContext = new AddShipmentViewModel();
         InitializeComponent();
 	}
-    protected override void OnDisappearing()
+
+    protected override async void OnAppearing()
     {
-        base.OnDisappearing();
-        Debug.WriteLine("AddShipmentPage is disappearing");
+        base.OnAppearing();
+
+        if (BindingContext is AddShipmentViewModel vm)
+        {
+            await vm.LoadDataAsync();
+        }
     }
 }

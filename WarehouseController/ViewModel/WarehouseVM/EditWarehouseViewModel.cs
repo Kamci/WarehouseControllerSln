@@ -9,6 +9,8 @@ using WarehouseController.Model;
 
 namespace WarehouseController.ViewModel.WarehouseVM
 {
+
+    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     class EditWarehouseViewModel : AItemUpdateViewModel<Warehouse>
     {
         private int id;
@@ -61,8 +63,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
 
         public override bool ValidateSave()
         {
-            return Id > 0
-                   && !string.IsNullOrWhiteSpace(name)
+            return  !string.IsNullOrWhiteSpace(name)
                    && !string.IsNullOrWhiteSpace(location);
         }
 

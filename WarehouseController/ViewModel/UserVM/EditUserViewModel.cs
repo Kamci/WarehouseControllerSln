@@ -2,11 +2,13 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using WarehouseController.Model;
-using WarehouseController.Services;
+using WarehouseController.Services.Implementations;
 using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.UserVM
 {
+
+    [QueryProperty(nameof(ItemId), nameof(ItemId))]
     public class EditUserViewModel : AItemUpdateViewModel<User>
     {
         private int id;

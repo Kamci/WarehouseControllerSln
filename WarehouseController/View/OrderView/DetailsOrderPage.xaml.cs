@@ -1,4 +1,4 @@
-using WarehouseController.ViewModel.OrderVM;
+﻿using WarehouseController.ViewModel.OrderVM;
 
 namespace WarehouseController.View.OrderView;
 
@@ -9,4 +9,10 @@ public partial class DetailsOrderPage : ContentPage
 		BindingContext = new DetailsOrderViewModel();
         InitializeComponent();
 	}
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        if (BindingContext is DetailsOrderViewModel vm)
+            await vm.LoadItem(vm.ItemId); // <- upewnij się, że ItemId jest przekazywany
+    }
 }

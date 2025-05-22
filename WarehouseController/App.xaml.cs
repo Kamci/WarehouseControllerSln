@@ -2,6 +2,9 @@
 using System.Net.Http;
 using WarehouseController.Model;
 using WarehouseController.Services;
+using WarehouseController.Services.DataStores;
+using WarehouseController.Services.Implementations;
+using WarehouseController.Services.Interfaces;
 
 namespace WarehouseController
 {
@@ -18,6 +21,13 @@ namespace WarehouseController
             DependencyService.Register<ShipmentDataStore>();
             DependencyService.Register<CategoryDataStore>();
             DependencyService.Register<OrderDataStore>();
+            DependencyService.Register<IWarehouseService, WarehouseService>();
+            DependencyService.Register<ICategoryService, CategoryService>();
+            DependencyService.Register<IOrderService, OrderService>();
+            DependencyService.Register<IProductService, ProductService>();
+            DependencyService.Register<IShipmentService, ShipmentService>();
+            DependencyService.Register<ISupplierService, SupplierService>();
+            DependencyService.Register<IUserService, UserService>();
             AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
             {
                 Debug.WriteLine($"[UnhandledException] {e.ExceptionObject}");

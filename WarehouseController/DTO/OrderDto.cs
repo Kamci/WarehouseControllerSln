@@ -14,6 +14,7 @@ namespace WarehouseController.DTO
         public DateTime OrderDate { get; set; }
         public string Status { get; set; }
         public int UserId { get; set; }
+        public string UserLogin { get; set; } = string.Empty;
         public List<OrderItemDto> OrderItems { get; set; }
     }
 }

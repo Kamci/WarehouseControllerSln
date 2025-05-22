@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using WarehouseController.Model;
 using WarehouseController.Services.Abstract;
 
-namespace WarehouseController.Services
+namespace WarehouseController.Services.DataStores
 {
     public class CategoryDataStore : AListDataStore<Category>
     {

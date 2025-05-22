@@ -8,8 +8,6 @@
              Title="Add Warehouse">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Entry Placeholder="Id" Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />
             <Label Text="Name" FontSize="14" />
             <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
             <Label Text="Location" FontSize="14" />

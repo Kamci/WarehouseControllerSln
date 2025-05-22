@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using WarehouseController.Model;
 using WarehouseController.Services.Abstract;
 
-namespace WarehouseController.Services
+namespace WarehouseController.Services.DataStores
 {
     public class SupplierDataStore : AListDataStore<Supplier>
     {
