@@ -8,33 +8,42 @@
                 x:DataType="local:WarehouseViewModel"
              Title="{Binding Title}">
 
-    <ScrollView>
-        <VerticalStackLayout>
+    <Grid>
 
-            <!-- 🧰 Nasz custom toolbar -->
-            <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"
-               VerticalOptions="Center"
-               HorizontalOptions="Center"
-           Padding="{OnPlatform Android=40, WinUI=0 }"
-           BackgroundColor="Transparent">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <ImageButton Grid.Column="0"
-                      Source="add.png"
-                      Command="{Binding AddItemCommand}"/>
-                <ImageButton  Grid.Column="1"
-                      Source="refresh.png"
-                      Command="{Binding LoadItemsCommand}"/>
-                <ImageButton  Grid.Column="2"
-                      Source="about.png"
-                      Command="{Binding AboutCommand}"
-                      CommandParameter="{Binding SelectedWarehouse}"
-                      IsEnabled="{Binding SelectedWarehouse, Converter={StaticResource NullToBoolConventer}}"/>
-            </Grid>
-            <Label HorizontalOptions="Center" Text="Warehouses" FontSize="20" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
+        <!-- 🧰 Nasz custom toolbar -->
+        <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+           Grid.Row="0"
+         VerticalOptions="Center"  
+         HorizontalOptions="Center"  
+         Padding="{OnPlatform Android=40, WinUI=0 }"  
+         BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0"  
+                    Source="add.png"  
+                    Command="{Binding AddItemCommand}"/>
+            <ImageButton  Grid.Column="1"  
+                    Source="refresh.png"  
+                    Command="{Binding LoadItemsCommand}"/>
+            <ImageButton  Grid.Column="2"  
+                    Source="about.png"  
+                    Command="{Binding AboutCommand}"  
+                    CommandParameter="{Binding SelectedWarehouse}"  
+                    IsEnabled="{Binding SelectedWarehouse, Converter={StaticResource NullToBoolConventer}}"/>
+        </Grid>
+        <Grid  Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label HorizontalOptions="Center" Text="Warehouses" FontSize="20" 
                FontAttributes="Bold" Margin="20" />
             <CollectionView x:Name="WarehosuesList" ItemsSource="{Binding Items}"
                         SelectionMode="Single" SelectedItem="{Binding SelectedWarehouse}" 
@@ -75,7 +84,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </VerticalStackLayout>
-    </ScrollView>
-
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
 </ContentPage>

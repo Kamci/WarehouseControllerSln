@@ -1,6 +1,7 @@
 using WarehouseController.ViewModel.ProductVM;
 using WarehouseController.Model;
 using WarehouseController.ViewModel.ShipmentVM;
+using WarehouseController.DTO;
 namespace WarehouseController;
 
 
@@ -14,7 +15,7 @@ public partial class ShipmentPage : ContentPage
 	}
     private async void ShipmentsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ShipmentsList.SelectedItem is Shipment selectedShipment)
+        if (ShipmentsList.SelectedItem is ShipmentDTO selectedShipment)
         {
             bool isConfirmed = await DisplayAlert("Product Selected", $"You selected: {selectedShipment.Id} - {selectedShipment.ShipmentDate}", "OK", "Cancel");
 

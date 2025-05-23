@@ -61,12 +61,18 @@
 
 	<ItemGroup>
 	  <AndroidResource Remove="Resources\Images\NewFolder\**" />
+	  <AndroidResource Remove="View\OrderItemView\**" />
 	  <Compile Remove="Resources\Images\NewFolder\**" />
+	  <Compile Remove="View\OrderItemView\**" />
 	  <EmbeddedResource Remove="Resources\Images\NewFolder\**" />
+	  <EmbeddedResource Remove="View\OrderItemView\**" />
 	  <MauiCss Remove="Resources\Images\NewFolder\**" />
+	  <MauiCss Remove="View\OrderItemView\**" />
 	  <MauiImage Remove="Resources\Images\NewFolder\**" />
 	  <MauiXaml Remove="Resources\Images\NewFolder\**" />
+	  <MauiXaml Remove="View\OrderItemView\**" />
 	  <None Remove="Resources\Images\NewFolder\**" />
+	  <None Remove="View\OrderItemView\**" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -84,6 +90,7 @@
 
 	<ItemGroup>
 	  <None Remove="Resources\Images\products_icon.png" />
+	  <None Remove="View\OrderView\AddOrderPage.xaml~RF74ec5b9.TMP" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -201,7 +208,6 @@
 	<ItemGroup>
 	  <Folder Include="View\CategoryView\" />
 	  <Folder Include="View\ShipmentView\" />
-	  <Folder Include="View\OrderItemView\" />
 	  <Folder Include="View\OrderView\" />
 	</ItemGroup>
 

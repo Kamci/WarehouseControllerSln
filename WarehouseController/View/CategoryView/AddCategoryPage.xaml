@@ -8,12 +8,17 @@
              Title="Add Category"
              >
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <!--<Label Text="Id" FontSize="14" />
-            <Entry Placeholder="Id" Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />-->
-            <Label Text="Name" FontSize="14" />
-            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
-            <HorizontalStackLayout Spacing="30" Margin="10">
+        <VerticalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
+            <Border Style="{StaticResource MyContainerStyle}">
+        <VerticalStackLayout>
+            
+            <Label Text="Name"  Style="{StaticResource LabelTitleStyle}" />
+           
+
+            <Entry Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource EntryStyle} "/>
+            </VerticalStackLayout>
+            </Border>
+            <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
                 <ImageButton   
                Source="save.png"  
                Command="{Binding SaveCommand}"/>

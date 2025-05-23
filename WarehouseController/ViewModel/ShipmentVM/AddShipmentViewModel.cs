@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.Services.Implementations;
 using WarehouseController.Services.Interfaces;
@@ -12,7 +13,7 @@ using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.ShipmentVM
 {
-    public partial class AddShipmentViewModel : ANewItemViewModel<Shipment>
+    public partial class AddShipmentViewModel : ANewItemViewModel<ShipmentDTO>
     {
         private int id;
         private int supplierId;
@@ -53,13 +54,14 @@ namespace WarehouseController.ViewModel.ShipmentVM
 
         }
 
-        public override Shipment SetItem()
-            => new Shipment()
+        public override ShipmentDTO SetItem()
+            => new ShipmentDTO()
             {
                 SupplierId = SupplierId,
                 WarehouseId = WarehouseId,
                 ShipmentDate = ShipmentDate,
                 Status = Status
+
 
             };
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.Services.Interfaces;
 
@@ -18,10 +19,10 @@ namespace WarehouseController.Services.Implementations
             _dataStore = new ProductDataStore(); // lub użyj Dependency Injection
         }
 
-        public Task<IEnumerable<Product>> GetAllAsync() => _dataStore.GetItemsAsync();
-        public Task<Product> GetByIdAsync(int id) => _dataStore.GetItemAsync(id);
+        public Task<IEnumerable<ProductDto>> GetAllAsync() => _dataStore.GetItemsAsync();
+        public Task<ProductDto> GetByIdAsync(int id) => _dataStore.GetItemAsync(id);
 
-        public async Task<List<Product>> GetTopProductsAsync(int warehouseId)
+        public async Task<List<ProductDto>> GetTopProductsAsync(int warehouseId)
         {
             var all = await GetAllAsync();
             return all.Where(p => p.WarehouseId == warehouseId)

@@ -6,19 +6,35 @@
              x:DataType="vm:DetailUserViewModel"
              Title="{Binding Title}"
              Shell.PresentationMode="Animated">
-
+    <Border Style="{StaticResource CardItemStyle}">
     <ScrollView>
+        
+        
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="User ID" FontSize="14" />
-            <Label Text="{Binding Id}" FontSize="14" />
 
-            <Label Text="Username" FontSize="14" />
-            <Label Text="{Binding Login}" FontSize="14" />
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                        <Label Text="User ID" Style="{StaticResource LabelTitleStyle}"/>
+                        <Label Text="{Binding Id}"  
+                               Style="{StaticResource ValueLabelStyle}"/>
+                </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Username" Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding Login}" Style="{StaticResource ValueLabelStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Role" Style="{StaticResource LabelTitleStyle}"  />
+                        <Label Text="{Binding Role}" Style="{StaticResource LabelTitleStyle}"  />
+                    </VerticalStackLayout>
+                </Border>
 
-            <Label Text="Role" FontSize="14" />
-            <Label Text="{Binding Role}" FontSize="14" />
 
-            <HorizontalStackLayout Spacing="30" Margin="10">
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
                 <ImageButton 
                      Source="edit.png"
                      Command="{Binding UpdateCommand}" />
@@ -33,4 +49,7 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+
+
+    </Border>
 </ContentPage>

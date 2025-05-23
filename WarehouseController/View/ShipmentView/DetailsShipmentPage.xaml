@@ -7,18 +7,46 @@
              x:DataType="vm:DetailsShipmentViewModel"  
              Shell.PresentationMode="Animated">
     <ScrollView>
+        <Border Style="{StaticResource  MyContainerStyle }">
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Label Text="{Binding Id, Mode=TwoWay}" FontSize="14" />
-            <Label Text="SupplierId" FontSize="14" />
-            <Label Text="{Binding SupplierId, Mode=TwoWay}" FontSize="14"/>
-            <Label Text="WarehouseId" FontSize="14" />
-            <Label Text="{Binding WarehouseId, Mode=TwoWay}" FontSize="14" />
-            <Label Text="Shipment date" FontSize="14" />
-            <Label Text="{Binding ShipmentDate, Mode=TwoWay}" FontSize="14" />
-            <Label Text="Status" FontSize="14" />
-            <Label Text="{Binding Status, Mode=TwoWay}" FontSize="14" />
-            <HorizontalStackLayout Spacing="30" Margin="10">
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                <VerticalStackLayout>
+            <Label Text="Id" Style="{StaticResource LabelTitleStyle}" />
+            <Label Text="{Binding Id, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
+                </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="SupplierId"  Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding SupplierId, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="WarehouseId"  Style="{StaticResource LabelTitleStyle}"  />
+                        <Label Text="{Binding WarehouseId, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+            
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Shipment date"  Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding ShipmentDate, Mode=TwoWay,StringFormat='{0:yyyy-MM-dd}'}"  
+                               Style="{StaticResource ValueLabelStyle}" />
+                    </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Status" Style="{StaticResource LabelTitleStyle}"/>
+                        <Label Text="{Binding Status, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
                 <ImageButton   
                     Source="edit.png"  
                     Command="{Binding UpdateCommand}"/>
@@ -30,5 +58,6 @@
                     Command="{Binding CancelCommand}"/>
             </HorizontalStackLayout>
         </VerticalStackLayout>
+        </Border>
     </ScrollView>
 </ContentPage>

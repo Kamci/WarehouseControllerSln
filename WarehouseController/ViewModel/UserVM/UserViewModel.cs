@@ -43,24 +43,38 @@ namespace WarehouseController.ViewModel.UserVM
 
         public override async Task GoToDetailsPage(User user)
         {
-            try 
+            try
             {
+                if (user == null)
+                {
+                    Debug.WriteLine("[NAVIGATE] User is null. Navigation canceled.");
+                    return;
+                }
+
+                if (user.Id <= 0)
+                {
+                    Debug.WriteLine($"[NAVIGATE] Invalid user ID: {user.Id}. Navigation canceled.");
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(user.Login))
+                {
+                    Debug.WriteLine("[NAVIGATE] User login is null or empty. Navigation canceled.");
+                    return;
+                }
+
                 Debug.WriteLine($"[NAVIGATE] Going to DetailUserPage with ID: {user.Id}");
                 Debug.WriteLine($"[NAVIGATE] User: {user.Login}");
                 Debug.WriteLine($"[NAVIGATE] User: {user.Role}");
-                if (user == null)
-                    return;
+
                 SelectedUser = user;
 
-                //// This will push the ItemDetailPage onto the navigation stack
                 await Shell.Current.GoToAsync($"{nameof(DetailUserPage)}?{nameof(DetailUserViewModel.ItemId)}={user.Id}");
-
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"[NAVIGATE ERROR] {ex}");
             }
-           
         }
     }
 }

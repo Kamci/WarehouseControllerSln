@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.Services.Implementations;
 using WarehouseController.Services.Interfaces;
@@ -8,7 +9,7 @@ using WarehouseController.ViewModel.Abstract;
 namespace WarehouseController.ViewModel.ShipmentVM
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public partial class EditShipmentViewModel : AItemUpdateViewModel<Shipment>
+    public partial class EditShipmentViewModel : AItemUpdateViewModel<ShipmentDTO>
     {
         private int id;
         private int supplierId;
@@ -49,8 +50,8 @@ namespace WarehouseController.ViewModel.ShipmentVM
 
         }
 
-        public override Shipment SetItem()
-            => new Shipment()
+        public override ShipmentDTO SetItem()
+            => new ShipmentDTO()
             {
                 Id = Id,
                 SupplierId = SupplierId,
@@ -67,17 +68,14 @@ namespace WarehouseController.ViewModel.ShipmentVM
                 var item = await DataStore.GetItemAsync(id);
                 if (item != null)
                 {
-                    Id = item.Id;
-                    SupplierId = item.SupplierId;
-                    WarehouseId = item.WarehouseId;
-                    ShipmentDate = item.ShipmentDate;
-                    Status = item.Status;
-
-
                     // Załaduj dane powiązane
                     await LoadDataAsync();
-
-                    // Ustaw Selected... po załadowaniu list
+                    Id = item.Id;
+                    SupplierId = (int)item.SupplierId;
+                    WarehouseId = (int)item.WarehouseId;
+                    ShipmentDate = (DateTime)item.ShipmentDate;
+                    Status = item.Status;
+                    SelectedStatus = Statuses.FirstOrDefault(s => s == item.Status) ?? Statuses.FirstOrDefault();
                     SelectedWarehouse = Warehouses.FirstOrDefault(w => w.Id == WarehouseId);
                     SelectedSupplier = Suppliers.FirstOrDefault(s => s.Id == SupplierId);
                 }
@@ -85,7 +83,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw;
             }
         }
 
@@ -103,7 +101,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
             set
             {
                 SetProperty(ref selectedStatus, value);
-                Status = value; // zakładam, że masz już właściwość Status
+                Status = value; 
             }
         }
 
@@ -131,7 +129,10 @@ namespace WarehouseController.ViewModel.ShipmentVM
             set
             {
                 if (SetProperty(ref selectedSupplier, value) && value != null)
+                {
+                    Debug.WriteLine($"SelectedSupplier set to: {value.Name} (Id: {value.Id})");
                     SupplierId = value.Id;
+                }
             }
         }
 

@@ -6,18 +6,40 @@
              x:DataType="vm:AddUserViewModel"
              Shell.PresentationMode="Animated"
              Title="{Binding Title}">
+    <Border Style="{StaticResource CardItemStyle}">
     <VerticalStackLayout>
-        <Label Text="Login" />
-        <Entry Text="{Binding Login, Mode=TwoWay}" Placeholder="Login" />
 
-        <Label Text="Hasło" />
-        <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Hasło" IsPassword="True" />
-        <Label Text="Powtórz hasło" />
-        <Entry Text="{Binding RepeatPassword, Mode=TwoWay}" Placeholder="Powtórz hasło" IsPassword="True" />
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Login" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Login, Mode=TwoWay}" Placeholder="Login"  
+                           Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Hasło" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Hasło" IsPassword="True"
+                            Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Powtórz hasło" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}" Placeholder="Powtórz hasło" IsPassword="True"
+                           Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Rola" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Role, Mode=TwoWay}" Placeholder="Rola" 
+                   Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                </VerticalStackLayout>
+            </Border>
 
-        <Label Text="Rola" />
-        <Entry Text="{Binding Role, Mode=TwoWay}" Placeholder="Rola" />
-        <HorizontalStackLayout Spacing="30" Margin="10">
+
+            <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
             <ImageButton   
                     Source="save.png"  
                     Command="{Binding SaveCommand}"/>
@@ -26,4 +48,5 @@
                     Command="{Binding CancelCommand}"/>
         </HorizontalStackLayout>
     </VerticalStackLayout>
+    </Border>
 </ContentPage>

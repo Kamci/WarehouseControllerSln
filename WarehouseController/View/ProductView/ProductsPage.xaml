@@ -4,42 +4,51 @@
              x:Class="WarehouseController.ProductsPage"  
              xmlns:conventers="clr-namespace:WarehouseController.Converters"  
              xmlns:local="clr-namespace:WarehouseController.ViewModel.ProductVM;assembly=WarehouseController"  
-             xmlns:model="clr-namespace:WarehouseController.Model"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
              x:DataType="local:ProductViewModel"  
-             Title="{Binding Title}">  
-    <ScrollView>  
-        <VerticalStackLayout>  
+             Title="{Binding Title}">
+    <Grid>
 
-            <!-- 🧰 Nasz custom toolbar -->  
-            <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
-                  VerticalOptions="Center"  
-                  HorizontalOptions="Center"  
-                  Padding="{OnPlatform Android=40, WinUI=0 }"  
-                  BackgroundColor="Transparent">  
-                <Grid.ColumnDefinitions>  
-                    <ColumnDefinition Width="Auto"/>  
-                    <ColumnDefinition Width="Auto"/>  
-                    <ColumnDefinition Width="Auto"/>  
-                </Grid.ColumnDefinitions>  
-                <ImageButton Grid.Column="0"  
-                             Source="add.png"  
-                             Command="{Binding AddItemCommand}"/>  
-                <ImageButton  Grid.Column="1"  
-                             Source="refresh.png"  
-                             Command="{Binding LoadItemsCommand}"/>  
-                <ImageButton  Grid.Column="2"  
-                             Source="about.png"  
-                             Command="{Binding AboutCommand}"  
-                             CommandParameter="{Binding SelectedProduct}"  
-                             IsEnabled="{Binding SelectedProduct, Converter={StaticResource NullToBoolConventer}}"/>  
-            </Grid>  
-            <Label HorizontalOptions="Center" Text="Available Products" FontSize="20"   
-                   FontAttributes="Bold" Margin="20" />  
-            <CollectionView x:Name="ProductsList" ItemsSource="{Binding Items}"  
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
+        <!-- 🧰 Nasz custom toolbar -->
+        <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+               Grid.Row="0"
+             VerticalOptions="Center"  
+             HorizontalOptions="Center"  
+             Padding="{OnPlatform Android=40, WinUI=0 }"  
+             BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0"  
+                        Source="add.png"  
+                        Command="{Binding AddItemCommand}"/>
+            <ImageButton  Grid.Column="1"  
+                        Source="refresh.png"  
+                        Command="{Binding LoadDisplayCommand}"/>
+            <ImageButton  Grid.Column="2"  
+                        Source="about.png"  
+                        Command="{Binding AboutCommand}"  
+                        CommandParameter="{Binding SelectedProduct}"  
+                        IsEnabled="{Binding SelectedProduct, Converter={StaticResource NullToBoolConventer}}"/>
+        </Grid>
+        <Grid  Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Label HorizontalOptions="Center" Text="Available Products" FontSize="20"   
+                   FontAttributes="Bold" Margin="20" />
+                    <CollectionView x:Name="ProductsList" ItemsSource="{Binding Items}"  
                             SelectionMode="Single" SelectedItem="{Binding SelectedProduct}"   
                             SelectionChanged="ProductsList_SelectionChanged">  
-                <CollectionView.ItemTemplate >  
-                    <DataTemplate x:DataType="model:Product">  
+                        <CollectionView.ItemTemplate >  
+                    <DataTemplate x:DataType="model:ProductDto">  
                         <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">  
                             <VisualStateManager.VisualStateGroups>  
                                 <VisualStateGroup Name="CommonStates">  
@@ -68,7 +77,7 @@
                             <Label Text="Name:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"  />  
                             <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>  
                             <Label Text="Category: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />  
-                            <Label Text="{Binding CategoryId}" FontSize="14" Grid.Row="1" Grid.Column="1" />  
+                            <Label Text="{Binding CategoryName}" FontSize="14" Grid.Row="1" Grid.Column="1" />  
                             <Label Text="Price: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />  
                             <Label Text="{Binding Price}" FontSize="14" Grid.Row="2" Grid.Column="1" />  
                             <Label Text="Quantity: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
@@ -76,8 +85,9 @@
                         </Grid>  
                     </DataTemplate>  
                 </CollectionView.ItemTemplate>  
-            </CollectionView>  
-        </VerticalStackLayout>  
-    </ScrollView>  
-
+            </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
 </ContentPage>

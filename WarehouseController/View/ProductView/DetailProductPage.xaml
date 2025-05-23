@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
              x:Class="WarehouseController.View.ProductView.DetailProductPage"  
              Title="{Binding Title}"  
-             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM;assembly=WarehouseController"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM"  
              x:DataType="vm:DetailProductViewModel"  
              Shell.PresentationMode="Animated">
     <ScrollView>
@@ -16,12 +16,12 @@
             <Label Text="{Binding Price, Mode=TwoWay,Converter={StaticResource DecimalToStringConverter}}" FontSize="14" />
             <Label Text="Quantity" FontSize="14" />
             <Label Text="{Binding StockQuantity, Mode=TwoWay}" FontSize="14" />
-            <Label Text="CategoryId" FontSize="14" />
-            <Label Text="{Binding CategoryId, Mode=TwoWay}" FontSize="14" />
-            <Label Text="WarehouseId" FontSize="14" />
-            <Label Text="{Binding WarehouseId, Mode=TwoWay}" FontSize="14" />
-            <Label Text="SupplierId" FontSize="14" />
-            <Label Text="{Binding SupplierId, Mode=TwoWay}" FontSize="14" />
+            <Label Text="Category" FontSize="14" />
+            <Label Text="{Binding CategoryName, Mode=TwoWay}" FontSize="14" />
+            <Label Text="Warehouse" FontSize="14" />
+            <Label Text="{Binding WarehouseName, Mode=TwoWay}" FontSize="14" />
+            <Label Text="Supplier" FontSize="14" />
+            <Label Text="{Binding SupplierName, Mode=TwoWay}" FontSize="14" />
             <HorizontalStackLayout Spacing="30" Margin="10">
                 <ImageButton   
                         Source="edit.png"  

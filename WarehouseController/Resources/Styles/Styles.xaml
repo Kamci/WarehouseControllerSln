@@ -23,6 +23,11 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray950}, Dark={StaticResource Gray200}}" />
     </Style>
 
+    <Style x:Key="SeparatedLabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="Margin" Value="0,4"/>
+    </Style>
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource PrimaryDarkText}}" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource PrimaryDark}}" />
@@ -132,6 +137,11 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray950}}" />
+        <Setter Property="CornerRadius" Value="8" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+    </Style>
 
     <Style TargetType="ImageButton">
         <Setter Property="Opacity" Value="1" />
@@ -394,6 +404,29 @@
         </Setter>
     </Style>
   
+    <!--
+    <Style TargetType="TitleBar">
+        <Setter Property="MinimumHeightRequest" Value="32"/>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="TitleActiveStates">
+                    <VisualState x:Name="TitleBarTitleActive">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="Transparent" />
+                            <Setter Property="ForegroundColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="TitleBarTitleInactive">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource Black}}" />
+                            <Setter Property="ForegroundColor" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    -->
 
     <Style TargetType="Page" ApplyToDerivedTypes="True">
         <Setter Property="Padding" Value="0"/>
@@ -427,28 +460,239 @@
     </Style>
 
 
-    <!---- Custom styles for Shell content pages My Styles  LOGIN PAGE  -->
+    <!--More styles can be added here for other controls as needed. -->
+
+    <Style x:Key="LoginContainerStyle" TargetType="Border">
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Stroke" Value="White" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="20" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#6a1b9a" Offset="0.0" />
+                    <GradientStop Color="#8e24aa" Offset="0.5" />
+                    <GradientStop Color="#ba68c8" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HeightRequest" Value="400" />
+        <Setter Property="WidthRequest" Value="400" />
+        <Setter Property="Margin" Value="20" />
+    </Style>
+    <Style x:Key="MyContainerStyle" TargetType="Border">
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Stroke" Value="White" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="20" />
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#2a1c4a" Offset="0.0" />
+                    <GradientStop Color="#8e24aa" Offset="0.5" />
+                    <GradientStop Color="#ba68c8" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="WidthRequest" Value="400" />
+        <Setter Property="Margin" Value="20" />
+    </Style>
     <Style x:Key="EntryStyle" TargetType="Entry">
         <Setter Property="TextColor" Value="#2c3e50"/>
-        <Setter Property="BackgroundColor" Value="#ecf0f1"/>
-        <Setter Property="PlaceholderColor" Value="#7f8c8d"/>
-        <Setter Property="HeightRequest" Value="45"/> >
-    </Style>
-
-    <Style x:Key="LoginButtonStyle" TargetType="Button">
-        <Setter Property="BackgroundColor" Value="#2980b9"/>
-        <Setter Property="TextColor" Value="White"/>
-        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="PlaceholderColor" Value="#95a5a6"/>
         <Setter Property="HeightRequest" Value="50"/>
-        <Setter Property="FontSize" Value="18"/>
-        <Setter Property="Shadow" Value="True"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="WidthRequest" Value="300"/>
+        <Setter Property="Margin" Value="0,5"/>
     </Style>
 
     <Style x:Key="TitleLabelStyle" TargetType="Label">
-        <Setter Property="FontSize" Value="28"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
-        <Setter Property="TextColor" Value="#2c3e50"/>
-        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="28" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+        <Setter Property="WidthRequest" Value="300"/>
     </Style>
 
+
+    <Style x:Key="LoginButton3DStyle" TargetType="Button">
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="WidthRequest" Value="200" />
+        <Setter Property="Padding" Value="20,10" />
+        <Setter Property="Margin" Value="0,10" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                    <GradientStop Color="#5a3ec8" Offset="0.0" />
+                    <GradientStop Color="#422b8f" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup Name="CommonStates">
+                    <VisualState Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                        <GradientStop Color="#3a2470" Offset="0.0" />
+                                        <GradientStop Color="#2f1f63" Offset="1.0" />
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="TranslationY" Value="2" />
+                            <Setter Property="Scale" Value="0.98" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState Name="Normal" />
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+    <Style x:Key="PickerStyleDashBoard" TargetType="Picker">
+        <Setter Property="TitleColor" Value="#aaaaaa" />
+        <Setter Property="TextColor" Value="#2c3e50" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="Margin" Value="0,10" />
+        <Setter Property="HeightRequest" Value="80" />
+        <Setter Property="WidthRequest" Value="250" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="PickerMenus" TargetType="Picker">
+        <Setter Property="WidthRequest" Value="220" />
+    </Style>
+    <Style x:Key="DatePickerMenus" TargetType="DatePicker">
+        <Setter Property="WidthRequest" Value="220" />
+    </Style>
+    <Style x:Key="LabelTitleStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#CCCCCC" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="Margin" Value="0.5" />
+        <Setter Property="WidthRequest" Value="220"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <!-- półprzezroczyste tło -->
+        <Setter Property="Padding" Value="1"/>
+    </Style>
+
+    <Style x:Key="ValueLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#c8c1de" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="0,0,0,8" />
+        <Setter Property="WidthRequest" Value="220"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="ProductItemLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="#c8c1de" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Margin" Value="5,0" />
+        <Setter Property="WidthRequest" Value="220"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="LabelBorderHeaderStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="#888888" />
+        <Setter Property="WidthRequest" Value="300"/>
+        <!-- Szare obramowanie -->
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#2a1c4a" Offset="0.0" />
+                    <GradientStop Color="#8e24aa" Offset="0.5" />
+                    <GradientStop Color="#ba68c8" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <!-- Przezroczyste białe -->
+        <Setter Property="Padding" Value="7" />
+        <Setter Property="Margin" Value="0.5" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="8"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="LabelBorderValueStyle" TargetType="Border">
+        <Setter Property="Stroke" Value="#888888" />
+        <Setter Property="WidthRequest" Value="300"/>
+        <!-- Szare obramowanie -->
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#261570" Offset="0.0" />
+                    <GradientStop Color="#19237d" Offset="0.5" />
+                    <GradientStop Color="#4ba0bd" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+        <!-- Przezroczyste białe -->
+        <Setter Property="Padding" Value="7" />
+        <Setter Property="Margin" Value="0.5" />
+        <Setter Property="StrokeShape">
+            <Setter.Value>
+                <RoundRectangle CornerRadius="8"/>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="CardItemStyle" TargetType="Border">
+        <Setter Property="WidthRequest" Value="450"/>
+        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Margin" Value="6"/>
+        <Setter Property="Stroke" Value="#c719e6" />
+        <!-- lekka przezroczystość -->
+        <Setter Property="StrokeThickness" Value="1" />
+        
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#261570" Offset="0.0" />
+                    <GradientStop Color="#19237d" Offset="0.5" />
+                    <GradientStop Color="#591c63" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FancyFrameStyle" TargetType="Frame">
+        <Setter Property="WidthRequest" Value="450"/>
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="BorderColor" Value="#888888" />
+        <Setter Property="Background">
+            <Setter.Value>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#261570" Offset="0.0" />
+                    <GradientStop Color="#19237d" Offset="0.5" />
+                    <GradientStop Color="#4ba0bd" Offset="1.0" />
+                </LinearGradientBrush>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

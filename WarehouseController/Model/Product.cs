@@ -1,4 +1,6 @@
-﻿namespace WarehouseController.Model
+﻿using System.Text.Json.Serialization;
+
+namespace WarehouseController.Model
 {
     public class Product
     {
@@ -9,6 +11,7 @@
         public int StockQuantity { get; set; }
 
         public int WarehouseId { get; set; }
+
         public int CategoryId { get; set; }
 
         public int SupplierId { get; set; }

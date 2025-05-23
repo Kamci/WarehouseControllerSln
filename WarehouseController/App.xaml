@@ -5,8 +5,7 @@
              xmlns:converters="clr-namespace:WarehouseController.Converters"
              x:Class="WarehouseController.App">
     <Application.Resources>
-       
-        <ResourceDictionary>
+       <ResourceDictionary>
             <local:EntriesToBarChartConverter x:Key="EntriesToBarChartConverter"/>
             <converters:IntToStringConverter x:Key="IntToStringConverter" />
             <converters:DecimalToStringConverter x:Key="DecimalToStringConverter" />

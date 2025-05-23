@@ -5,33 +5,52 @@
              xmlns:vm="clr-namespace:WarehouseController.ViewModel.ShipmentVM;assembly=WarehouseController"
             x:DataType="vm:EditShipmentViewModel"
             Shell.PresentationMode="Animated"
-         Title="Add Shipment">
+         Title="Edit Shipment">
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Label Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />
-            <Picker Title="Select Warehouse"
-              ItemsSource="{Binding Warehouses}"
-              ItemDisplayBinding="{Binding Name}"
-              SelectedItem="{Binding SelectedWarehouse}" />
-            <Picker Title="Select Supplier"
-              ItemsSource="{Binding Suppliers}"
-              ItemDisplayBinding="{Binding Name}"
-              SelectedItem="{Binding SelectedSupplier}" />
-            <Label Text="Shipment Date" FontSize="14" />
-            <DatePicker Date="{Binding ShipmentDate}"  IsEnabled="True" IsVisible="True" FontSize="14" />
-            <Label Text="Order Status" />
-            <Picker Title="Select Status"
-                    ItemsSource="{Binding Statuses}"
-                    SelectedItem="{Binding SelectedStatus}" />  
-            <HorizontalStackLayout Spacing="30" Margin="10">
-                <ImageButton   
-       Source="save.png"  
-       Command="{Binding SaveCommand}"/>
-                <ImageButton   
-       Source="cancel.png"  
-       Command="{Binding CancelCommand}"/>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
+        <Border Style="{StaticResource MyContainerStyle}">
+            <VerticalStackLayout Spacing="10">
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Picker Title="Select Warehouse"
+                   ItemsSource="{Binding Warehouses}"
+                   ItemDisplayBinding="{Binding Name}"
+                   SelectedItem="{Binding SelectedWarehouse}"
+                 Style="{StaticResource PickerMenus}"/>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Picker Title="Select Supplier"
+           ItemsSource="{Binding Suppliers}"
+           ItemDisplayBinding="{Binding Name}"
+           SelectedItem="{Binding SelectedSupplier}" Style="{StaticResource PickerMenus}" />
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Shipment Date" Style="{StaticResource ValueLabelStyle}"/>
+                        <DatePicker Date="{Binding ShipmentDate}" IsEnabled="True" IsVisible="True" Style="{StaticResource DatePickerMenus}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Order Status" Style="{StaticResource ValueLabelStyle}"/>
+                        <Picker Title="Select Status"
+                     Style="{StaticResource DatePickerMenus}"
+                     ItemsSource="{Binding Statuses}"
+                     SelectedItem="{Binding SelectedStatus}" /> 
+                    </VerticalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                    <ImageButton   
+        Source="save.png"  
+        Command="{Binding SaveCommand}"/>
+                    <ImageButton   
+        Source="cancel.png"  
+        Command="{Binding CancelCommand}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
     </ScrollView>
 </ContentPage>

@@ -51,7 +51,7 @@ namespace WarehouseController.Services.Implementations
                 target.Add(item);
         }
 
-        public async Task LoadProductsAsync(ObservableCollection<Product> target)
+        public async Task LoadProductsAsync(ObservableCollection<ProductDto> target)
         {
             var list = await _productService.GetAllAsync();
             target.Clear();
@@ -59,7 +59,7 @@ namespace WarehouseController.Services.Implementations
                 target.Add(item);
         }
 
-        public async Task LoadShipmentsAsync(ObservableCollection<Shipment> target)
+        public async Task LoadShipmentsAsync(ObservableCollection<ShipmentDTO> target)
         {
             var list = await _shipmentService.GetAllAsync();
             target.Clear();

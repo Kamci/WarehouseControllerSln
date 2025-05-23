@@ -7,6 +7,7 @@
                  Shell.PresentationMode="Animated"  
                  Title="Add Product">  
         <ScrollView>  
+            
             <VerticalStackLayout Padding="20" Spacing="10">   
                 <Label Text="Name" FontSize="14" />  
                 <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>  

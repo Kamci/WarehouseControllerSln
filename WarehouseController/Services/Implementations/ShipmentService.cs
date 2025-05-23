@@ -19,8 +19,8 @@ namespace WarehouseController.Services.Implementations
             _dataStore = new ShipmentDataStore(); // lub użyj Dependency Injection
         }
 
-        public Task<IEnumerable<Shipment>> GetAllAsync() => _dataStore.GetItemsAsync();
-        public Task<Shipment> GetByIdAsync(int id) => _dataStore.GetItemAsync(id);
+        public Task<IEnumerable<ShipmentDTO>> GetAllAsync() => _dataStore.GetItemsAsync();
+        public Task<ShipmentDTO> GetByIdAsync(int id) => _dataStore.GetItemAsync(id);
 
         public async Task<List<RecentShipmentDto>> GetRecentShipmentsViewModelAsync(int warehouseId)
         {

@@ -8,26 +8,23 @@
         <Image Source="warehouse_background.jpg"
             Aspect="AspectFill"
             Opacity="0.50"/>
-        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+        <VerticalStackLayout Style="{StaticResource LoginContainerStyle}" VerticalOptions="Center">
 
             <Label Text="Warehouse Login"
-                   FontSize="24"
-                   HorizontalOptions="Center"
-                   FontAttributes="Bold" />
+                   Style="{StaticResource TitleLabelStyle}"/>
 
             <Entry x:Name="UsernameEntry"
                    Placeholder="Username"
-                   Keyboard="Default" />
+                   Keyboard="Default" 
+                   Style="{StaticResource EntryStyle}"/>
 
             <Entry x:Name="PasswordEntry"
                    Placeholder="Password"
-                   IsPassword="True" />
+                   IsPassword="True" 
+                   Style="{StaticResource EntryStyle}"/>
 
             <Button Text="Login"
-                    BackgroundColor="#3498db"
-                    TextColor="White"
-                    CornerRadius="8"
-                    HeightRequest="45"
+                    Style="{StaticResource LoginButton3DStyle}"
                     Clicked="OnLoginClicked" />
 
         </VerticalStackLayout>

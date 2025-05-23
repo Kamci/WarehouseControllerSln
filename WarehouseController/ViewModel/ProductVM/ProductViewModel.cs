@@ -1,27 +1,28 @@
 ﻿using WarehouseController.ViewModel.Abstract;
 using WarehouseController.Model;
 using WarehouseController.View.ProductView;
+using WarehouseController.DTO;
 namespace WarehouseController.ViewModel.ProductVM
 {
-    public partial class ProductViewModel : AItemListViewModel<Product>
+    public partial class ProductViewModel : AItemListViewModel<ProductDto>
     {
-        private Product? _selectedProduct;
+        private ProductDto? _selectedProduct;
         public Command RefreshCommand { get; }
-        public Command<Product> AboutCommand { get; }
+        public Command<ProductDto> AboutCommand { get; }
         public ProductViewModel():base("Product") 
         {
             RefreshCommand = LoadItemsCommand;
-            AboutCommand = new Command<Product>(OnProductSelected);
+            AboutCommand = new Command<ProductDto>(OnProductSelected);
         }
 
       
 
-        public Product? SelectedProduct
+        public ProductDto? SelectedProduct
         {
             get => _selectedProduct;
             set => SetProperty(ref _selectedProduct, value);
         }
-        async void OnProductSelected(Product product)
+        async void OnProductSelected(ProductDto product)
         {
             await GoToDetailsPage(product);
         }
@@ -32,7 +33,7 @@ namespace WarehouseController.ViewModel.ProductVM
             await Shell.Current.GoToAsync(nameof(AddProductPage));
         }
 
-        public override async Task GoToDetailsPage(Product product)
+        public override async Task GoToDetailsPage(ProductDto product)
         {
             if (product == null)
                 return;

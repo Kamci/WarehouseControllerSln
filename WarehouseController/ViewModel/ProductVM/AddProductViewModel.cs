@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.Services;
 using WarehouseController.Services.Implementations;
@@ -14,7 +15,7 @@ using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.ProductVM
 {
-    public partial class AddProductViewModel : ANewItemViewModel<Product>
+    public partial class AddProductViewModel : ANewItemViewModel<ProductDto>
     {
         private readonly ReferenceDataHelper _refHelper = new();
         private int id;
@@ -60,9 +61,9 @@ namespace WarehouseController.ViewModel.ProductVM
             return isValid;
         }
 
-        public override Product SetItem()
+        public override ProductDto SetItem()
         {
-            var product = new Product
+            var product = new ProductDto
             {
                 Name = Name,
                 Price = Price,

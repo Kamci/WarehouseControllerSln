@@ -11,63 +11,79 @@
 
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <Label Text="Id"  Style="{StaticResource LabelTitleStyle}"/>
+            </Border>
+            <Border Style="{StaticResource LabelBorderValueStyle}">
+                <Label Text="{Binding Id, Mode=TwoWay}"  Style="{StaticResource ValueLabelStyle}"/>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <Label Text="Order Date" Style="{StaticResource LabelTitleStyle}"/>
+            </Border>
+            <Border Style="{StaticResource LabelBorderValueStyle}">
+                <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" 
+                 IsVisible="True" Style="{StaticResource DatePickerMenus}"/>
+            </Border>
+            <Border Style="{StaticResource LabelBorderValueStyle}">
+                <Picker Title="Select Status"
+                   ItemsSource="{Binding Statuses}"
+                   SelectedItem="{Binding SelectedStatus}"
+             Style="{StaticResource PickerMenus}"/>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <Picker Title="Select User"
+             ItemsSource="{Binding Users}"
+             ItemDisplayBinding="{Binding Login}" 
+             SelectedItem="{Binding SelectedUser}"
+             Style="{StaticResource PickerMenus}"/>
+            </Border>
 
-            <Label Text="Id" />
-            <Label Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />
-
-            <Label Text="Order Date" FontSize="14"/>
-            <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" IsVisible="True" FontSize="14"/>
-
-            <Label Text="Status" FontSize="14" />
-            <Entry Text="{Binding Status, Mode=TwoWay}" Placeholder="Order status" FontSize="14" />
-
-            <Picker Title="Select User"
-                        ItemsSource="{Binding Users}"
-                        ItemDisplayBinding="{Binding Login}" 
-                        SelectedItem="{Binding SelectedUser}" />
-            <Picker Title="Select Status"
-                      ItemsSource="{Binding Statuses}"
-                      SelectedItem="{Binding SelectedStatus}" />    
-
-            <Border Stroke="LightGray" Padding="10" StrokeShape="RoundRectangle 8">
+            <Border Style="{StaticResource MyContainerStyle}">
                 <VerticalStackLayout Spacing="10">
                     <Label Text="Add Order Item" FontAttributes="Bold" />
 
                     <Picker Title="Select Product"
-                        ItemsSource="{Binding Products}"
-                        ItemDisplayBinding="{Binding Name}"
-                        SelectedItem="{Binding SelectedProduct}" /> 
-
+                  ItemsSource="{Binding Products}"
+                  ItemDisplayBinding="{Binding Name}"
+                  SelectedItem="{Binding SelectedProduct}" />
 
                     <Label Text="Quantity" />
                     <Entry Text="{Binding Quantity}" Placeholder="Quantity" Keyboard="Numeric" />
 
                     <ImageButton Source="add.png"
-                Command="{Binding AddOrderItemCommand}" />
+                  Command="{Binding AddOrderItemCommand}" />
                 </VerticalStackLayout>
             </Border>
 
 
-          
-            <Label Text="Order Items:" FontAttributes="Bold" />
-            <CollectionView ItemsSource="{Binding OrderItems}" HeightRequest="150">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="model:OrderItemDto">
-                        <Border Stroke="LightGray" Padding="5" Margin="0,2">
-                            <HorizontalStackLayout Spacing="10">
-                                <Label Text="Product:" />
-                                <Label Text="{Binding ProductName}" />
-                                <Label Text="Qty:" />
-                                <Label Text="{Binding Quantity}" />
-                                <ImageButton 
-                              Command="{Binding BindingContext.RemoveOrderItemCommand, Source={x:Reference ThisPage}}"
-                              CommandParameter="{Binding .}" 
-                              Source="remove.png"/>
-                            </HorizontalStackLayout>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+
+            <VerticalStackLayout WidthRequest="450">
+                <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="450">
+                    <Label Text="Order Items:" FontAttributes="Bold" />
+                </Border>
+                <CollectionView ItemsSource="{Binding OrderItems}" HeightRequest="120">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:OrderItemDto">
+                            <Border Style="{StaticResource CardItemStyle}">
+                                <HorizontalStackLayout Spacing="20">
+
+                                    <Border Style="{StaticResource LabelBorderHeaderStyle}"  WidthRequest="240">
+                                        <Label Text="{Binding ProductName}" />
+                                    </Border>
+
+                                    <Border Style="{StaticResource LabelBorderValueStyle}"  WidthRequest="100">
+                                        <Label Text="{Binding Quantity}" />
+                                    </Border>
+                                    <ImageButton 
+                         Command="{Binding BindingContext.RemoveOrderItemCommand, Source={x:Reference ThisPage}}"
+                         CommandParameter="{Binding .}" 
+                         Source="remove.png"/>
+                                </HorizontalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </VerticalStackLayout>
 
             <HorizontalStackLayout Spacing="30" Margin="10">
                 <ImageButton   

@@ -6,14 +6,17 @@ using WarehouseController.Model;
 using System.Text;
 using System.Threading.Tasks;
 using WarehouseController.Services.Abstract;
+using WarehouseController.DTO;
 
 namespace WarehouseController.Services.DataStores
 {
-    public class ShipmentDataStore : AListDataStore<Shipment>
+    public class ShipmentDataStore : AListDataStore<ShipmentDTO>
     {
         public ShipmentDataStore() : base() { }
 
         protected override string ControllerName => "Shipment";
-        protected override int GetId(Shipment item) => item.Id;
+        protected override int GetId(ShipmentDTO item) => item.Id;
+
+
     }
 }

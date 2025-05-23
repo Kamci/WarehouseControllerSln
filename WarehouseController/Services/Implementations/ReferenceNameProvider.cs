@@ -13,7 +13,6 @@ namespace WarehouseController.Services.Implementations
         private readonly UserService _userService = new();
         private readonly ShipmentService _shipmentService = new();
         private readonly ProductService _productService = new();
-        private readonly OrderService _orderService = new();
 
         // Async methods by ID
         public async Task<string> GetUserLoginByIdAsync(int id)

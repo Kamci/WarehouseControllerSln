@@ -67,7 +67,7 @@ namespace WarehouseController.ViewModel.CategoryVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw; 
             }
         }
 

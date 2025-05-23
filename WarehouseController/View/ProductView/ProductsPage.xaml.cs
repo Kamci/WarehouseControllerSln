@@ -1,5 +1,6 @@
 ﻿using WarehouseController.ViewModel.ProductVM;
 using WarehouseController.Model;
+using WarehouseController.DTO;
 namespace WarehouseController;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,7 +16,7 @@ public partial class ProductsPage : ContentPage
 
     private async void ProductsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (ProductsList.SelectedItem is Product selectedProduct)
+        if (ProductsList.SelectedItem is ProductDto selectedProduct)
         {
             bool isConfirmed = await DisplayAlert("Product Selected", $"You selected: {selectedProduct.Name}", "OK", "Cancel");
 

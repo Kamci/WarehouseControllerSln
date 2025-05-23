@@ -4,14 +4,20 @@
              x:Class="WarehouseController.ShipmentPage"
              xmlns:conventers="clr-namespace:WarehouseController.Converters"  
              xmlns:local="clr-namespace:WarehouseController.ViewModel.ShipmentVM;assembly=WarehouseController"  
-             xmlns:model="clr-namespace:WarehouseController.Model"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
              x:DataType="local:ShipmentViewModel"  
              Title="{Binding Title}">
-    <ScrollView>
-        <VerticalStackLayout>
+    <Grid>
 
-            <!-- 🧰 Nasz custom toolbar -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+
+
+        </Grid.RowDefinitions>
+        <!-- 🧰 Nasz custom toolbar -->
             <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+                  Grid.Row="0"
                 VerticalOptions="Center"  
                 HorizontalOptions="Center"  
                 Padding="{OnPlatform Android=40, WinUI=0 }"  
@@ -33,13 +39,17 @@
                            CommandParameter="{Binding SelectedShipment}"  
                            IsEnabled="{Binding SelectedShipment, Converter={StaticResource NullToBoolConventer}}"/>
             </Grid>
+        <Grid  Grid.Row="1">
+      <ScrollView>
+        <VerticalStackLayout>
+
             <Label HorizontalOptions="Center" Text="Available Shipments" FontSize="20"   
                  FontAttributes="Bold" Margin="20" />
             <CollectionView x:Name="ShipmentsList" ItemsSource="{Binding Items}"  
                   SelectionMode="Single" SelectedItem="{Binding SelectedShipment}"   
                   SelectionChanged="ShipmentsList_SelectionChanged">
                 <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="model:Shipment">
+                    <DataTemplate x:DataType="model:ShipmentDTO">
                         <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup Name="CommonStates">
@@ -68,10 +78,10 @@
                             </Grid.RowDefinitions>
                             <Label Text="Id:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"  />
                             <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="SupplierId: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />
-                            <Label Text="{Binding SupplierId}" FontSize="14" Grid.Row="1" Grid.Column="1" />
+                            <Label Text="Supplier: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />
+                            <Label Text="{Binding SupplierName}" FontSize="14" Grid.Row="1" Grid.Column="1" />
                             <Label Text="WarehouseId: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />
-                            <Label Text="{Binding WarehouseId}" FontSize="14" Grid.Row="2" Grid.Column="1" />
+                            <Label Text="{Binding WarehouseName}" FontSize="14" Grid.Row="2" Grid.Column="1" />
                             <Label Text="Shipment Date: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
                             <Label Text="{Binding ShipmentDate, StringFormat='{}{0:yyyy-MM-dd}'}"  FontSize="14" Grid.Row="3" Grid.Column="1" />
                             <Label Text="Status: " FontSize="14" Grid.Row="4" Grid.Column="0" Margin="0,0,10,5" />
@@ -82,4 +92,6 @@
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>
+        </Grid>
+    </Grid>
 </ContentPage>

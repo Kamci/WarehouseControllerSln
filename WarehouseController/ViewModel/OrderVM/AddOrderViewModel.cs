@@ -131,10 +131,10 @@ namespace WarehouseController.ViewModel.OrderVM
             await _referenceHelper.LoadUsersAsync(Users);
         }
 
-        public ObservableCollection<Product> Products { get; set; } = new();
+        public ObservableCollection<ProductDto> Products { get; set; } = new();
 
-        private Product selectedProduct;
-        public Product SelectedProduct
+        private ProductDto selectedProduct;
+        public ProductDto SelectedProduct
         {
             get => selectedProduct;
             set

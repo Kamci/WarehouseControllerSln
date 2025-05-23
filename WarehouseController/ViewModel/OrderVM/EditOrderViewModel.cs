@@ -49,29 +49,35 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         get => quantity;
         set => SetProperty(ref quantity, value);
     }
-
+ 
     // ────────── dodawanie / usuwanie pozycji ──────────
     public Command AddOrderItemCommand { get; }
     public Command<OrderItemDto> RemoveOrderItemCommand { get; }
 
     private void OnAddOrderItem()
     {
-        Debug.WriteLine("Zapisuję zamówienie:");
-        Debug.WriteLine($"Order ID: {Id}, Items count: {OrderItems.Count}");
-
-        foreach (var item in OrderItems)
-        {
-            Debug.WriteLine($"Item ID: {item.Id}, ProductId: {item.ProductId}, Quantity: {item.Quantity}");
-        }
+        // sprawdź, czy dany produkt jest już na liście
         var existing = OrderItems.FirstOrDefault(i => i.ProductId == ProductId);
+        string productName = SelectedProduct?.Name ?? "Unknown";
         if (existing != null)
+        {
+            // jeśli jest – tylko zwiększamy ilość
             existing.Quantity += Quantity;
+        }
         else
-            OrderItems.Add(new OrderItemDto { ProductId = ProductId, Quantity = Quantity });
+        {
+            // jeśli nie ma – dodajemy nowy wiersz
+            OrderItems.Add(new OrderItemDto
+            {
+                ProductId = ProductId,
+                Quantity = Quantity,
+                ProductName = productName // ← Ustaw nazwę
+            });
+        }
 
-        //  reset pól w formularzu
-        ProductId = 0;
+        // opcjonalnie wyczyść pola formularza
         Quantity = 0;
+        SelectedProduct = null;
     }
 
     private void RemoveOrderItem(OrderItemDto item)
@@ -118,24 +124,24 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
             UserId = order.UserId;
             // Załaduj dane powiązane
             await LoadUsersAsync();
-            await LoadProductsAsync();
 
             // Ustaw Selected... po załadowaniu list
             SelectedUser = Users.FirstOrDefault(u => u.Id == UserId);
+            await LoadProductsAsync();
 
+            // Utwórz kolekcję z przypisanym ProductName
             OrderItems = new ObservableCollection<OrderItemDto>(
-              order.OrderItems.Select(oi => new OrderItemDto
+              order.OrderItems.Select(oi =>
               {
-                  Id = oi.Id,
-                  ProductId = oi.ProductId,
-                  Quantity = oi.Quantity
+                  var product = Products.FirstOrDefault(p => p.Id == oi.ProductId);
+                  return new OrderItemDto
+                  {
+                      Id = oi.Id,
+                      ProductId = oi.ProductId,
+                      Quantity = oi.Quantity,
+                      ProductName = product?.Name ?? $"Product #{oi.ProductId}"
+                  };
               }));
-
-            foreach (var orderItem in OrderItems)
-            {
-                var product = Products.FirstOrDefault(p => p.Id == orderItem.ProductId);
-                orderItem.ProductName = product?.Name ?? $"Product #{orderItem.ProductId}";
-            }
         }
 
 
@@ -174,10 +180,10 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         await _referenceHelper.LoadUsersAsync(Users);
     }
 
-    public ObservableCollection<Product> Products { get; set; } = new();
+    public ObservableCollection<ProductDto> Products { get; set; } = new();
 
-    private Product selectedProduct;
-    public Product SelectedProduct
+    private ProductDto selectedProduct;
+    public ProductDto SelectedProduct
     {
         get => selectedProduct;
         set

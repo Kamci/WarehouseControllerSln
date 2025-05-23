@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarehouseController.DTO;
 using WarehouseController.Model;
 using WarehouseController.Services.Implementations;
 using WarehouseController.Services.Interfaces;
@@ -13,7 +14,7 @@ using WarehouseController.ViewModel.Abstract;
 namespace WarehouseController.ViewModel.ProductVM
 {
     [QueryProperty(nameof(ItemId), nameof(ItemId))]
-    public partial class EditProductViewModel : AItemUpdateViewModel<Product>
+    public partial class EditProductViewModel : AItemUpdateViewModel<ProductDto>
     {
         private int id;
         private string name = string.Empty;
@@ -54,9 +55,9 @@ namespace WarehouseController.ViewModel.ProductVM
                     Name = item.Name;
                     Price = item.Price;
                     StockQuantity = item.StockQuantity;
-                    CategoryId = item.CategoryId;
-                    WarehouseId = item.WarehouseId;
-                    SupplierId = item.SupplierId;
+                    CategoryId = (int)item.CategoryId;
+                    WarehouseId = (int)item.WarehouseId;
+                    SupplierId = (int)item.SupplierId;
 
                     // Załaduj dane powiązane
                     await LoadDataAsync();
@@ -74,7 +75,7 @@ namespace WarehouseController.ViewModel.ProductVM
             }
         }
 
-        public override Product SetItem()
+        public override ProductDto SetItem()
         => new()
         {
             Id = Id,

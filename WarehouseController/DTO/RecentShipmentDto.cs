@@ -9,15 +9,19 @@ namespace WarehouseController.DTO
 {
     public class RecentShipmentDto
     {
+        private ShipmentDTO s;
+
         public string ShipmentDate { get; set; }
         public string SupplierName { get; set; }
         public string WarehouseName { get; set; }
 
-        public RecentShipmentDto(Shipment shipment, string supplierName, string warehouseName)
+        public RecentShipmentDto(ShipmentDTO s, string supplierName, string warehouseName)
         {
-            ShipmentDate = shipment.ShipmentDate.ToString("yyyy-MM-dd");
+            ShipmentDate = s.ShipmentDate?.ToString("yyyy-MM-dd");
             SupplierName = supplierName;
             WarehouseName = warehouseName;
         }
+
+      
     }
 }
