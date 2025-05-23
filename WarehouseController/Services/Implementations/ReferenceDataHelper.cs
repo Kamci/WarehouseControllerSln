@@ -11,7 +11,7 @@ namespace WarehouseController.Services.Implementations
 {
     public class ReferenceDataHelper
     {
-        private readonly WarehouseService _warehouseService = new();
+        public readonly WarehouseService _warehouseService = new();
         private readonly SupplierService _supplierService = new();
         private readonly CategoryService _categoryService = new();
         private readonly OrderService _orderService = new();

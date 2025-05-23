@@ -12,7 +12,7 @@
 		The Mac App Store will NOT accept apps with ONLY maccatalyst-arm64 indicated;
 		either BOTH runtimes must be indicated or ONLY macatalyst-x64. -->
 		<!-- For example: <RuntimeIdentifiers>maccatalyst-x64;maccatalyst-arm64</RuntimeIdentifiers> -->
-
+		
 		<OutputType>Exe</OutputType>
 		<RootNamespace>WarehouseController</RootNamespace>
 		<UseMaui>true</UseMaui>
@@ -70,11 +70,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="View\MainPage.xaml.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiImage Remove="Resources\Images\products_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <MauiXaml Remove="View\AddProductPage.xaml" />
+	  <MauiXaml Remove="View\MainPage.xaml" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -111,6 +116,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\CategoryView\EditCategoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\DashBoard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\LoginPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="View\OrderView\AddOrderPage.xaml">

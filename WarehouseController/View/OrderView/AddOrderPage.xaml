@@ -18,7 +18,10 @@
             <Picker Title="Select User"
                         ItemsSource="{Binding Users}"
                         ItemDisplayBinding="{Binding Login}" 
-                        SelectedItem="{Binding SelectedUser}" />    
+                        SelectedItem="{Binding SelectedUser}" />
+            <Picker Title="Select Status"
+                      ItemsSource="{Binding Statuses}"
+                      SelectedItem="{Binding SelectedStatus}" />
 
             <!-- Add Order Item section -->
             <Border Stroke="LightGray" Padding="10" StrokeShape="RoundRectangle 8">

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.LoginPage"
+             Title="Login">
+
+    <Grid >
+        <Image Source="warehouse_background.jpg"
+            Aspect="AspectFill"
+            Opacity="0.50"/>
+        <VerticalStackLayout Padding="30" Spacing="25" VerticalOptions="Center">
+
+            <Label Text="Warehouse Login"
+                   FontSize="24"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold" />
+
+            <Entry x:Name="UsernameEntry"
+                   Placeholder="Username"
+                   Keyboard="Default" />
+
+            <Entry x:Name="PasswordEntry"
+                   Placeholder="Password"
+                   IsPassword="True" />
+
+            <Button Text="Login"
+                    BackgroundColor="#3498db"
+                    TextColor="White"
+                    CornerRadius="8"
+                    HeightRequest="45"
+                    Clicked="OnLoginClicked" />
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

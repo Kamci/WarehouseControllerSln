@@ -2,7 +2,7 @@
     <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
                  x:Class="WarehouseController.View.ProductView.AddProductPage"  
-                 xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM;assembly=WarehouseController"  
+                 xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM"  
                  x:DataType="vm:AddProductViewModel"  
                  Shell.PresentationMode="Animated"  
                  Title="Add Product">  

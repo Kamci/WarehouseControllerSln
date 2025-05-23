@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SkiaSharp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +20,28 @@ namespace WarehouseController.Services.Implementations
 
         public Task<IEnumerable<Product>> GetAllAsync() => _dataStore.GetItemsAsync();
         public Task<Product> GetByIdAsync(int id) => _dataStore.GetItemAsync(id);
+
+        public async Task<List<Product>> GetTopProductsAsync(int warehouseId)
+        {
+            var all = await GetAllAsync();
+            return all.Where(p => p.WarehouseId == warehouseId)
+                      .OrderByDescending(p => p.StockQuantity)
+                      .Take(5)
+                      .ToList();
+        }
+
+        public async Task<int> GetProductsCountAsync(int warehouseId)
+                => (await GetAllAsync())
+                .Count(p => p.WarehouseId == warehouseId);
+
+        public async Task<int> GetLowStockItemCountAsync(int warehouseId)
+        {
+            var allProducts = await GetAllAsync();
+            return allProducts
+                .Where(p => p.WarehouseId == warehouseId && p.StockQuantity < 5)
+                .Count();
+        }
+
+      
     }
 }

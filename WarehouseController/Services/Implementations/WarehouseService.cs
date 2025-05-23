@@ -9,7 +9,7 @@ using WarehouseController.Services.Interfaces;
 
 namespace WarehouseController.Services.Implementations
 {
-    internal class WarehouseService : IWarehouseService
+    public class WarehouseService : IWarehouseService
     {
         private readonly WarehouseDataStore _dataStore;
 

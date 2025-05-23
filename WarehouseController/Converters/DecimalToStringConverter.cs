@@ -9,13 +9,13 @@ namespace WarehouseController.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is decimal decimalValue)
-                return decimalValue.ToString("0.##", CultureInfo.InvariantCulture); // np. "12.50"
+                return decimalValue.ToString("0.##", CultureInfo.CurrentCulture); // ← zmienione
             return "0";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is string str && decimal.TryParse(str, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal result))
+            if (value is string str && decimal.TryParse(str, NumberStyles.Any, CultureInfo.CurrentCulture, out decimal result)) // ← zmienione
                 return result;
             return 0m;
         }

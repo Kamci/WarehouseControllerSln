@@ -100,7 +100,19 @@ namespace WarehouseController.ViewModel.OrderVM
 
         #region Combobox
         private readonly ReferenceDataHelper _referenceHelper = new();
+        public ObservableCollection<string> Statuses { get; set; } =
+               new ObservableCollection<string> { "Open", "Processing", "Shipped", "Delivered", "Cancelled", "Returned" };
 
+        private string selectedStatus;
+        public string SelectedStatus
+        {
+            get => selectedStatus;
+            set
+            {
+                SetProperty(ref selectedStatus, value);
+                Status = value; // zakładam, że masz już właściwość Status
+            }
+        }
         public ObservableCollection<User> Users { get; set; } = new();
 
         private User selectedUser;

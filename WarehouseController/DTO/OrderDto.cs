@@ -16,5 +16,14 @@ namespace WarehouseController.DTO
         public int UserId { get; set; }
         public string UserLogin { get; set; } = string.Empty;
         public List<OrderItemDto> OrderItems { get; set; }
+
+        [JsonIgnore]
+        public string DisplayName => $"Order #{Id}";
+
+        [JsonIgnore]
+        public string DisplayDate => OrderDate.ToString("yyyy-MM-dd");
+
+        [JsonIgnore]
+        public int ProductCount => OrderItems?.Sum(i => i.Quantity) ?? 0;
     }
 }

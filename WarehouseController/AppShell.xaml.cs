@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using WarehouseController.View;
 using WarehouseController.View.CategoryView;
 using WarehouseController.View.OrderView;
 using WarehouseController.View.ProductView;
@@ -16,6 +17,8 @@ namespace WarehouseController
         public AppShell()
         {
             InitializeComponent();
+            Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
+            Routing.RegisterRoute(nameof(DashBoard), typeof(DashBoard));
             Routing.RegisterRoute(nameof(AddProductPage), typeof(AddProductPage));
             Routing.RegisterRoute(nameof(EditProductPage), typeof(EditProductPage));
             Routing.RegisterRoute(nameof(DetailProductPage), typeof(DetailProductPage));

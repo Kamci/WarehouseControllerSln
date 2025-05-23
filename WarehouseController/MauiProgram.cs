@@ -1,6 +1,7 @@
 ﻿using Microcharts.Maui;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Logging;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using WarehouseController.View.ProductView;
 using WarehouseController.View.SupplierView;
 using WarehouseController.View.UserView;
@@ -17,6 +18,7 @@ public static class MauiProgram
     public static MauiApp CreateMauiApp()
     {
         var builder = MauiApp.CreateBuilder();
+        builder.UseSkiaSharp();
         builder
             .UseMauiApp<App>()
             .UseMicrocharts() // Add Microcharts.Maui package

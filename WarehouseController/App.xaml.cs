@@ -5,6 +5,7 @@ using WarehouseController.Services;
 using WarehouseController.Services.DataStores;
 using WarehouseController.Services.Implementations;
 using WarehouseController.Services.Interfaces;
+using WarehouseController.View;
 
 namespace WarehouseController
 {
@@ -13,7 +14,10 @@ namespace WarehouseController
         
         public App()
         {
+
             InitializeComponent();
+
+
             DependencyService.Register<ProductDataStore>(); 
             DependencyService.Register<UserDataStore>();
             DependencyService.Register<WarehouseDataStore>();
@@ -37,8 +41,10 @@ namespace WarehouseController
             {
                 Debug.WriteLine($"[UnobservedTaskException] {e.Exception}");
             };
+            
         }
 
+    
         protected override Window CreateWindow(IActivationState? activationState)
         {
             return new Window(new AppShell());

@@ -4,12 +4,16 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:WarehouseController"
-    Title="WarehouseController">
+    xmlns:dash="clr-namespace:WarehouseController.View"
 
-    <ShellContent
-        Title="Dashboard"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    Title="WarehouseController">
+    <ShellContent Title="Login"
+              ContentTemplate="{DataTemplate dash:LoginPage}"
+              Route="LoginPage" 
+               Shell.FlyoutItemIsVisible="False"    />
+    <ShellContent Route="DashBoard"
+              Title="Dashboard"
+              ContentTemplate="{DataTemplate dash:DashBoard}" />
     <ShellContent
         Title="Products"
         ContentTemplate="{DataTemplate local:ProductsPage}"
