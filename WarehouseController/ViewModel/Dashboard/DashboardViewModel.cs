@@ -69,9 +69,11 @@ namespace WarehouseController.ViewModel.Dashboard
                             new Entry(0)
                             {
                             Label = "",
-                            ValueLabel = "",
-                            Color = SKColor.Parse("#7102f0")
+                            ValueLabel = "-------NO DATA---------",
+                            Color = SKColor.Parse("#7102f0"),
                             }
+                            
+
                 };
 
             await Application.Current.MainPage.DisplayAlert("Information", "No products in the selected warehouse.", "OK");

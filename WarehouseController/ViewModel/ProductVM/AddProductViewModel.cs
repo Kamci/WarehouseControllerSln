@@ -53,16 +53,24 @@ namespace WarehouseController.ViewModel.ProductVM
 
         public override bool ValidateSave()
         {
-            bool isValid = !string.IsNullOrWhiteSpace(name)
-                    && price > 0
-                    && StockQuantity > 0;
+            bool isValid = !string.IsNullOrWhiteSpace(Name)
+                   && Price > 0
+                   && StockQuantity > 0
+                   && SelectedCategory != null
+                   && SelectedSupplier != null
+                   && SelectedWarehouse != null;
 
-            Debug.WriteLine($"[ValidateSave] Name: {name}, Price: {price}, Quantity: {stockQuantity}, IsValid: {isValid}");
+            Debug.WriteLine($"[ValidateSave] Name: {Name}, Price: {Price}, Quantity: {StockQuantity}, " +
+                            $"Category: {SelectedCategory?.Name}, Supplier: {SelectedSupplier?.Name}, " +
+                            $"Warehouse: {SelectedWarehouse?.Name}, IsValid: {isValid}");
+
             return isValid;
         }
 
         public override ProductDto SetItem()
         {
+            if (!ValidateSave())
+                throw new InvalidOperationException("Invalid product data");
             var product = new ProductDto
             {
                 Name = Name,
@@ -129,9 +137,20 @@ namespace WarehouseController.ViewModel.ProductVM
 
         public async Task LoadDataAsync()
         {
+            ResetFields();
             await _refHelper.LoadCategoriesAsync(Category);
             await _refHelper.LoadWarehousesAsync(Warehouses);
             await _refHelper.LoadSuppliersAsync(Suppliers);
+        }
+
+        public void ResetFields()
+        {
+            Name = string.Empty;
+            Price = 0;
+            StockQuantity = 0;
+            SelectedCategory = null;
+            SelectedWarehouse = null;
+            SelectedSupplier = null;
         }
         #endregion
     }

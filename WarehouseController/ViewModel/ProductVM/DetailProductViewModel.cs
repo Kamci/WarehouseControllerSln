@@ -36,11 +36,18 @@ namespace WarehouseController.ViewModel.ProductVM
         private string categoryName = string.Empty;
         private string warehouseName = string.Empty;
         private string supplierName = string.Empty;
+        private int? categoryId;
+        private int? warehouseId;
+        private int? supplierId;
 
         public int Id { get => id; set => SetProperty(ref id, value); }
         public string Name { get => name; set => SetProperty(ref name, value); }
         public decimal Price { get => price; set => SetProperty(ref price, value); }
         public int StockQuantity { get => stockQuantity; set => SetProperty(ref stockQuantity, value); }
+
+        public int? CategoryId { get => categoryId; set => SetProperty(ref categoryId, value); }
+        public int? WarehouseId { get => warehouseId; set => SetProperty(ref warehouseId, value); }
+        public int? SupplierId { get => supplierId; set => SetProperty(ref supplierId, value); }
          
         public string CategoryName { get => categoryName; set => SetProperty(ref categoryName, value); }
         public string WarehouseName { get => warehouseName; set => SetProperty(ref warehouseName, value); }
@@ -56,6 +63,10 @@ namespace WarehouseController.ViewModel.ProductVM
                     Name = item.Name;
                     Price = item.Price;
                     StockQuantity = item.StockQuantity;
+                    CategoryId = item.CategoryId;
+                    WarehouseId = item.WarehouseId;
+                    SupplierId = item.SupplierId;
+
                     CategoryName = item.CategoryName;
                     WarehouseName = item.WarehouseName;
                     SupplierName = item.SupplierName;

@@ -46,40 +46,35 @@
             <CollectionView x:Name="SuppliersList" ItemsSource="{Binding Items}"  
                             SelectionMode="Single" SelectedItem="{Binding SelectedSupplier}"  
                             SelectionChanged="SuppliersList_SelectionChanged">  
-                <CollectionView.ItemTemplate>  
-                    <DataTemplate x:DataType="model:Supplier">  
-                        <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">  
-                            <VisualStateManager.VisualStateGroups>  
-                                <VisualStateGroup Name="CommonStates">  
-                                    <VisualState Name="Normal">  
-                                        <VisualState.Setters>  
-                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />  
-                                        </VisualState.Setters>  
-                                    </VisualState>  
-                                    <VisualState Name="Selected">  
-                                        <VisualState.Setters>  
-                                            <Setter Property="BackgroundColor" Value="DarkGreen" />  
-                                        </VisualState.Setters>  
-                                    </VisualState>  
-                                </VisualStateGroup>  
-                            </VisualStateManager.VisualStateGroups>  
-                            <Grid.ColumnDefinitions>  
-                                <ColumnDefinition Width="Auto"/>  
-                                <ColumnDefinition Width="Auto"/>  
-                            </Grid.ColumnDefinitions>  
-                            <Grid.RowDefinitions>  
-                                <RowDefinition Height="Auto"/>  
-                                <RowDefinition Height="Auto"/>  
-                                <RowDefinition Height="Auto"/>  
-                                <RowDefinition Height="Auto"/>  
-                            </Grid.RowDefinitions>  
-                            <Label Text="Name:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"  />  
-                            <Label Text="{Binding Name}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>  
-                            <Label Text="Contact: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />  
-                            <Label Text="{Binding Contact}" FontSize="14" Grid.Row="1" Grid.Column="1" />  
-                        </Grid>  
-                    </DataTemplate>  
-                </CollectionView.ItemTemplate>  
+                <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Supplier">
+                                <Border Style="{StaticResource CardItemStyle}">
+                                    <Grid Padding="10" BackgroundColor="{StaticResource Primary}">
+                                        <VerticalStackLayout Spacing="10">
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Name:"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="100" />
+                                                    <Label Text="{Binding Name}"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="300" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Contact:"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="100" />
+                                                    <Label Text="{Binding Contact}"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="300" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>  
             </CollectionView>
                 </VerticalStackLayout>
             </ScrollView>

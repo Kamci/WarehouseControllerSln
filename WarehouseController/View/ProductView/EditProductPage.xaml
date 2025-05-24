@@ -7,30 +7,89 @@
              x:DataType="vm:EditProductViewModel"
              Shell.PresentationMode="Animated"
              >
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Label Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" />
-            <Label Text="Name" FontSize="14" />
-            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
-            <Label Text="Price" FontSize="14" />
-            <Editor Text="{Binding Price, Mode=TwoWay, Converter={StaticResource DecimalToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Label Text="Quantity" FontSize="14" />
-            <Editor Text="{Binding StockQuantity, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <Picker Title="Select Category"
+    <Border Style="{StaticResource CardItemStyle}">
+        <ScrollView>
+
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <Border>
+                    <VerticalStackLayout>
+                        <Label Text="Id" Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding Id, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
+                              Style="{StaticResource ValueLabelStyle}"  />
+
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <Border>
+                    <VerticalStackLayout>
+
+
+                        <Label Text="Name" Style="{StaticResource LabelTitleStyle}"  />
+                        <Editor Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource EditorStyle}"/>
+
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <Border>
+                    <VerticalStackLayout>
+
+                        <Label Text="Price" Style="{StaticResource LabelTitleStyle}"  />
+                        <Editor Text="{Binding Price, Mode=TwoWay, Converter={StaticResource DecimalToStringConverter}}" 
+                                Style="{StaticResource EditorStyle}" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                    <VerticalStackLayout>
+
+                        <Label Text="Quantity" Style="{StaticResource LabelTitleStyle}"  />
+                        <Editor Text="{Binding StockQuantity, Mode=TwoWay, Converter={StaticResource IntToStringConverter}}" 
+                                Style="{StaticResource EditorStyle}" Keyboard="Numeric" IsTextPredictionEnabled="True" />
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                    <VerticalStackLayout>
+
+
+                        <Picker Title="Select Category"
+                                Style="{StaticResource PickerMenus}"
                      ItemsSource="{Binding Category}"
                      ItemDisplayBinding="{Binding Name}"
                      SelectedItem="{Binding SelectedCategory}" />
-            <Picker Title="Select Warehouse"
+
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                    <VerticalStackLayout>
+
+                        <Picker Title="Select Warehouse"
+                                Style="{StaticResource PickerMenus}"
                      ItemsSource="{Binding Warehouses}"
                      ItemDisplayBinding="{Binding Name}"
                      SelectedItem="{Binding SelectedWarehouse}" />
-            <Picker Title="Select Supplier"
+
+                    </VerticalStackLayout>
+                </Border>
+                <Border>
+                    <VerticalStackLayout>
+
+
+                        <Picker Title="Select Supplier"
+                                Style="{StaticResource PickerMenus}"
                      ItemsSource="{Binding Suppliers}"
                      ItemDisplayBinding="{Binding Name}"
-                     SelectedItem="{Binding SelectedSupplier}" />   
-            <HorizontalStackLayout Spacing="30" Margin="10">
-                <ImageButton   
+                     SelectedItem="{Binding SelectedSupplier}" />
+                    </VerticalStackLayout>
+                </Border>
+                <HorizontalStackLayout Spacing="30" Margin="10"
+                         HorizontalOptions="Center">
+                    <ImageButton   
                Source="save.png"  
                Command="{Binding SaveCommand}"/>
                 <ImageButton   
@@ -39,4 +98,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+    </Border>
 </ContentPage> 

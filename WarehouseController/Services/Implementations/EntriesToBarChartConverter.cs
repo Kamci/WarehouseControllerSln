@@ -21,22 +21,20 @@ namespace WarehouseController.Services.Implementations
                 {
                     Entries = new List<ChartEntry>
                         {
-                            new ChartEntry(0)
+                            new ChartEntry(300)
                             {
-                               Label = "",
-                               ValueLabel = "",
-                               Color = SKColor.Parse("#7102f0")
+                                 Label = "", 
+                                 ValueLabel = "SELECT WAREHOUSE",
+                                 Color = SKColor.Parse("#006A1B9A"),
+                                 ValueLabelColor = SKColors.LightSkyBlue,
                             },
-                            new ChartEntry(0)
-                            {
-                                Label = "",
-                                ValueLabel = "",
-                                Color = SKColor.Parse("#00000000") // przezroczysty
-                            }
                         },
                     LabelOrientation = Orientation.Horizontal,
                     ValueLabelOrientation = Orientation.Horizontal,
-                    BackgroundColor = SKColors.Transparent
+                    ValueLabelTextSize = 30,
+                    BackgroundColor = SKColors.Transparent,
+                    
+                    
                 };
             }
 

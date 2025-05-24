@@ -7,15 +7,35 @@
              x:DataType="vm:DetailWarehouseViewModel"
                 Shell.PresentationMode="Animated"
              >
+    <Border Style="{StaticResource CardItemStyle}">
     <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Label Text="{Binding Id, Mode=TwoWay}" FontSize="14" />
-            <Label Text="Name" FontSize="14" />
-            <Label Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
-            <Label Text="Location" FontSize="14" />
-            <Label Text="{Binding Location, Mode=TwoWay}" FontSize="14"/>
-            <HorizontalStackLayout Spacing="30" Margin="10">
+
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Id" Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding Id, Mode=TwoWay}" 
+                                Style="{StaticResource ValueLabelStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                        <VerticalStackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding Name, Mode=TwoWay}" 
+                    Style="{StaticResource ValueLabelStyle}"/>
+            </VerticalStackLayout>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                  <VerticalStackLayout>
+                        <Label Text="Location" Style="{StaticResource LabelTitleStyle}"/>
+                        <Label Text="{Binding Location, Mode=TwoWay}" 
+                               Style="{StaticResource ValueLabelStyle}"/>
+            </VerticalStackLayout>
+                </Border>
+
+
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
                 <ImageButton 
                      Source="edit.png"
                      Command="{Binding UpdateCommand}"/>
@@ -28,4 +48,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+    </Border>
 </ContentPage>

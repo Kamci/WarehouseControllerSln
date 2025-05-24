@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,17 @@ namespace WarehouseController.ViewModel.Abstract
         public abstract T SetItem();
         private async void OnSave()
         {
-            await DataStore.AddItemAsync(SetItem());
-            // This will pop the current page off the navigation stack
-            await Shell.Current.GoToAsync("..");
+            try
+            {
+                var item = SetItem();
+                await DataStore.AddItemAsync(item);
+                await Shell.Current.GoToAsync("..");
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"[SAVE ERROR] {ex.Message}\n{ex.StackTrace}");
+                await Application.Current.MainPage.DisplayAlert("Error", "Failed to save item.", "OK");
+            }
         }
     }
 }

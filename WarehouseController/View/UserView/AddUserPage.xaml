@@ -18,21 +18,21 @@
             </Border>
             <Border Style="{StaticResource LabelBorderHeaderStyle}">
                 <VerticalStackLayout>
-                    <Label Text="Hasło" Style="{StaticResource LabelTitleStyle}" />
-                    <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Hasło" IsPassword="True"
+                    <Label Text="Password" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Password, Mode=TwoWay}" Placeholder="Password" IsPassword="True"
                             Style="{StaticResource EntryStyle}" WidthRequest="220"/>
                 </VerticalStackLayout>
             </Border>
             <Border Style="{StaticResource LabelBorderHeaderStyle}">
                 <VerticalStackLayout>
-                    <Label Text="Powtórz hasło" Style="{StaticResource LabelTitleStyle}" />
-                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}" Placeholder="Powtórz hasło" IsPassword="True"
+                    <Label Text="Repeat Password" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding RepeatPassword, Mode=TwoWay}" Placeholder="Repeat Password" IsPassword="True"
                            Style="{StaticResource EntryStyle}" WidthRequest="220"/>
                 </VerticalStackLayout>
             </Border>
             <Border Style="{StaticResource LabelBorderHeaderStyle}">
                 <VerticalStackLayout>
-                    <Label Text="Rola" Style="{StaticResource LabelTitleStyle}" />
+                    <Label Text="Role" Style="{StaticResource LabelTitleStyle}" />
                     <Entry Text="{Binding Role, Mode=TwoWay}" Placeholder="Rola" 
                    Style="{StaticResource EntryStyle}" WidthRequest="220"/>
                 </VerticalStackLayout>

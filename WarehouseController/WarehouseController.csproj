@@ -212,6 +212,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="View\DashBoard.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
+	  <None Update="View\LoginPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
 	  <None Update="View\OrderView\AddOrderPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </None>

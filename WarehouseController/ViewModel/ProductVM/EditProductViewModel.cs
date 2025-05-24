@@ -48,6 +48,8 @@ namespace WarehouseController.ViewModel.ProductVM
         {
             try
             {
+                await LoadDataAsync();
+
                 var item = await DataStore.GetItemAsync(id);
                 if (item != null)
                 {
@@ -55,14 +57,10 @@ namespace WarehouseController.ViewModel.ProductVM
                     Name = item.Name;
                     Price = item.Price;
                     StockQuantity = item.StockQuantity;
-                    CategoryId = (int)item.CategoryId;
-                    WarehouseId = (int)item.WarehouseId;
-                    SupplierId = (int)item.SupplierId;
+                    CategoryId = item.CategoryId ?? 0;
+                    WarehouseId = item.WarehouseId ?? 0;
+                    SupplierId = item.SupplierId ?? 0;
 
-                    // Załaduj dane powiązane
-                    await LoadDataAsync();
-
-                    // Ustaw Selected... po załadowaniu list
                     SelectedCategory = Category.FirstOrDefault(c => c.Id == CategoryId);
                     SelectedWarehouse = Warehouses.FirstOrDefault(w => w.Id == WarehouseId);
                     SelectedSupplier = Suppliers.FirstOrDefault(s => s.Id == SupplierId);
@@ -71,28 +69,46 @@ namespace WarehouseController.ViewModel.ProductVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw;
             }
         }
 
         public override ProductDto SetItem()
-        => new()
         {
-            Id = Id,
-            Name = Name,
-            Price = Price,
-            StockQuantity = StockQuantity,
-            CategoryId = CategoryId,
-            WarehouseId = WarehouseId,
-            SupplierId = SupplierId
+            if (!ValidateSave())
+                throw new InvalidOperationException("Invalid product data");
+            var product = new ProductDto
+            {
+                Name = Name,
+                Price = Price,
+                StockQuantity = StockQuantity,
+                CategoryId = CategoryId,
+                WarehouseId = WarehouseId,
+                SupplierId = SupplierId
+            };
 
-        };
+            Debug.WriteLine("[SetItem] Creating Product:");
+            Debug.WriteLine($"Name: {product.Name}");
+            Debug.WriteLine($"Price: {product.Price}");
+            Debug.WriteLine($"Quantity: {product.StockQuantity}");
+
+            return product;
+        }
 
         public override bool ValidateSave()
         {
-            return  !string.IsNullOrWhiteSpace(name)
-                   && price > 0
-                   && stockQuantity > 0;
+            bool isValid = !string.IsNullOrWhiteSpace(Name)
+                  && Price > 0
+                  && StockQuantity > 0
+                  && SelectedCategory != null
+                  && SelectedSupplier != null
+                  && SelectedWarehouse != null;
+
+            Debug.WriteLine($"[ValidateSave] Name: {Name}, Price: {Price}, Quantity: {StockQuantity}, " +
+                            $"Category: {SelectedCategory?.Name}, Supplier: {SelectedSupplier?.Name}, " +
+                            $"Warehouse: {SelectedWarehouse?.Name}, IsValid: {isValid}");
+
+            return isValid;
         }
 
         #region Klucze obce
@@ -140,9 +156,20 @@ namespace WarehouseController.ViewModel.ProductVM
 
         public async Task LoadDataAsync()
         {
+            ResetFields();
             await _refHelper.LoadCategoriesAsync(Category);
             await _refHelper.LoadWarehousesAsync(Warehouses);
             await _refHelper.LoadSuppliersAsync(Suppliers);
+        }
+
+        public void ResetFields()
+        {
+            Name = string.Empty;
+            Price = 0;
+            StockQuantity = 0;
+            SelectedCategory = null;
+            SelectedWarehouse = null;
+            SelectedSupplier = null;
         }
         #endregion
 

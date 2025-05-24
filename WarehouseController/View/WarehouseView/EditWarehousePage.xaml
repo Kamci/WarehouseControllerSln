@@ -7,22 +7,37 @@
                 x:DataType="vm:EditWarehouseViewModel"
                 Shell.PresentationMode="Animated"
              >
-    <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="10">
-            <Label Text="Id" FontSize="14" />
-            <Label Text="{Binding Id, Mode=TwoWay}" FontSize="14" />
-            <Label Text="Name" FontSize="14" />
-            <Editor Text="{Binding Name, Mode=TwoWay}" FontSize="14"/>
-            <Label Text="Location" FontSize="14" />
-            <Editor Text="{Binding Location, Mode=TwoWay}" FontSize="14" Keyboard="Numeric" IsTextPredictionEnabled="True" />
-            <HorizontalStackLayout Spacing="30" Margin="10">
-                <ImageButton   
+    <Border Style="{StaticResource CardItemStyle}">
+        <ScrollView>
+
+
+            <VerticalStackLayout Padding="20" Spacing="10">
+
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelTitleStyle}"/>
+                        <Entry Text="{Binding Name, Mode=TwoWay}" 
+                             Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Location" Style="{StaticResource LabelTitleStyle}" />
+                        <Entry Text="{Binding Location, Mode=TwoWay}" 
+                             Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                    <ImageButton   
            Source="save.png"  
            Command="{Binding SaveCommand}"/>
-                <ImageButton   
+                    <ImageButton   
            Source="cancel.png"  
            Command="{Binding CancelCommand}"/>
-            </HorizontalStackLayout>
-        </VerticalStackLayout>
-    </ScrollView>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
 </ContentPage>

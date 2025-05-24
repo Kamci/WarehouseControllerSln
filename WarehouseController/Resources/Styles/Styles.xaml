@@ -460,7 +460,7 @@
     </Style>
 
 
-    <!--More styles can be added here for other controls as needed. -->
+    <!--===================================             MY STYLE       ====================================================================. -->
 
     <Style x:Key="LoginContainerStyle" TargetType="Border">
         <Setter Property="Padding" Value="20" />
@@ -506,12 +506,21 @@
         <Setter Property="Margin" Value="20" />
     </Style>
     <Style x:Key="EntryStyle" TargetType="Entry">
-        <Setter Property="TextColor" Value="#2c3e50"/>
-        <Setter Property="BackgroundColor" Value="White"/>
-        <Setter Property="PlaceholderColor" Value="#95a5a6"/>
-        <Setter Property="HeightRequest" Value="50"/>
+        <Setter Property="TextColor" Value="#eba2eb"/>
+        <Setter Property="BackgroundColor" Value="#190c26"/>
+        <Setter Property="PlaceholderColor" Value="#50d6bdf0"/>
+        <Setter Property="HeightRequest" Value="40"/>
         <Setter Property="FontSize" Value="16"/>
-        <Setter Property="WidthRequest" Value="300"/>
+        <Setter Property="WidthRequest" Value="220"/>
+        <Setter Property="Margin" Value="0,5"/>
+    </Style>
+    <Style x:Key="EditorStyle" TargetType="Editor">
+        <Setter Property="TextColor" Value="#eba2eb"/>
+        <Setter Property="BackgroundColor" Value="#190c26"/>
+        <Setter Property="PlaceholderColor" Value="#50d6bdf0"/>
+        <Setter Property="HeightRequest" Value="40"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="WidthRequest" Value="220"/>
         <Setter Property="Margin" Value="0,5"/>
     </Style>
 
@@ -520,6 +529,8 @@
         <Setter Property="FontSize" Value="28" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="Margin" Value="0,0,0,10" />
         <Setter Property="WidthRequest" Value="300"/>
     </Style>
@@ -565,12 +576,12 @@
         </Setter>
     </Style>
     <Style x:Key="PickerStyleDashBoard" TargetType="Picker">
-        <Setter Property="TitleColor" Value="#aaaaaa" />
-        <Setter Property="TextColor" Value="#2c3e50" />
-        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TitleColor" Value="#de41f2" />
+        <Setter Property="TextColor" Value="#c38aff" />
+        <Setter Property="FontSize" Value="22" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="HorizontalTextAlignment" Value="Center" />
-        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="BackgroundColor" Value="#1a0c29" />
         <Setter Property="Margin" Value="0,10" />
         <Setter Property="HeightRequest" Value="80" />
         <Setter Property="WidthRequest" Value="250" />
@@ -580,15 +591,27 @@
 
     <Style x:Key="PickerMenus" TargetType="Picker">
         <Setter Property="WidthRequest" Value="220" />
+        <Setter Property="TextColor" Value="#eba2eb" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BackgroundColor" Value="#1a0c29" />
+        <Setter Property="Margin" Value="0,10" />
     </Style>
     <Style x:Key="DatePickerMenus" TargetType="DatePicker">
         <Setter Property="WidthRequest" Value="220" />
+        <Setter Property="TextColor" Value="#eba2eb" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BackgroundColor" Value="#1a0c29" />
+        <Setter Property="Margin" Value="0,10" />
     </Style>
     <Style x:Key="LabelTitleStyle" TargetType="Label">
         <Setter Property="TextColor" Value="#CCCCCC" />
         <Setter Property="FontSize" Value="20" />
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="Margin" Value="0.5" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="WidthRequest" Value="220"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
         <!-- półprzezroczyste tło -->
@@ -598,6 +621,8 @@
     <Style x:Key="ValueLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="#c8c1de" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="Margin" Value="0,0,0,8" />
         <Setter Property="WidthRequest" Value="220"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
@@ -607,6 +632,8 @@
         <Setter Property="TextColor" Value="#c8c1de" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="Margin" Value="5,0" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
         <Setter Property="WidthRequest" Value="220"/>
         <Setter Property="HorizontalTextAlignment" Value="Center"/>
     </Style>
@@ -620,8 +647,8 @@
             <Setter.Value>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                     <GradientStop Color="#2a1c4a" Offset="0.0" />
-                    <GradientStop Color="#8e24aa" Offset="0.5" />
-                    <GradientStop Color="#ba68c8" Offset="1.0" />
+                    <GradientStop Color="#19237d" Offset="0.5" />
+                    <GradientStop Color="#6b121d" Offset="1.0" />
                 </LinearGradientBrush>
             </Setter.Value>
         </Setter>

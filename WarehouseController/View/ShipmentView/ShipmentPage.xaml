@@ -49,46 +49,51 @@
                   SelectionMode="Single" SelectedItem="{Binding SelectedShipment}"   
                   SelectionChanged="ShipmentsList_SelectionChanged">
                 <CollectionView.ItemTemplate >
-                    <DataTemplate x:DataType="model:ShipmentDTO">
-                        <Grid Padding="10" BackgroundColor="{StaticResource Primary} ">
-                            <VisualStateManager.VisualStateGroups>
-                                <VisualStateGroup Name="CommonStates">
-                                    <VisualState Name="Normal">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                    <VisualState Name="Selected">
-                                        <VisualState.Setters>
-                                            <Setter Property="BackgroundColor" Value="DarkGreen" />
-                                        </VisualState.Setters>
-                                    </VisualState>
-                                </VisualStateGroup>
-                            </VisualStateManager.VisualStateGroups>
-                            <Grid.ColumnDefinitions >
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <Label Text="Id:" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" Margin="0,0,10,5"  />
-                            <Label Text="{Binding Id}" FontSize="18" FontAttributes="Bold" Grid.Row="0" Grid.Column="1"/>
-                            <Label Text="Supplier: " FontSize="14" Grid.Row="1" Grid.Column="0" Margin="0,0,10,5"  />
-                            <Label Text="{Binding SupplierName}" FontSize="14" Grid.Row="1" Grid.Column="1" />
-                            <Label Text="WarehouseId: " FontSize="14" Grid.Row="2" Grid.Column="0" Margin="0,0,10,5" />
-                            <Label Text="{Binding WarehouseName}" FontSize="14" Grid.Row="2" Grid.Column="1" />
-                            <Label Text="Shipment Date: " FontSize="14" Grid.Row="3" Grid.Column="0" Margin="0,0,10,5" />
-                            <Label Text="{Binding ShipmentDate, StringFormat='{}{0:yyyy-MM-dd}'}"  FontSize="14" Grid.Row="3" Grid.Column="1" />
-                            <Label Text="Status: " FontSize="14" Grid.Row="4" Grid.Column="0" Margin="0,0,10,5" />
-                            <Label Text="{Binding Status}" FontSize="14" Grid.Row="4" Grid.Column="1" />
-                        </Grid>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ShipmentDTO">
+                                <Border Style="{StaticResource CardItemStyle}">
+                                    <Grid Padding="10" BackgroundColor="{StaticResource Primary}">
+                                        <VerticalStackLayout Spacing="10">
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Id:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding Id}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Supplier:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding SupplierName}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Warehouse:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding WarehouseName}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Date:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding ShipmentDate, StringFormat='{}{0:yyyy-MM-dd}'}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Status:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding Status}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
             </CollectionView>
         </VerticalStackLayout>
     </ScrollView>

@@ -49,16 +49,32 @@ namespace RestApiWarehouseController.Controllers
 
         // GET: api/Product/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetProduct(int id)
+        public async Task<ActionResult<ProductDto>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _context.Products
+        .Include(p => p.Warehouse)
+        .Include(p => p.Supplier)
+        .Include(p => p.Category)
+        .FirstOrDefaultAsync(p => p.Id == id);
 
             if (product == null)
             {
                 return NotFound();
             }
 
-            return product;
+            return new ProductDto
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                StockQuantity = product.StockQuantity,
+                WarehouseId = product.WarehouseId,
+                SupplierId = product.SupplierId,
+                CategoryId = product.CategoryId,
+                WarehouseName = product.Warehouse?.Name ?? "",
+                SupplierName = product.Supplier?.Name ?? "",
+                CategoryName = product.Category?.Name ?? ""
+            };
         }
 
         // PUT: api/Product/5
