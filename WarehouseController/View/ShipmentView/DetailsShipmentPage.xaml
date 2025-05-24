@@ -19,16 +19,16 @@
 
                 <Border Style="{StaticResource LabelBorderValueStyle}">
                     <VerticalStackLayout>
-                        <Label Text="SupplierId"  Style="{StaticResource LabelTitleStyle}" />
-                        <Label Text="{Binding SupplierId, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
+                        <Label Text="Supplier"  Style="{StaticResource LabelTitleStyle}" />
+                        <Label Text="{Binding SupplierName, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
                     </VerticalStackLayout>
                 </Border>
 
 
                 <Border Style="{StaticResource LabelBorderValueStyle}">
                     <VerticalStackLayout>
-                        <Label Text="WarehouseId"  Style="{StaticResource LabelTitleStyle}"  />
-                        <Label Text="{Binding WarehouseId, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}" />
+                        <Label Text="Warehouse"  Style="{StaticResource LabelTitleStyle}"  />
+                        <Label Text="{Binding WarehouseName, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}" />
                     </VerticalStackLayout>
                 </Border>
             

@@ -68,6 +68,7 @@ namespace WarehouseController.ViewModel.ProductVM
                 throw new InvalidOperationException("Invalid product data");
             var product = new ProductDto
             {
+                Id = Id,
                 Name = Name,
                 Price = Price,
                 StockQuantity = StockQuantity,

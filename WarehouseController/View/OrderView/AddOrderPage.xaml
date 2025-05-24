@@ -9,40 +9,47 @@
              Title="{Binding Title}"  
              Shell.PresentationMode="Animated"  
              x:Name="ThisPage">
-
-    <ScrollView>
+    <Border Style="{StaticResource CardItemStyle}" WidthRequest="620">
+        <ScrollView>
         <VerticalStackLayout Padding="20" Spacing="15">
-         
-            <Border Style="{StaticResource LabelBorderHeaderStyle}">
-                <Label Text="Order Date" Style="{StaticResource LabelTitleStyle}"/>
-            </Border>
-            <Border Style="{StaticResource LabelBorderValueStyle}">
-                <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" 
-                            IsVisible="True" Style="{StaticResource DatePickerMenus}"/>
-            </Border>
-            <Border Style="{StaticResource LabelBorderHeaderStyle}">
 
-                <Label Text="{Binding LoggedInLogin}" Style="{StaticResource LabelTitleStyle}" />
-               
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+
+                    <Label Text="Order Date" Style="{StaticResource LabelTitleStyle}"/>
+                    <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" 
+                            IsVisible="True" Style="{StaticResource DatePickerMenus}"/>
+                </VerticalStackLayout>
             </Border>
-            <Border Style="{StaticResource LabelBorderValueStyle}">
+          
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                <Label Text="Login" Style="{StaticResource LabelTitleStyle}"/>
+                <Label Text="{Binding LoggedInLogin}" Style="{StaticResource ValueLabelStyle}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
                 <Picker Title="Select Status"
                       ItemsSource="{Binding Statuses}"
                       SelectedItem="{Binding SelectedStatus}"
                         Style="{StaticResource PickerMenus}"/>
             </Border>
 
-            <Border Style="{StaticResource MyContainerStyle}">
+                <Border Style="{StaticResource LabelBorderValueStyle}" WidthRequest="450">
                 <VerticalStackLayout Spacing="10">
-                    <Label Text="Add Order Item" FontAttributes="Bold" />
+                    <Label Text="Add Order Item" FontAttributes="Bold"
+                           Style="{StaticResource LabelTitleStyle}" />
 
                     <Picker Title="Select Product"
                             ItemsSource="{Binding Products}"
+                            Style="{StaticResource PickerMenus}"
                             ItemDisplayBinding="{Binding Name}"
                             SelectedItem="{Binding SelectedProduct}" /> 
 
-                    <Label Text="Quantity" />
-                    <Entry Text="{Binding Quantity}" Placeholder="Quantity" Keyboard="Numeric" />
+                    <Label Text="Quantity" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Quantity}" 
+                           Style="{StaticResource EntryStyle}"
+                           Placeholder="Quantity" Keyboard="Numeric" />
 
                     <ImageButton Source="add.png"
                             Command="{Binding AddOrderItemCommand}" />
@@ -50,15 +57,15 @@
             </Border>
 
           
-                <VerticalStackLayout WidthRequest="450">
-                    <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="450">
+                <VerticalStackLayout >
+                    <Border Style="{StaticResource CardItemStyle}" WidthRequest="450" Margin="0">
                         <Label Text="Order Items:" FontAttributes="Bold" />
                     </Border>
-                    <CollectionView ItemsSource="{Binding OrderItems}" HeightRequest="120">
+                    <CollectionView ItemsSource="{Binding OrderItems}" >
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="model:OrderItemDto">
                                 <Border Style="{StaticResource CardItemStyle}">
-                                    <HorizontalStackLayout Spacing="20">
+                                    <HorizontalStackLayout Spacing="0">
 
                                     <Border Style="{StaticResource LabelBorderHeaderStyle}"  WidthRequest="240">
                                         <Label Text="{Binding ProductName}" />
@@ -89,4 +96,5 @@
             </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
+    </Border>
 </ContentPage>
