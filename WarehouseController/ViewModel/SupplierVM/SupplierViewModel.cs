@@ -34,7 +34,7 @@ namespace WarehouseController.ViewModel.SupplierVM
 
         public override async Task GoToAddPage()
         {
-            // Załaduj nową stronę przez Shell
+          
             await Shell.Current.GoToAsync(nameof(AddSupplierPage));
         }
 
@@ -43,7 +43,7 @@ namespace WarehouseController.ViewModel.SupplierVM
             if (supplier == null)
                 return;
             SelectedSupplier = supplier;
-            // This will push the ItemDetailPage onto the navigation stack
+           
             await Shell.Current.GoToAsync($"{nameof(DetailsSupplierPage)}?{nameof(DetailSupplierViewModel.ItemId)}={supplier.Id}");
         }
     }

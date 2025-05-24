@@ -18,11 +18,6 @@ public partial class AddProductPage : ContentPage
       
        
     }
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        Debug.WriteLine("AddProductPage is disappearing");
-    }
 
     protected override async void OnAppearing()
     {

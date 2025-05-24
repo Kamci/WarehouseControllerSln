@@ -24,8 +24,6 @@ public partial class CategoryPage : ContentPage
             }
             else
             {
-                // u?ytkownik anulowa? — nie robimy nic
-                // mo?na ewentualnie wyczy?ci? zaznaczenie:
                 CategoriesList.SelectedItem = null;
             }
 

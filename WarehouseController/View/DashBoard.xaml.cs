@@ -11,7 +11,7 @@ public partial class DashBoard : ContentPage
         InitializeComponent();
 
         _vm = new DashboardViewModel();
-        BindingContext = _vm;          // ← jeden, wspólny VM
+        BindingContext = _vm;         
     }
 
     protected override async void OnAppearing()

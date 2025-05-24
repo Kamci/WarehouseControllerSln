@@ -25,8 +25,6 @@ public partial class OrderPage : ContentPage
             }
             else
             {
-                // użytkownik anulował — nie robimy nic
-                // można ewentualnie wyczyścić zaznaczenie:
                 OrdersList.SelectedItem = null;
             }
 

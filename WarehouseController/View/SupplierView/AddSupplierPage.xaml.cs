@@ -12,9 +12,4 @@ public partial class AddSupplierPage : ContentPage
 		InitializeComponent();
         BindingContext = new AddSupplierViewModel();
     }
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        Debug.WriteLine("AddSupplierPage is disappearing");
-    }
 }

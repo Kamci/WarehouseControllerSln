@@ -27,24 +27,27 @@ namespace RestApiWarehouseController.Controllers
         public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders()
         {
             var orders = await _context.Orders
-                .Include(o => o.User)
-                .Include(o => o.OrderItems)
-                .Select(o => new OrderDto
-                {
-                    Id = o.Id,
-                    OrderDate = (DateTime)o.OrderDate,
-                    Status = o.Status,
-                    UserId = o.UserId,
-                    UserLogin = o.User.Login,
-                    OrderItems = o.OrderItems.Select(oi => new OrderItemDto
-                    {
-                        Id = oi.Id,
-                        ProductId = oi.ProductId,
-                        OrderId = oi.OrderId,
-                        Quantity = oi.Quantity,
-                        ProductName = oi.Product.Name
-                    }).ToList()
-                }).ToListAsync();
+            .Include(o => o.User)
+            .Include(o => o.OrderItems)
+            .ThenInclude(oi => oi.Product) 
+            .Select(o => new OrderDto
+        {
+            Id = o.Id,
+            OrderDate = (DateTime)o.OrderDate,
+            Status = o.Status,
+            UserId = o.UserId,
+            UserLogin = o.User.Login,
+            OrderItems = o.OrderItems.Select(oi => new OrderItemDto
+            {
+                Id = oi.Id,
+                ProductId = oi.ProductId,
+                OrderId = oi.OrderId,
+                Quantity = oi.Quantity,
+                ProductName = oi.Product.Name
+            }).ToList()
+        })
+        .OrderByDescending(o => o.OrderDate)
+        .ToListAsync();
 
             return orders;
         }
@@ -54,7 +57,6 @@ namespace RestApiWarehouseController.Controllers
         {
             var order = await _context.Orders
                 .Include(o => o.OrderItems)
-       //.ThenInclude(oi => oi.Product) // jeśli chcesz też produkt
                 .FirstOrDefaultAsync(o => o.Id == id);
 
             if (order == null)
@@ -81,42 +83,40 @@ namespace RestApiWarehouseController.Controllers
             if (existingOrder == null)
                 return NotFound();
 
-            // Update głównych pól
             existingOrder.OrderDate = updatedOrder.OrderDate;
             existingOrder.Status = updatedOrder.Status;
             existingOrder.UserId = updatedOrder.UserId;
 
-            // 1. Usuń te OrderItems, które już nie istnieją
             _context.OrderItems.RemoveRange(
                 existingOrder.OrderItems.Where(oi =>
                     !updatedOrder.OrderItems.Any(uoi => uoi.Id == oi.Id))
             );
 
-            // 2. Dodaj nowe lub aktualizuj istniejące
+      
             foreach (var updatedItem in updatedOrder.OrderItems)
             {
                 OrderItem existingItem;
 
                 if (updatedItem.Id > 0)
                 {
-                    // szukaj po ID jeśli istnieje
+                 
                     existingItem = existingOrder.OrderItems.FirstOrDefault(oi => oi.Id == updatedItem.Id);
                 }
                 else
                 {
-                    // jeśli nowy (Id == 0 lub tymczasowy), szukaj po ProductId
+                 
                     existingItem = existingOrder.OrderItems.FirstOrDefault(oi => oi.ProductId == updatedItem.ProductId);
                 }
 
                 if (existingItem != null)
                 {
-                    // Update istniejącego
+                
                     existingItem.ProductId = updatedItem.ProductId;
                     existingItem.Quantity = updatedItem.Quantity;
                 }
                 else
                 {
-                    // Dodaj nowy
+              
                     existingOrder.OrderItems.Add(new OrderItem
                     {
                         ProductId = updatedItem.ProductId,

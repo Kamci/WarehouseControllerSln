@@ -15,7 +15,7 @@ namespace WarehouseController.Services.Implementations
 
         public CategoryService()
         {
-            _dataStore = new CategoryDataStore(); // lub użyj Dependency Injection
+            _dataStore = new CategoryDataStore(); 
         }
 
         public Task<IEnumerable<Category>> GetAllAsync() => _dataStore.GetItemsAsync();

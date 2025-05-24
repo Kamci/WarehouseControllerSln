@@ -47,5 +47,11 @@ namespace WarehouseController
         {
             return ToString();
         }
+        private async void OnLogoutClicked(object sender, EventArgs e)
+        {
+            
+            Shell.Current.FlyoutBehavior = FlyoutBehavior.Disabled;
+            await Shell.Current.GoToAsync("//LoginPage");
+        }
     }
 }

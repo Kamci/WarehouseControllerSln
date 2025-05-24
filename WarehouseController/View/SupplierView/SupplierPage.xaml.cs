@@ -23,8 +23,6 @@ public partial class SupplierPage : ContentPage
             }
             else
             {
-                // u?ytkownik anulowa? — nie robimy nic
-                // mo?na ewentualnie wyczy?ci? zaznaczenie:
                 SuppliersList.SelectedItem = null;
             }
         }

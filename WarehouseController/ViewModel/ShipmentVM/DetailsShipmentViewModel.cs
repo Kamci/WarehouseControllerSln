@@ -16,18 +16,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
 
     {
         public DetailsShipmentViewModel() : base("Shipment Details")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailShipmentViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        { }
 
         private int id;
 
@@ -72,14 +61,12 @@ namespace WarehouseController.ViewModel.ShipmentVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw; 
             }
         }
 
         protected override async Task GoToUpdatePage()
         {
-            Debug.WriteLine($"[NAVIGATE] Going to EditShipmentPage with ID: {Id}");
-
             await Shell.Current.GoToAsync($"{nameof(EditShipmentPage)}?{nameof(EditShipmentViewModel.ItemId)}={Id}");
         }
 

@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestApiWarehouseController.Models;
 using RestApiWarehouseController.Models.Contexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RestApiWarehouseController.Controllers
 {
@@ -25,7 +26,7 @@ namespace RestApiWarehouseController.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.Categories.OrderByDescending(c => c.Id).ToListAsync();
         }
 
         // GET: api/Category/5
@@ -83,7 +84,7 @@ namespace RestApiWarehouseController.Controllers
 
             return CreatedAtAction("GetCategory", new { id = category.Id }, category);
         }
-
+        [Authorize(Roles = "Admin")]
         // DELETE: api/Category/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)

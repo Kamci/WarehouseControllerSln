@@ -21,18 +21,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
         private DateTime shipmentDate = DateTime.Now;
         private string status = string.Empty;
         public AddShipmentViewModel() : base("Add Shipment")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("AddShipmentViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        {  }
 
 
         public int Id { get => id; set => SetProperty(ref id, value); }
@@ -78,7 +67,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
             set
             {
                 SetProperty(ref selectedStatus, value);
-                Status = value; // zakładam, że masz już właściwość Status
+                Status = value;
             }
         }
 

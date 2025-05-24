@@ -15,7 +15,7 @@ namespace WarehouseController.Services.Implementations
 
         public UserService()
         {
-            _dataStore = new UserDataStore(); // lub użyj Dependency Injection
+            _dataStore = new UserDataStore(); 
         }
 
         public Task<IEnumerable<User>> GetAllAsync() => _dataStore.GetItemsAsync();

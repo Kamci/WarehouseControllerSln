@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using WarehouseController.DTO;
 using WarehouseController.Model;
-using WarehouseController.Services;
 using WarehouseController.Services.Implementations;
-using WarehouseController.Services.Interfaces;
 using WarehouseController.ViewModel.Abstract;
 
 namespace WarehouseController.ViewModel.ProductVM
@@ -27,18 +19,7 @@ namespace WarehouseController.ViewModel.ProductVM
         private int supplierId;
 
         public AddProductViewModel() : base ("Add Product")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("AddProductViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        { }
 
       
         public int Id { get => id; set => SetProperty(ref id, value); }
@@ -60,11 +41,7 @@ namespace WarehouseController.ViewModel.ProductVM
                    && SelectedSupplier != null
                    && SelectedWarehouse != null;
 
-            Debug.WriteLine($"[ValidateSave] Name: {Name}, Price: {Price}, Quantity: {StockQuantity}, " +
-                            $"Category: {SelectedCategory?.Name}, Supplier: {SelectedSupplier?.Name}, " +
-                            $"Warehouse: {SelectedWarehouse?.Name}, IsValid: {isValid}");
-
-            return isValid;
+              return isValid;
         }
 
         public override ProductDto SetItem()
@@ -80,13 +57,7 @@ namespace WarehouseController.ViewModel.ProductVM
                 WarehouseId = WarehouseId,
                 SupplierId = SupplierId
             };
-
-            Debug.WriteLine("[SetItem] Creating Product:");
-            Debug.WriteLine($"Name: {product.Name}");
-            Debug.WriteLine($"Price: {product.Price}");
-            Debug.WriteLine($"Quantity: {product.StockQuantity}");
-
-            return product;
+                 return product;
         }
 
         #region Klucze obce
@@ -97,7 +68,6 @@ namespace WarehouseController.ViewModel.ProductVM
         public ObservableCollection<Supplier> Suppliers { get; set; } = new();
 
 
-        ///-----------------------------wlasciwosci----------------------------------------------
         private Category selectedCategory;
         public Category SelectedCategory
         {
@@ -131,9 +101,6 @@ namespace WarehouseController.ViewModel.ProductVM
             }
         }
 
-
-
-        //metoda do inizjalizacji danych
 
         public async Task LoadDataAsync()
         {

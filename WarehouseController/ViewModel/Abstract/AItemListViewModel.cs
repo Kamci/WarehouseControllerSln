@@ -43,7 +43,6 @@ namespace WarehouseController.ViewModel.Abstract
         async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
-            Debug.WriteLine("📥 [ViewModel] Start loading items...");
 
             try
             {
@@ -52,21 +51,20 @@ namespace WarehouseController.ViewModel.Abstract
 
                 if (items == null)
                 {
-                    Debug.WriteLine("⚠️ [ViewModel] Received NULL from DataStore!");
+                    Debug.WriteLine("Received NULL from DataStore");
                 }
                 else
                 {
-                    Debug.WriteLine($"✅ [ViewModel] Received {items.Count()} items from DataStore");
                     foreach (var item in items)
                     {
                         Items.Add(item);
-                        Debug.WriteLine($"→ Added: {item}");
+                       
                     }
                 }
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"❌ [ViewModel] Error loading items: {ex.Message}");
+                Debug.WriteLine($" Error loading items: {ex.Message}");
             }
             finally
             {

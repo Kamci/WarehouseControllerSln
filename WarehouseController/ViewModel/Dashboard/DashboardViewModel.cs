@@ -17,7 +17,6 @@ namespace WarehouseController.ViewModel.Dashboard
     {
 
 
-        // Właściwości i metody do obsługi wykresów
         private readonly ProductService _productService = new();
         private readonly OrderService _orderService = new();
 
@@ -25,7 +24,7 @@ namespace WarehouseController.ViewModel.Dashboard
         public int ProductsQty
         {
             get => productsQty;
-            private set => SetProperty(ref productsQty, value);    // podnosi PropertyChanged
+            private set => SetProperty(ref productsQty, value);    
         }
 
         private int openOrdersQty;
@@ -69,7 +68,7 @@ namespace WarehouseController.ViewModel.Dashboard
                             new Entry(0)
                             {
                             Label = "",
-                            ValueLabel = "-------NO DATA---------",
+                            ValueLabel = "",
                             Color = SKColor.Parse("#7102f0"),
                             }
                             
@@ -106,10 +105,7 @@ namespace WarehouseController.ViewModel.Dashboard
             get => selectedWarehouse;
             set
             {
-                if (SetProperty(ref selectedWarehouse, value) && value != null)
-                {
-                    Console.WriteLine($"📌 Wybrano magazyn: {value.Name} (ID={value.Id})");
-                }
+                SetProperty(ref selectedWarehouse, value);
             }
         }
 
@@ -124,22 +120,14 @@ namespace WarehouseController.ViewModel.Dashboard
         {
             try
             {
-                Console.WriteLine("→ LoadWarehousesAsync start");
-
                 Warehouses.Clear();
                 await _refHelper.LoadWarehousesAsync(Warehouses);
 
-                Debug.WriteLine($"Liczba magazynów: {Warehouses.Count}");
-                foreach (var wh in Warehouses)
-                {
-                    Debug.WriteLine($"✅ Magazyn: {wh.Id} - {wh.Name}");
-                }
-
-                Console.WriteLine("✔ LoadWarehousesAsync zakończone");
+              
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Błąd podczas ładowania magazynów: {ex.Message}");
+                Console.WriteLine($"Error: {ex.Message}");
             }
 
         }
@@ -147,9 +135,9 @@ namespace WarehouseController.ViewModel.Dashboard
         private async void OnLoadWarehouseReport()
         {
             if (SelectedWarehouse is null)
-                return;                       // nic nie wybrano
+                return;                       
 
-            await LoadWarehouseMetricsAsync(); // ładujesz metryki
+            await LoadWarehouseMetricsAsync();
             await LoadTopProductsChartAsync();
         }
 
@@ -157,18 +145,14 @@ namespace WarehouseController.ViewModel.Dashboard
         {
             try
             {
-                // pobierasz tylko to, co potrzeba – np. jedno zapytanie do API
                 ProductsQty = await _productService.GetProductsCountAsync(SelectedWarehouse.Id);
                 OpenOrdersQty = await _orderService.GetOpenOrdersCountAsync(SelectedWarehouse.Id);
                 LowStockItemCount = await _productService.GetLowStockItemCountAsync(SelectedWarehouse.Id);
                 await LoadRecentOrdersAsync();
                 await LoadRecentShipmentsAsync();
-                // Jeżeli chcesz więcej metryk (np. OrdersOpen, LowStockQty …)
-                // dodajesz kolejne pola i ładujesz je w tym samym miejscu.
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"❌ Błąd liczenia produktów: {ex.Message}");
                 ProductsQty = 0;
                 OpenOrdersQty = 0;
                 LowStockItemCount = 0;

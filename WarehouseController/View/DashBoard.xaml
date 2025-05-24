@@ -58,7 +58,7 @@
                                FontAttributes="Bold"
                                HorizontalOptions="Center" />
 
-                                        <!-- ↓ dynamiczna wartość -->
+                                       
                             <Label Text="{Binding ProductsQty, StringFormat='Qty: {0}'}"
                                FontSize="14"
                                FontAttributes="Bold"

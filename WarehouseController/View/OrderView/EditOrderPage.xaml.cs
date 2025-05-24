@@ -13,7 +13,7 @@ public partial class EditOrderPage : ContentPage
     {
         base.OnAppearing();
 
-        if (BindingContext is AddOrderViewModel vm)
+        if (BindingContext is EditOrderViewModel vm)
         {
             await vm.LoadUsersAsync();
             await vm.LoadProductsAsync();

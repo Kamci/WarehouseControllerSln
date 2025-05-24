@@ -3,6 +3,7 @@ using WarehouseController.ViewModel.Abstract;
 using WarehouseController.DTO;
 using WarehouseController.Services.Implementations;
 using WarehouseController.Model;
+using WarehouseController.Services.Implementations.Authorization;
 
 namespace WarehouseController.ViewModel.OrderVM
 {
@@ -15,38 +16,41 @@ namespace WarehouseController.ViewModel.OrderVM
         private ObservableCollection<OrderItemDto> orderItems = new();
         private int productId;
         private int quantity;
+        private string loggedInLogin;
+        public string LoggedInLogin
+        {
+            get => loggedInLogin;
+            set => SetProperty(ref loggedInLogin, value);
+        }
         public AddOrderViewModel() : base("Add Order")
         {
+            UserId = SessionService.LoggedInUserId;
             OrderDate = DateTime.Now;
             Status = "Pending";
             AddOrderItemCommand = new Command(OnAddOrderItem);
+            LoggedInLogin = SessionService.LoggedInUserLogin;
             RemoveOrderItemCommand = new Command<OrderItemDto>(RemoveOrderItem);
 
         }
-        private async void OnAddOrderItem()
+        private void OnAddOrderItem()
         {
-            // Możesz np. otworzyć modal do wyboru produktu i ilości,
-            // a po potwierdzeniu dodać do OrderItems:
-            // sprawdź, czy dany produkt jest już na liście
             var existing = OrderItems.FirstOrDefault(i => i.ProductId == ProductId);
             string productName = SelectedProduct?.Name ?? "Unknown";
             if (existing != null)
             {
-                // jeśli jest – tylko zwiększamy ilość
                 existing.Quantity += Quantity;
             }
             else
             {
-                // jeśli nie ma – dodajemy nowy wiersz
+              
                 OrderItems.Add(new OrderItemDto
                 {
                     ProductId = ProductId,
                     Quantity = Quantity,
-                      ProductName = productName // ← Ustaw nazwę
+                    ProductName = productName 
                 });
             }
 
-            // opcjonalnie wyczyść pola formularza
             Quantity = 0;
             SelectedProduct = null;
         }
@@ -55,7 +59,6 @@ namespace WarehouseController.ViewModel.OrderVM
             if (item != null && OrderItems.Contains(item))
                 orderItems.Remove(item);
         }
-        public int Id { get => id; set => SetProperty(ref id, value); }
         public DateTime OrderDate { get => orderDate; set => SetProperty(ref orderDate, value); }
         public string Status { get => status; set => SetProperty(ref status, value); }
         public int UserId { get => userId; set => SetProperty(ref userId, value); }
@@ -78,7 +81,6 @@ namespace WarehouseController.ViewModel.OrderVM
         {
             return !string.IsNullOrWhiteSpace(Status)
                      && OrderDate != default
-                        && UserId > 0
                      && orderItems.Count > 0;
         }
         public override OrderDto SetItem()
@@ -110,27 +112,9 @@ namespace WarehouseController.ViewModel.OrderVM
             set
             {
                 SetProperty(ref selectedStatus, value);
-                Status = value; // zakładam, że masz już właściwość Status
             }
         }
-        public ObservableCollection<User> Users { get; set; } = new();
-
-        private User selectedUser;
-        public User SelectedUser
-        {
-            get => selectedUser;
-            set
-            {
-                if (SetProperty(ref selectedUser, value) && value != null)
-                    UserId = value.Id; // zakładam że masz już właściwość UserId
-            }
-        }
-
-        public async Task LoadUsersAsync()
-        {
-            await _referenceHelper.LoadUsersAsync(Users);
-        }
-
+     
         public ObservableCollection<ProductDto> Products { get; set; } = new();
 
         private ProductDto selectedProduct;

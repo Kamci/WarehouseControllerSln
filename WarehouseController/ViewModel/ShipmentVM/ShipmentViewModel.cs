@@ -31,7 +31,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
         }
         public override async Task GoToAddPage()
         {
-            // Załaduj nową stronę przez Shell
+          
             await Shell.Current.GoToAsync(nameof(AddShipmentPage));
         }
         public override async Task GoToDetailsPage(ShipmentDTO shipment)
@@ -39,7 +39,6 @@ namespace WarehouseController.ViewModel.ShipmentVM
             if (shipment == null)
                 return;
             SelectedShipment = shipment;
-            // This will push the ItemDetailPage onto the navigation stack
             await Shell.Current.GoToAsync($"{nameof(DetailsShipmentPage)}?{nameof(DetailsShipmentViewModel.ItemId)}={shipment.Id}");
         }
     }

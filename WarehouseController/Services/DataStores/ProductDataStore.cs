@@ -19,20 +19,17 @@ public class ProductDataStore : AListDataStore<ProductDto>
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine($"📦 [DataStore] Response JSON: {json}");
 
             var result = JsonSerializer.Deserialize<List<ProductDto>>(json, new JsonSerializerOptions
             {
                 PropertyNameCaseInsensitive = true
             });
 
-            Debug.WriteLine($"✅ [DataStore] Deserialized {result?.Count} products");
 
             return result ?? new List<ProductDto>();
         }
         catch (Exception ex)
         {
-            Debug.WriteLine($"❌ [DataStore] Error fetching products: {ex.Message}");
             return new List<ProductDto>();
         }
     }

@@ -11,10 +11,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
-
-
         </Grid.RowDefinitions>
-        <!-- 🧰 Nasz custom toolbar -->
         <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
           Grid.Row="0"
         VerticalOptions="Center"  

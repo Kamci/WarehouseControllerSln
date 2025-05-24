@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestApiWarehouseController.DTO;
 using RestApiWarehouseController.Models;
 using RestApiWarehouseController.Models.Contexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RestApiWarehouseController.Controllers
 {
@@ -30,6 +31,7 @@ namespace RestApiWarehouseController.Controllers
                .Include(p => p.Warehouse)
                .Include(p => p.Supplier)
                .Include(p => p.Category)
+               .OrderByDescending(p => p.Id)
                .ToListAsync();
 
             return products.Select(p => new ProductDto
@@ -132,7 +134,7 @@ namespace RestApiWarehouseController.Controllers
             dto.Id = product.Id; // zwróć ID
             return CreatedAtAction(nameof(GetProduct), new { id = product.Id }, dto);
         }
-
+        [Authorize(Roles = "Admin")]
         // DELETE: api/Product/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)

@@ -35,7 +35,7 @@ namespace WarehouseController.ViewModel.OrderVM
 
         public override async Task GoToAddPage()
         {
-            // Załaduj nową stronę przez Shell
+          
             await Shell.Current.GoToAsync(nameof(AddOrderPage));
         }
 
@@ -44,7 +44,7 @@ namespace WarehouseController.ViewModel.OrderVM
             if (order == null)
                 return;
             SelectedOrder = order;
-            // This will push the ItemDetailPage onto the navigation stack
+          
             await Shell.Current.GoToAsync($"{nameof(DetailsOrderPage)}?{nameof(DetailsOrderViewModel.ItemId)}={order.Id}");
         }
     }

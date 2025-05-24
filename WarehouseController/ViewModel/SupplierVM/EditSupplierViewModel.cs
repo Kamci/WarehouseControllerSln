@@ -18,18 +18,8 @@ namespace WarehouseController.ViewModel.SupplierVM
         private string name = string.Empty;
         private string contact = string.Empty;
         public EditSupplierViewModel() : base("Edit Supplier")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("EditSupplierViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw;
-            }
-        }
+        { }
+
         public int Id { get => id; set => SetProperty(ref id, value); }
         public string Name { get => name; set => SetProperty(ref name, value); }
         public string Contact { get => contact; set => SetProperty(ref contact, value); }

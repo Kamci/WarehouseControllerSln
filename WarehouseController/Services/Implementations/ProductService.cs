@@ -16,7 +16,7 @@ namespace WarehouseController.Services.Implementations
 
         public ProductService()
         {
-            _dataStore = new ProductDataStore(); // lub użyj Dependency Injection
+            _dataStore = new ProductDataStore();
         }
 
         public Task<IEnumerable<ProductDto>> GetAllAsync() => _dataStore.GetItemsAsync();

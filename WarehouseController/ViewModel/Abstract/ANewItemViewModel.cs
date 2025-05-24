@@ -30,12 +30,17 @@ namespace WarehouseController.ViewModel.Abstract
             try
             {
                 var item = SetItem();
+
+                var json = System.Text.Json.JsonSerializer.Serialize(item);
+                Debug.WriteLine("Sending JSON to API:");
+                Debug.WriteLine(json);
+
                 await DataStore.AddItemAsync(item);
                 await Shell.Current.GoToAsync("..");
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[SAVE ERROR] {ex.Message}\n{ex.StackTrace}");
+                Debug.WriteLine($"ERROR {ex.Message}");
                 await Application.Current.MainPage.DisplayAlert("Error", "Failed to save item.", "OK");
             }
         }

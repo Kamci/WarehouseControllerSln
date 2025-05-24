@@ -15,16 +15,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
     {
         public DetailWarehouseViewModel() : base("Warehouse Details")
         {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailWarehouseViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
+           
         }
 
         private int id;
@@ -49,13 +40,13 @@ namespace WarehouseController.ViewModel.WarehouseVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw; 
             }
         }
 
         protected override async Task GoToUpdatePage()
         {
-            Debug.WriteLine($"[NAVIGATE] Going to EditWarehousePage with ID: {Id}");
+            
 
             await Shell.Current.GoToAsync($"{nameof(EditWarehousePage)}?{nameof(EditWarehouseViewModel.ItemId)}={Id}");
         }

@@ -4,6 +4,7 @@
              x:Class="WarehouseController.View.OrderView.AddOrderPage"  
              xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM"  
               xmlns:model="clr-namespace:WarehouseController.DTO"  
+             xmlns:auth="clr-namespace:WarehouseController.Services.Implementations.Authorization"
              x:DataType="vm:AddOrderViewModel"  
              Title="{Binding Title}"  
              Shell.PresentationMode="Animated"  
@@ -20,11 +21,9 @@
                             IsVisible="True" Style="{StaticResource DatePickerMenus}"/>
             </Border>
             <Border Style="{StaticResource LabelBorderHeaderStyle}">
-                <Picker Title="Select User"
-                        ItemsSource="{Binding Users}"
-                        ItemDisplayBinding="{Binding Login}" 
-                        SelectedItem="{Binding SelectedUser}"
-                        Style="{StaticResource PickerMenus}"/>
+
+                <Label Text="{Binding LoggedInLogin}" Style="{StaticResource LabelTitleStyle}" />
+               
             </Border>
             <Border Style="{StaticResource LabelBorderValueStyle}">
                 <Picker Title="Select Status"

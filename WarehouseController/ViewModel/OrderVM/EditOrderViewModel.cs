@@ -10,7 +10,7 @@ namespace WarehouseController.ViewModel.OrderVM;
 [QueryProperty(nameof(ItemId), nameof(ItemId))]
 public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
 {
-    // ────────── pola edycyjne ──────────
+  
     private int id;
     private DateTime orderDate;
     private string status = string.Empty;
@@ -26,7 +26,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         RemoveOrderItemCommand = new Command<OrderItemDto>(RemoveOrderItem);
     }
 
-    // ────────── wlasciwosci ──────────
+
     public int Id { get => id; set => SetProperty(ref id, value); }
     public DateTime OrderDate { get => orderDate; set => SetProperty(ref orderDate, value); }
     public string Status { get => status; set => SetProperty(ref status, value); }
@@ -38,7 +38,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         set => SetProperty(ref orderItems, value);
     }
 
-    //  pola pomocnicze (entry w UI)
+
     public int ProductId
     {
         get => productId;
@@ -50,32 +50,32 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         set => SetProperty(ref quantity, value);
     }
  
-    // ────────── dodawanie / usuwanie pozycji ──────────
+
     public Command AddOrderItemCommand { get; }
     public Command<OrderItemDto> RemoveOrderItemCommand { get; }
 
     private void OnAddOrderItem()
     {
-        // sprawdź, czy dany produkt jest już na liście
+     
         var existing = OrderItems.FirstOrDefault(i => i.ProductId == ProductId);
         string productName = SelectedProduct?.Name ?? "Unknown";
         if (existing != null)
         {
-            // jeśli jest – tylko zwiększamy ilość
+         
             existing.Quantity += Quantity;
         }
         else
         {
-            // jeśli nie ma – dodajemy nowy wiersz
+
             OrderItems.Add(new OrderItemDto
             {
                 ProductId = ProductId,
                 Quantity = Quantity,
-                ProductName = productName // ← Ustaw nazwę
+                ProductName = productName
             });
         }
 
-        // opcjonalnie wyczyść pola formularza
+  
         Quantity = 0;
         SelectedProduct = null;
     }
@@ -86,7 +86,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
             OrderItems.Remove(item);
     }
 
-    // ────────── walidacja i mapowanie ──────────
+ 
     public override bool ValidateSave() =>
         !string.IsNullOrWhiteSpace(Status)
         && OrderDate != default
@@ -104,17 +104,16 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
             UserId = UserId,
             OrderItems = OrderItems.Select(oi => new OrderItemDto
             {
-                Id = oi.Id, // ← BEZ TEGO API myśli, że to nowe itemy
+                Id = oi.Id, 
                 ProductId = oi.ProductId,
                 Quantity = oi.Quantity
             }).ToList()
         };
     }
-    // ────────── wczytanie rekordu ──────────
+   
     public override async Task LoadItem(int id)
     {
-        foreach (var oi in OrderItems)
-            Debug.WriteLine($"[DEBUG] DTO: ID={oi.Id}, ProductId={oi.ProductId}, Quantity={oi.Quantity}");
+       
         var order = await DataStore.GetItemAsync(id);
         if (order != null)
         {
@@ -122,14 +121,11 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
             OrderDate = order.OrderDate;
             Status = order.Status;
             UserId = order.UserId;
-            // Załaduj dane powiązane
             await LoadUsersAsync();
-
-            // Ustaw Selected... po załadowaniu list
+            SelectedStatus = Statuses.FirstOrDefault(s => s == order.Status);
             SelectedUser = Users.FirstOrDefault(u => u.Id == UserId);
             await LoadProductsAsync();
 
-            // Utwórz kolekcję z przypisanym ProductName
             OrderItems = new ObservableCollection<OrderItemDto>(
               order.OrderItems.Select(oi =>
               {
@@ -159,7 +155,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         set
         {
             SetProperty(ref selectedStatus, value);
-            Status = value; // zakładam, że masz już właściwość Status
+            Status = value; 
         }
     }
     public ObservableCollection<User> Users { get; set; } = new();
@@ -171,7 +167,7 @@ public partial class EditOrderViewModel : AItemUpdateViewModel<OrderDto>
         set
         {
             if (SetProperty(ref selectedUser, value) && value != null)
-                UserId = value.Id; // zakładam że masz już właściwość UserId
+                UserId = value.Id;
         }
     }
 

@@ -14,7 +14,7 @@ namespace WarehouseController.Services.Implementations
         private readonly ShipmentService _shipmentService = new();
         private readonly ProductService _productService = new();
 
-        // Async methods by ID
+  
         public async Task<string> GetUserLoginByIdAsync(int id)
         {
             var list = await _userService.GetAllAsync();
@@ -52,7 +52,7 @@ namespace WarehouseController.Services.Implementations
             return shipment != null ? $"{shipment.ShipmentDate:yyyy-MM-dd} (ID: {shipment.Id})" : $"Shipment #{id}";
         }
 
-        // Format helpers
+    
         public static string FormatUserDisplay(User user) =>
             user == null ? "User not found" : $"User #{user.Id} | Login: {user.Login} | Role: {user.Role}";
 

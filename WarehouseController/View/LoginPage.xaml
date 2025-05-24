@@ -10,15 +10,17 @@
             Opacity="0.50"/>
         <VerticalStackLayout Style="{StaticResource LoginContainerStyle}" VerticalOptions="Center">
 
-            <Label Text="Warehouse Login"
-                   Style="{StaticResource TitleLabelStyle}"/>
-
-            <Entry x:Name="UsernameEntry"
+            <Image Source="logo.png"
+                       HorizontalOptions="Center"
+                       HeightRequest="100"
+                       WidthRequest="300"
+                       Aspect="AspectFit" />
+            <Entry x:Name="EntryLogin"
                    Placeholder="Username"
                    Keyboard="Default" 
                    Style="{StaticResource EntryStyle}"/>
 
-            <Entry x:Name="PasswordEntry"
+            <Entry x:Name="EntryPassword"
                    Placeholder="Password"
                    IsPassword="True" 
                    Style="{StaticResource EntryStyle}"/>
@@ -26,6 +28,10 @@
             <Button Text="Login"
                     Style="{StaticResource LoginButton3DStyle}"
                     Clicked="OnLoginClicked" />
+
+            <Button Text="Guest Info"
+                    Style="{StaticResource LoginButton3DStyle}"
+                    Clicked="OnGuestInfoClicked"/>
 
         </VerticalStackLayout>
     </Grid>

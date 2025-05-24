@@ -17,18 +17,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
         private DateTime shipmentDate = DateTime.Now;
         private string status = string.Empty;
         public EditShipmentViewModel() : base("Add Shipment")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("AddShipmentViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        { }
 
 
         public int Id { get => id; set => SetProperty(ref id, value); }
@@ -68,7 +57,7 @@ namespace WarehouseController.ViewModel.ShipmentVM
                 var item = await DataStore.GetItemAsync(id);
                 if (item != null)
                 {
-                    // Załaduj dane powiązane
+                    
                     await LoadDataAsync();
                     Id = item.Id;
                     SupplierId = (int)item.SupplierId;
@@ -130,7 +119,6 @@ namespace WarehouseController.ViewModel.ShipmentVM
             {
                 if (SetProperty(ref selectedSupplier, value) && value != null)
                 {
-                    Debug.WriteLine($"SelectedSupplier set to: {value.Name} (Id: {value.Id})");
                     SupplierId = value.Id;
                 }
             }

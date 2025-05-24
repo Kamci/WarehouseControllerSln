@@ -16,7 +16,7 @@ namespace WarehouseController.Services.Implementations
 
         public ShipmentService()
         {
-            _dataStore = new ShipmentDataStore(); // lub użyj Dependency Injection
+            _dataStore = new ShipmentDataStore();
         }
 
         public Task<IEnumerable<ShipmentDTO>> GetAllAsync() => _dataStore.GetItemsAsync();

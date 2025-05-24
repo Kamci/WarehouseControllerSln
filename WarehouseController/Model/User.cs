@@ -10,7 +10,7 @@ namespace WarehouseController.Model
     {
         public int Id { get; set; }
         public string Login { get; set; }
-        public byte[] PasswordHash { get; set; }
+        public string Password { get; set; }
         public string Role { get; set; }
         public ICollection<Order> Orders { get; set; } = new List<Order>();
     }

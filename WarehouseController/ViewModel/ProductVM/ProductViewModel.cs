@@ -29,7 +29,7 @@ namespace WarehouseController.ViewModel.ProductVM
 
         public override async Task GoToAddPage()
         {
-            // Załaduj nową stronę przez Shell
+           
             await Shell.Current.GoToAsync(nameof(AddProductPage));
         }
 
@@ -38,7 +38,7 @@ namespace WarehouseController.ViewModel.ProductVM
             if (product == null)
                 return;
             SelectedProduct = product;
-            // This will push the ItemDetailPage onto the navigation stack
+           
             await Shell.Current.GoToAsync($"{nameof(DetailProductPage)}?{nameof(DetailProductViewModel.ItemId)}={product.Id}");
         }
     }

@@ -15,7 +15,7 @@ namespace WarehouseController.Services.Implementations
 
         public SupplierService()
         {
-            _dataStore = new SupplierDataStore(); // lub użyj Dependency Injection
+            _dataStore = new SupplierDataStore(); 
         }
 
         public Task<IEnumerable<Supplier>> GetAllAsync() => _dataStore.GetItemsAsync();

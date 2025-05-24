@@ -7,13 +7,8 @@ public partial class AddUserPage : ContentPage
 {
     public AddUserPage()
     {
-        BindingContext = new AddUserViewModel(); // przypisz ViewModel
+        BindingContext = new AddUserViewModel();
         InitializeComponent();
     }
 
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        Debug.WriteLine("AddUserPage is disappearing");
-    }
 }

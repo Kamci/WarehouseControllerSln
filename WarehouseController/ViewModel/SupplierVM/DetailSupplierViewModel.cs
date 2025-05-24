@@ -13,18 +13,8 @@ namespace WarehouseController.ViewModel.SupplierVM
     public class DetailSupplierViewModel : AItemDetailsViewModel<Supplier>
     {
         public DetailSupplierViewModel() : base("Supplier Details")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailSupplierViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; 
-            }
-        }
+        {  }
+
         private int id;
         private string name = string.Empty;
         private string contact = string.Empty;
@@ -53,8 +43,6 @@ namespace WarehouseController.ViewModel.SupplierVM
 
         protected override async Task GoToUpdatePage()
         {
-
-            Debug.WriteLine($"[NAVIGATE] Going to EditSupplierPage with ID: {Id}");
 
             await Shell.Current.GoToAsync($"{nameof(EditSupplierPage)}?{nameof(EditSupplierViewModel.ItemId)}={Id}");
         }

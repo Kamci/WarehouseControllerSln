@@ -14,9 +14,5 @@ public partial class AddWarehousePage : ContentPage
 
 
     }
-    protected override void OnDisappearing()
-    {
-        base.OnDisappearing();
-        Debug.WriteLine("AddWarehousePage is disappearing");
-    }
+   
 }

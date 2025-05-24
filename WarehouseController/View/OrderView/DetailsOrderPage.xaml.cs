@@ -13,6 +13,6 @@ public partial class DetailsOrderPage : ContentPage
     {
         base.OnAppearing();
         if (BindingContext is DetailsOrderViewModel vm)
-            await vm.LoadItem(vm.ItemId); // <- upewnij się, że ItemId jest przekazywany
+            await vm.LoadItem(vm.ItemId); 
     }
 }

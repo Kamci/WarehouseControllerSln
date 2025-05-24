@@ -15,18 +15,7 @@ namespace WarehouseController.ViewModel.OrderVM
 
     {
         public DetailsOrderViewModel() : base("Order Details")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailOrderViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        { }
 
         private int id;
         private DateTime orderDate;
@@ -79,8 +68,6 @@ namespace WarehouseController.ViewModel.OrderVM
 
         protected override async Task GoToUpdatePage()
         {
-            Debug.WriteLine($"[NAVIGATE] Going to EditOrderPage with ID: {Id}");
-
             await Shell.Current.GoToAsync($"{nameof(EditOrderPage)}?{nameof(EditOrderViewModel.ItemId)}={Id}");
         }
 

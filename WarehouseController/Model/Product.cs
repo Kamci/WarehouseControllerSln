@@ -15,7 +15,6 @@ namespace WarehouseController.Model
         public int CategoryId { get; set; }
 
         public int SupplierId { get; set; }
-        // (opcjonalnie) nawigacyjne
         public Warehouse? Warehouse { get; set; }
         public Category? Category { get; set; }
         public Supplier? Supplier { get; set; }

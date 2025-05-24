@@ -37,7 +37,7 @@ namespace WarehouseController.ViewModel.UserVM
 
         public override async Task GoToAddPage()
         {
-            // Załaduj nową stronę przez Shell
+            
             await Shell.Current.GoToAsync(nameof(AddUserPage));
         }
 
@@ -47,25 +47,25 @@ namespace WarehouseController.ViewModel.UserVM
             {
                 if (user == null)
                 {
-                    Debug.WriteLine("[NAVIGATE] User is null. Navigation canceled.");
+                    Debug.WriteLine("User is null. Navigation canceled.");
                     return;
                 }
 
                 if (user.Id <= 0)
                 {
-                    Debug.WriteLine($"[NAVIGATE] Invalid user ID: {user.Id}. Navigation canceled.");
+                    Debug.WriteLine($"Invalid user ID: {user.Id}. Navigation canceled.");
                     return;
                 }
 
                 if (string.IsNullOrWhiteSpace(user.Login))
                 {
-                    Debug.WriteLine("[NAVIGATE] User login is null or empty. Navigation canceled.");
+                    Debug.WriteLine("User login is null or empty. Navigation canceled.");
                     return;
                 }
 
-                Debug.WriteLine($"[NAVIGATE] Going to DetailUserPage with ID: {user.Id}");
-                Debug.WriteLine($"[NAVIGATE] User: {user.Login}");
-                Debug.WriteLine($"[NAVIGATE] User: {user.Role}");
+                Debug.WriteLine($"Going to DetailUserPage with ID: {user.Id}");
+                Debug.WriteLine($"User: {user.Login}");
+                Debug.WriteLine($"User: {user.Role}");
 
                 SelectedUser = user;
 
@@ -73,7 +73,7 @@ namespace WarehouseController.ViewModel.UserVM
             }
             catch (Exception ex)
             {
-                Debug.WriteLine($"[NAVIGATE ERROR] {ex}");
+                Debug.WriteLine($"[ERROR] {ex}");
             }
         }
     }

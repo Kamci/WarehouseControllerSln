@@ -16,37 +16,23 @@ namespace WarehouseController.ViewModel.CategoryVM
 
     {
         public DetailsCategoryViewModel() : base("Category Details")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailCategoryViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        { }
 
         private int id;
         private string name = string.Empty;
 
-        public int Id { get => id; set { Debug.WriteLine($"Setting Id: {value}"); SetProperty(ref id, value); } }
-        public string Name { get => name; set { Debug.WriteLine($"Setting Name: {value}"); SetProperty(ref name, value); } }
+        public int Id { get => id; set { SetProperty(ref id, value); } }
+        public string Name { get => name; set {  SetProperty(ref name, value); } }
 
         public override async Task LoadItem(int id)
         {
             try
             {
-                Debug.WriteLine($"LoadItem({id}) – start");
                 var item = await DataStore.GetItemAsync(id);
-                Debug.WriteLine($"LoadItem({id}) – result: {item?.Id} {item?.Name}");
                 if (item != null)
                 {
                     Id = item.Id;
                     Name = item.Name;
-                    Debug.WriteLine("Nowa kategoria: " + item?.Name);
                 }
             }
             catch (Exception ex)
@@ -58,8 +44,6 @@ namespace WarehouseController.ViewModel.CategoryVM
 
         protected override async Task GoToUpdatePage()
         {
-            Debug.WriteLine($"[NAVIGATE] Going to EditCategoryPage with ID: {Id}");
-
             await Shell.Current.GoToAsync($"{nameof(EditCategoryPage)}?{nameof(EditCategoryViewModel.ItemId)}={Id}");
         }
      

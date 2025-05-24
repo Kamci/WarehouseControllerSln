@@ -25,8 +25,6 @@ public partial class ShipmentPage : ContentPage
             }
             else
             {
-                // u?ytkownik anulowa? — nie robimy nic
-                // mo?na ewentualnie wyczy?ci? zaznaczenie:
                 ShipmentsList.SelectedItem = null;
             }
 

@@ -17,16 +17,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
 
         public AddWarehouseViewModel() : base("Add Warehouse")
         {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("AddWarehouseViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
+            
         }
 
 

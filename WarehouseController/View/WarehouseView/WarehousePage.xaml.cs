@@ -25,8 +25,6 @@ public partial class WarehousePage : ContentPage
             }
             else
             {
-                // użytkownik anulował — nie robimy nic
-                // można ewentualnie wyczyścić zaznaczenie:
                 WarehosuesList.SelectedItem = null;
             }
 

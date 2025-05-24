@@ -25,18 +25,7 @@ namespace WarehouseController.ViewModel.ProductVM
         private int supplierId;
 
         public EditProductViewModel() : base("Edit Product")
-        {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("EditProductViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
-        }
+        {  }
         public int Id { get => id; set => SetProperty(ref id, value); }
         public string Name { get => name; set => SetProperty(ref name, value); }
         public decimal Price { get => price; set => SetProperty(ref price, value); }
@@ -87,11 +76,6 @@ namespace WarehouseController.ViewModel.ProductVM
                 SupplierId = SupplierId
             };
 
-            Debug.WriteLine("[SetItem] Creating Product:");
-            Debug.WriteLine($"Name: {product.Name}");
-            Debug.WriteLine($"Price: {product.Price}");
-            Debug.WriteLine($"Quantity: {product.StockQuantity}");
-
             return product;
         }
 
@@ -103,10 +87,6 @@ namespace WarehouseController.ViewModel.ProductVM
                   && SelectedCategory != null
                   && SelectedSupplier != null
                   && SelectedWarehouse != null;
-
-            Debug.WriteLine($"[ValidateSave] Name: {Name}, Price: {Price}, Quantity: {StockQuantity}, " +
-                            $"Category: {SelectedCategory?.Name}, Supplier: {SelectedSupplier?.Name}, " +
-                            $"Warehouse: {SelectedWarehouse?.Name}, IsValid: {isValid}");
 
             return isValid;
         }
@@ -150,9 +130,6 @@ namespace WarehouseController.ViewModel.ProductVM
             }
         }
 
-
-
-        //metoda do inizjalizacji danych
 
         public async Task LoadDataAsync()
         {

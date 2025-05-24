@@ -19,16 +19,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
 
         public EditWarehouseViewModel() : base("Edit Warehouse")
         {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("EditWarehouseViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
+            
         }
         public int Id { get => id; set => SetProperty(ref id, value); }
         public string Name { get => name; set => SetProperty(ref name, value); }
@@ -48,7 +39,7 @@ namespace WarehouseController.ViewModel.WarehouseVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"ViewModel load error: {ex}");
-                throw; // Możesz to potem usunąć
+                throw; 
             }
         }
 

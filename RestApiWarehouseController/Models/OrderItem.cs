@@ -20,10 +20,10 @@ public partial class OrderItem
 
     public int Quantity { get; set; }
 
-    [JsonIgnore]                // nie serializujemy
-    [ValidateNever]             // **nie** walidujemy przy POST
+    [JsonIgnore]               
+    [ValidateNever]           
     [ForeignKey("OrderId")]
-    public virtual Order? Order { get; set; }        // ← Nullable!
+    public virtual Order? Order { get; set; }   
 
     [JsonIgnore]
     [ValidateNever]

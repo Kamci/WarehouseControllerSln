@@ -8,7 +8,7 @@ public partial class UserPage : ContentPage
     UserViewModel _viewModel;
     public UserPage()
     {
-        InitializeComponent(); // Ensure this method is generated in the corresponding XAML file
+        InitializeComponent(); 
         BindingContext = _viewModel = new UserViewModel();
     }
 
@@ -27,8 +27,6 @@ public partial class UserPage : ContentPage
             }
             else
             {
-                // u?ytkownik anulowa? — nie robimy nic
-                // mo?na ewentualnie wyczy?ci? zaznaczenie:
                 UserList.SelectedItem = null;
             }
 

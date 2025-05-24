@@ -18,23 +18,14 @@ namespace WarehouseController.ViewModel.UserVM
 
         public DetailUserViewModel() : base("User Details") 
         {
-            try
-            {
-                // inicjalizacja
-                Debug.WriteLine("DetailUserViewModel loaded");
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine($"ViewModel init error: {ex}");
-                throw; // Możesz to potem usunąć
-            }
+           
         }
 
         public override async Task LoadItem(int id)
         {
             try
             {
-                Debug.WriteLine($"Loading user with ID: {id}");
+             
               
                 var user = await DataStore.GetItemAsync(id);
                 if (user != null)
@@ -51,14 +42,14 @@ namespace WarehouseController.ViewModel.UserVM
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error loading user: {ex}");
-                throw; // Możesz to potem usunąć
+                throw; 
             }
             
         }
 
         protected override async Task GoToUpdatePage()
         {
-            Debug.WriteLine($"[NAVIGATE] Going to EditUserPage with ID: {Id}");
+           
             await Shell.Current.GoToAsync($"{nameof(EditUserPage)}?{nameof(EditUserViewModel.ItemId)}={Id}");
         }
     }

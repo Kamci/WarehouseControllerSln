@@ -26,8 +26,6 @@ public partial class ProductsPage : ContentPage
             }
             else
             {
-                // użytkownik anulował — nie robimy nic
-                // można ewentualnie wyczyścić zaznaczenie:
                 ProductsList.SelectedItem = null;
             }
 

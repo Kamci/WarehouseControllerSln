@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RestApiWarehouseController.DTO;
 using RestApiWarehouseController.Models;
 using RestApiWarehouseController.Models.Contexts;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RestApiWarehouseController.Controllers
 {
@@ -29,6 +30,7 @@ namespace RestApiWarehouseController.Controllers
             var shipments = await _context.Shipments
                 .Include(s => s.Supplier)
                 .Include(s => s.Warehouse)
+                .OrderByDescending(s => s.ShipmentDate)
                 .ToListAsync();
 
             var shipmentDTOs = shipments.Select(s => new ShipmentDTO
@@ -86,8 +88,7 @@ namespace RestApiWarehouseController.Controllers
             _context.Shipments.Add(shipment);
             await _context.SaveChangesAsync();
 
-            dto.Id = shipment.Id; // set new ID
-
+            dto.Id = shipment.Id; 
             return CreatedAtAction(nameof(GetShipment), new { id = shipment.Id }, dto);
         }
 
@@ -120,7 +121,7 @@ namespace RestApiWarehouseController.Controllers
 
             return NoContent();
         }
-
+        [Authorize(Roles = "Admin")]
         // DELETE: api/Shipment/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteShipment(int id)

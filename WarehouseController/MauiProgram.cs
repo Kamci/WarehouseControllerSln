@@ -21,7 +21,7 @@ public static class MauiProgram
         builder.UseSkiaSharp();
         builder
             .UseMauiApp<App>()
-            .UseMicrocharts() // Add Microcharts.Maui package
+            .UseMicrocharts() 
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

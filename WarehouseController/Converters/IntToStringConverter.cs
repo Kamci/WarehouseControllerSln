@@ -10,14 +10,14 @@ namespace WarehouseController.Converters
         {
             if (value is int intValue)
                 return intValue.ToString();
-            return "0"; // lub "" jeśli wolisz
+            return "0";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value is string str && int.TryParse(str, out int result))
                 return result;
-            return 0; // lub return BindableProperty.UnsetValue; jeśli chcesz zgłosić błąd
+            return 0;
         }
     }
 }

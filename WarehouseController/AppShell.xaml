@@ -43,4 +43,11 @@
          ContentTemplate="{DataTemplate local:OrderPage}"
          Route="OrderPage" />
 
+    <MenuItem 
+              Text="LOG OUT"
+              Clicked="OnLogoutClicked"
+              IconImageSource="log_out.png" />
+
+
+
 </Shell>

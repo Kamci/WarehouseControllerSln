@@ -16,7 +16,7 @@ namespace WarehouseController.Services.Implementations
 
         public OrderService()
         {
-            _dataStore = new OrderDataStore(); // lub użyj Dependency Injection
+            _dataStore = new OrderDataStore();
         }
 
         public Task<IEnumerable<OrderDto>> GetAllAsync() => _dataStore.GetItemsAsync();
@@ -38,7 +38,7 @@ namespace WarehouseController.Services.Implementations
                 .OrderByDescending(order => order.OrderDate)
                 .Take(5)
                 .ToList();
-            Debug.WriteLine($"📦 Znaleziono {filteredOrders.Count} ostatnich zamówień dla magazynu ID={warehouseId}");
+          
             return filteredOrders;
         }
         public async Task<int> GetOpenOrdersCountAsync(int warehouseId)

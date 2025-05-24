@@ -42,8 +42,25 @@ namespace WarehouseController.ViewModel.Abstract
             => await Shell.Current.GoToAsync("..");
         private async void OnDelete()
         {
-            await DataStore.DeleteItemAsync(ItemId);
-            await Shell.Current.GoToAsync("..");
+            bool confirmed = await Application.Current.MainPage.DisplayAlert(
+        "Confirm", "Are you sure you want to delete this item?", "Yes", "No");
+
+            if (!confirmed)
+                return;
+
+            var success = await DataStore.DeleteItemAsync(ItemId);
+
+            if (success)
+            {
+                await Shell.Current.GoToAsync("..");
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert(
+                    "Error",
+                    "Failed to delete item. You might not have sufficient permissions.",
+                    "OK");
+            }
         }
         private async void OnUpdate()
             => await GoToUpdatePage();
