@@ -130,10 +130,11 @@ Authorization: Bearer {token}
 ## 🖼️ Screenshots
 
 ### 🔐 Login View  
-![Login View](https://raw.githubusercontent.com/Kamci/WarehouseControllerSln/master/LoginView.png)
+![Login View](./LoginView.png)
+
 
 ### 📊 Dashboard View  
-![Dashboard View](https://raw.githubusercontent.com/Kamci/WarehouseControllerSln/master/DashboardView.png)
+![Dashboard View](./DashboardView.png)
 
 ---
 
