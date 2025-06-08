@@ -26,7 +26,6 @@ namespace WarehouseController.ViewModel.OrderVM
         {
             UserId = SessionService.LoggedInUserId;
             OrderDate = DateTime.Now;
-            Status = "Pending";
             AddOrderItemCommand = new Command(OnAddOrderItem);
             LoggedInLogin = SessionService.LoggedInUserLogin;
             RemoveOrderItemCommand = new Command<OrderItemDto>(RemoveOrderItem);
@@ -111,7 +110,10 @@ namespace WarehouseController.ViewModel.OrderVM
             get => selectedStatus;
             set
             {
-                SetProperty(ref selectedStatus, value);
+                if (SetProperty(ref selectedStatus, value))
+                {
+                    Status = value; 
+                }
             }
         }
      
