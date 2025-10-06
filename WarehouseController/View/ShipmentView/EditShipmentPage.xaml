@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.ShipmentView.EditShipmentPage"
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.ShipmentVM;assembly=WarehouseController"
+            x:DataType="vm:EditShipmentViewModel"
+            Shell.PresentationMode="Animated"
+         Title="Edit Shipment">
+    <ScrollView>
+        <Border Style="{StaticResource MyContainerStyle}">
+            <VerticalStackLayout Spacing="10">
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Picker Title="Select Warehouse"
+                   ItemsSource="{Binding Warehouses}"
+                   ItemDisplayBinding="{Binding Name}"
+                   SelectedItem="{Binding SelectedWarehouse}"
+                 Style="{StaticResource PickerMenus}"/>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Picker Title="Select Supplier"
+           ItemsSource="{Binding Suppliers}"
+           ItemDisplayBinding="{Binding Name}"
+           SelectedItem="{Binding SelectedSupplier}" Style="{StaticResource PickerMenus}" />
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Shipment Date" Style="{StaticResource ValueLabelStyle}"/>
+                        <DatePicker Date="{Binding ShipmentDate}" IsEnabled="True" IsVisible="True" Style="{StaticResource DatePickerMenus}" />
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Order Status" Style="{StaticResource ValueLabelStyle}"/>
+                        <Picker Title="Select Status"
+                     Style="{StaticResource DatePickerMenus}"
+                     ItemsSource="{Binding Statuses}"
+                     SelectedItem="{Binding SelectedStatus}" /> 
+                    </VerticalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                    <ImageButton   
+        Source="save.png"  
+        Command="{Binding SaveCommand}"/>
+                    <ImageButton   
+        Source="cancel.png"  
+        Command="{Binding CancelCommand}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </ScrollView>
+</ContentPage>

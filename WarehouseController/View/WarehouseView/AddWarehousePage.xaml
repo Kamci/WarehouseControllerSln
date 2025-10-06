@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.WarehouseView.AddWarehousePage"
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.WarehouseVM"
+             x:DataType="vm:AddWarehouseViewModel"
+             Shell.PresentationMode="Animated"
+             Title="Add Warehouse">
+
+
+    <Border Style="{StaticResource CardItemStyle}">
+    <ScrollView>
+
+
+        <VerticalStackLayout Padding="20" Spacing="10">
+
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelTitleStyle}"/>
+                        <Entry Text="{Binding Name, Mode=TwoWay}" 
+                               Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                </VerticalStackLayout>
+                </Border>
+
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Location" Style="{StaticResource LabelTitleStyle}" />
+                        <Entry Text="{Binding Location, Mode=TwoWay}" 
+                               Style="{StaticResource EntryStyle}" WidthRequest="220"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                <ImageButton   
+             Source="save.png"  
+             Command="{Binding SaveCommand}"/>
+                <ImageButton   
+             Source="cancel.png"  
+             Command="{Binding CancelCommand}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    </Border>
+    
+</ContentPage>

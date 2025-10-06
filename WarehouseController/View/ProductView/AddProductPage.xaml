@@ -1,0 +1,82 @@
+
+    <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+                 x:Class="WarehouseController.View.ProductView.AddProductPage"  
+                 xmlns:vm="clr-namespace:WarehouseController.ViewModel.ProductVM"  
+                 x:DataType="vm:AddProductViewModel"  
+                 Shell.PresentationMode="Animated"  
+                 Title="Add Product">
+
+    <Border Style="{StaticResource CardItemStyle}">
+        <ScrollView>  
+            
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <Border>
+                    <VerticalStackLayout>
+                        <Label Text="Name" Style="{StaticResource LabelTitleStyle}" />
+                        <Editor Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource EditorStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+
+
+                <Border>
+                        <VerticalStackLayout>
+                        <Label Text="Price" Style="{StaticResource LabelTitleStyle}" />  
+                <Editor Text="{Binding Price, Mode=TwoWay, 
+                    Converter={StaticResource DecimalToStringConverter}}" 
+                        Style="{StaticResource EditorStyle}"
+                        Keyboard="Numeric" IsTextPredictionEnabled="True" />
+                </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                            <VerticalStackLayout>
+                        <Label Text="Quantity" Style="{StaticResource LabelTitleStyle}" />
+                <Editor Text="{Binding StockQuantity, Mode=TwoWay, 
+                    Converter={StaticResource IntToStringConverter}}" 
+                         Style="{StaticResource EditorStyle}"
+                        Keyboard="Numeric" IsTextPredictionEnabled="True" />
+                </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                                <VerticalStackLayout>
+                            <Picker Title="Select Category"
+                                     Style="{StaticResource PickerMenus}"
+                    ItemsSource="{Binding Category}"
+                    ItemDisplayBinding="{Binding Name}"
+                    SelectedItem="{Binding SelectedCategory}" />
+                            </VerticalStackLayout>
+                </Border>
+
+                <Border>
+                                    <VerticalStackLayout>
+                        <Picker Title="Select Warehouse"
+                                Style="{StaticResource PickerMenus}"
+                        ItemsSource="{Binding Warehouses}"
+                        ItemDisplayBinding="{Binding Name}"
+                        SelectedItem="{Binding SelectedWarehouse}" />   
+                    </VerticalStackLayout>
+                </Border>
+                <Border>
+                     <VerticalStackLayout>
+                  <Picker Title="Select Supplier"
+                    ItemsSource="{Binding Suppliers}"
+                    ItemDisplayBinding="{Binding Name}"
+                          Style="{StaticResource PickerMenus}"
+                    SelectedItem="{Binding SelectedSupplier}" />
+                </VerticalStackLayout>
+                </Border>
+                <HorizontalStackLayout Spacing="30" Margin="10"
+                                   HorizontalOptions="Center">  
+                    <ImageButton   
+                   Source="save.png"  
+                   Command="{Binding SaveCommand}"/>  
+                    <ImageButton   
+                   Source="cancel.png"  
+                   Command="{Binding CancelCommand}"/>  
+                </HorizontalStackLayout>  
+            </VerticalStackLayout>  
+        </ScrollView>
+    </Border>
+</ContentPage>

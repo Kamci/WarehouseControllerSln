@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.CategoryView.AddCategoryPage"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.CategoryVM"
+             x:DataType="vm:AddCategoryViewModel"
+             Shell.PresentationMode="Animated"
+             Title="Add Category"
+             >
+    <ScrollView>
+        <VerticalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
+            <Border Style="{StaticResource MyContainerStyle}">
+        <VerticalStackLayout>
+            
+            <Label Text="Name"  Style="{StaticResource LabelTitleStyle}" />
+           
+
+            <Entry Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource EntryStyle} "/>
+            </VerticalStackLayout>
+            </Border>
+            <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                <ImageButton   
+               Source="save.png"  
+               Command="{Binding SaveCommand}"/>
+                <ImageButton   
+               Source="cancel.png"  
+               Command="{Binding CancelCommand}"/>
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

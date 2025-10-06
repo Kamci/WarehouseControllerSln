@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="WarehouseController.View.OrderView.AddOrderPage"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM"  
+              xmlns:model="clr-namespace:WarehouseController.DTO"  
+             xmlns:auth="clr-namespace:WarehouseController.Services.Implementations.Authorization"
+             x:DataType="vm:AddOrderViewModel"  
+             Title="{Binding Title}"  
+             Shell.PresentationMode="Animated"  
+             x:Name="ThisPage">
+    <Border Style="{StaticResource CardItemStyle}" WidthRequest="620">
+        <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+
+                    <Label Text="Order Date" Style="{StaticResource LabelTitleStyle}"/>
+                    <DatePicker Date="{Binding OrderDate, Mode=TwoWay}" IsEnabled="True" 
+                            IsVisible="True" Style="{StaticResource DatePickerMenus}"/>
+                </VerticalStackLayout>
+            </Border>
+          
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <VerticalStackLayout>
+                <Label Text="Login" Style="{StaticResource LabelTitleStyle}"/>
+                <Label Text="{Binding LoggedInLogin}" Style="{StaticResource ValueLabelStyle}" />
+                </VerticalStackLayout>
+            </Border>
+            <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                <Picker Title="Select Status"
+                      ItemsSource="{Binding Statuses}"
+                      SelectedItem="{Binding SelectedStatus}"
+                        Style="{StaticResource PickerMenus}"/>
+            </Border>
+
+                <Border Style="{StaticResource LabelBorderValueStyle}" WidthRequest="450">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Add Order Item" FontAttributes="Bold"
+                           Style="{StaticResource LabelTitleStyle}" />
+
+                    <Picker Title="Select Product"
+                            ItemsSource="{Binding Products}"
+                            Style="{StaticResource PickerMenus}"
+                            ItemDisplayBinding="{Binding Name}"
+                            SelectedItem="{Binding SelectedProduct}" /> 
+
+                    <Label Text="Quantity" Style="{StaticResource LabelTitleStyle}" />
+                    <Entry Text="{Binding Quantity}" 
+                           Style="{StaticResource EntryStyle}"
+                           Placeholder="Quantity" Keyboard="Numeric" />
+
+                    <ImageButton Source="add.png"
+                            Command="{Binding AddOrderItemCommand}" />
+                </VerticalStackLayout>
+            </Border>
+
+          
+                <VerticalStackLayout >
+                    <Border Style="{StaticResource CardItemStyle}" WidthRequest="450" Margin="0">
+                        <Label Text="Order Items:" FontAttributes="Bold" />
+                    </Border>
+                    <CollectionView ItemsSource="{Binding OrderItems}" >
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:OrderItemDto">
+                                <Border Style="{StaticResource CardItemStyle}">
+                                    <HorizontalStackLayout Spacing="0">
+
+                                    <Border Style="{StaticResource LabelBorderHeaderStyle}"  WidthRequest="240">
+                                        <Label Text="{Binding ProductName}" />
+                                    </Border>
+
+                                    <Border Style="{StaticResource LabelBorderValueStyle}"  WidthRequest="100">
+                                        <Label Text="{Binding Quantity}" />
+                                    </Border>
+                                    <ImageButton 
+                                        Command="{Binding BindingContext.RemoveOrderItemCommand, Source={x:Reference ThisPage}}"
+                                        CommandParameter="{Binding .}" 
+                                        Source="remove.png"/>
+                                    </HorizontalStackLayout>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            
+
+            <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                <ImageButton   
+                        Source="save.png"  
+                        Command="{Binding SaveCommand}"/>
+                <ImageButton   
+                        Source="cancel.png"  
+                        Command="{Binding CancelCommand}"/> 
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+    </Border>
+</ContentPage>

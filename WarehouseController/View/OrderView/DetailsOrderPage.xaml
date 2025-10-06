@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="WarehouseController.View.OrderView.DetailsOrderPage"  
+             Title="{Binding Title}"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.OrderVM"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
+             x:DataType="vm:DetailsOrderViewModel"  
+             Shell.PresentationMode="Animated">
+    <Border Style="{StaticResource CardItemStyle}" WidthRequest="600">
+        <ScrollView>
+
+            <VerticalStackLayout Padding="20" Spacing="10">
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <Label Text="Id"  Style="{StaticResource LabelTitleStyle}"/>
+                </Border>
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Label Text="{Binding Id, Mode=TwoWay}"  Style="{StaticResource ValueLabelStyle}"/>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <Label Text="Order Date" Style="{StaticResource LabelTitleStyle}" />
+                </Border>
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Label Text="{Binding OrderDate, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}"/>
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <Label Text="Status" Style="{StaticResource LabelTitleStyle}"/>
+                </Border>
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Label Text="{Binding Status, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}" />
+                </Border>
+                <Border Style="{StaticResource LabelBorderHeaderStyle}">
+                    <Label Text="User" Style="{StaticResource LabelTitleStyle}" />
+                </Border>
+                <Border Style="{StaticResource LabelBorderValueStyle}">
+                    <Label Text="{Binding UserDisplay, Mode=TwoWay}" Style="{StaticResource ValueLabelStyle}" />
+                </Border>
+
+
+                <VerticalStackLayout>
+                    <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="450">
+                        <Label Text="Order Items:" Style="{StaticResource LabelTitleStyle}" />
+                    </Border>
+                    <CollectionView ItemsSource="{Binding OrderItems}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:OrderItemDto">
+                                <Frame Style="{StaticResource CardItemStyle}">
+                                    <HorizontalStackLayout Spacing="12"
+                                       VerticalOptions="Center">
+                                        <Label Text="{Binding ProductName}" Style="{StaticResource ValueLabelStyle}" />
+                                        <Label Text="{Binding Quantity}" Style="{StaticResource ValueLabelStyle}" />
+                                    </HorizontalStackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                    <ImageButton   
+                        Source="edit.png"  
+                        Command="{Binding UpdateCommand}"/>
+                    <ImageButton    
+                        Source="remove.png"  
+                        Command="{Binding DeleteCommand}"/>
+                    <ImageButton    
+                        Source="cancel.png"  
+                        Command="{Binding CancelCommand}"/>
+                </HorizontalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Border>
+</ContentPage> 

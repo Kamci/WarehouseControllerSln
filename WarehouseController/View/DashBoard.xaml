@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.DashBoard"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.Dashboard"
+             xmlns:dto="clr-namespace:WarehouseController.DTO"
+             xmlns:models="clr-namespace:WarehouseController.DTO"
+             x:DataType="vm:DashboardViewModel"
+             Title="DashBoard">
+    <Grid >
+        <Image Source="warehouse_background.jpg"
+               Aspect="AspectFill"
+               Opacity="0.10"/>
+    <ScrollView>
+        <VerticalStackLayout 
+         Padding="10"
+         Spacing="5"
+         HorizontalOptions="Center"
+         VerticalOptions="Center">
+
+                    <!--============================================== SELECT WAREHOUSE ==================================================-->
+
+                <Border Style="{StaticResource CardItemStyle }">
+                    <VerticalStackLayout>
+                    <Picker Title="Select Warehouse"
+                                ItemsSource="{Binding Warehouses}"
+                                Style="{StaticResource PickerStyleDashBoard}"
+                                ItemDisplayBinding="{Binding Name}"
+                                SelectedItem="{Binding SelectedWarehouse}" />
+
+                    <Label Text="{Binding SelectedWarehouse.Name}" 
+                               FontAttributes="Bold"
+                               VerticalTextAlignment="Center"
+                               HorizontalTextAlignment="Center"
+                               FontSize="50"
+                               TextColor="#ff2eff" />
+
+                    <Button Text="Display Raport"
+                                Command="{Binding LoadWarehouseReportCommand}"
+                            Style="{StaticResource LoginButton3DStyle}"/>
+                    </VerticalStackLayout>
+                </Border>
+                <!--========================================== PRODUCTS COUNT ======================================================-->
+                <HorizontalStackLayout VerticalOptions="Center" HorizontalOptions="Center"
+                                       Spacing="30">
+                <Border Style="{StaticResource CardItemStyle}"
+                        WidthRequest="110"
+                        HeightRequest="110"
+                        >
+                        <StackLayout VerticalOptions="Center">
+                            <Image Source="items_icon.png"
+                                MaximumHeightRequest="24" />
+
+                            <Label Text="Products"
+                               TextColor="#ff2eff"
+                               FontSize="15"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center" />
+
+                                       
+                            <Label Text="{Binding ProductsQty, StringFormat='Qty: {0}'}"
+                               FontSize="14"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="White" />
+                        </StackLayout>
+                </Border>
+
+                    <!--============================================= OPEN ORDERS ===================================================-->
+                    <Border Style="{StaticResource CardItemStyle}"
+                        WidthRequest="110"
+                        HeightRequest="110"
+                     >
+                        <StackLayout VerticalOptions="Center" >
+                            <Image 
+                                Source="orders_icon.png"
+                                MaximumHeightRequest="24"
+                              />
+                            <Label Text="Open Orders"
+                                TextColor="#ff2eff"
+                                FontSize="15"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Center" 
+                                HorizontalTextAlignment="Center"/>
+                            <Label Text="{Binding OpenOrdersQty, StringFormat='Qty: {0}'}"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            TextColor="White" />    
+                        </StackLayout>  
+                    </Border>
+
+                    <!--=========================================== LOW STOCK =====================================================-->
+                    <Border
+            Style="{StaticResource CardItemStyle}"
+                        WidthRequest="110"
+                        HeightRequest="110"
+             >
+                    <StackLayout VerticalOptions="Center" >
+                        <Image 
+                     Source="low_stock_icon.png"
+                     MaximumHeightRequest="24"
+                     />
+
+                        <Label Text="Low stock"
+                          TextColor="#ff2eff"
+                          FontSize="15"
+                          FontAttributes="Bold"
+                          HorizontalOptions="Center"
+                          VerticalOptions="Center"/>
+                        <Label Text="{Binding LowStockItemCount, StringFormat='Qty: {0}'}"
+                            FontSize="14"
+                            FontAttributes="Bold"
+                            HorizontalOptions="Center"
+                            TextColor="White" />
+                    </StackLayout>
+                </Border>
+                </HorizontalStackLayout>
+                <!--=============================================== TOP 5 PRODUCTS CHART =================================================-->
+                <Border Style="{StaticResource CardItemStyle}"
+                     WidthRequest="400">
+                    <VerticalStackLayout Spacing="10">
+                        <Image 
+                     Source="top_products_icon.png"
+                     MaximumHeightRequest="24"
+                     />
+                        <Label Text="Most frequently ordered products (Top 5)"
+                         FontSize="16"
+                         FontAttributes="Bold"
+                         HorizontalOptions="Center" />
+
+                        <micro:ChartView
+                            Chart="{Binding ChartEntries, Converter={StaticResource EntriesToBarChartConverter}}"
+                            HeightRequest="300" />      
+                    </VerticalStackLayout>
+                </Border>
+                <!--=========================================== LAST ORDERS =====================================================-->
+
+
+                <Border
+                     Style="{StaticResource CardItemStyle}"
+                 WidthRequest="400"
+                 >
+                    <StackLayout VerticalOptions="Center" >
+                        <Image 
+                 Source="last_orders_icon.png"
+                 MaximumHeightRequest="24"
+                 />
+
+                        <Label Text="Last orders"
+                      TextColor="{StaticResource Secondary}"
+                      FontSize="15"
+                      FontAttributes="Bold"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"/>
+
+                        <CollectionView ItemsSource="{Binding RecentOrders}" Margin="10">
+                            <CollectionView.ItemTemplate>
+                                
+                                
+                                
+                                <DataTemplate x:DataType="dto:OrderDto">
+
+                                    <VerticalStackLayout Spacing="6">
+                                        <BoxView HeightRequest="7" BackgroundColor="#9227a3" />
+                                        <Label Text="{Binding DisplayName}" Style="{StaticResource SeparatedLabelStyle}" FontSize="16" FontAttributes="Bold" />
+
+                                        <BoxView HeightRequest="1" BackgroundColor="#9227a3" />
+
+                                        <Label Text="{Binding DisplayDate}" Style="{StaticResource SeparatedLabelStyle}" />
+
+                                        <BoxView HeightRequest="1" BackgroundColor="#9227a3" />
+
+                                        <Label Text="{Binding ProductCount}" Style="{StaticResource SeparatedLabelStyle}" />
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                                
+                                
+                                
+                                
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Border>
+                <!--============================================ LAST DELIEVERIES ====================================================-->
+                <Border
+                        Style="{StaticResource CardItemStyle}"
+                        WidthRequest="400"
+                         >
+                    <StackLayout VerticalOptions="Center" >
+                        <Image 
+                     Source="delivery_icon.png"
+                     MaximumHeightRequest="24"
+                     /> 
+
+                        <Label Text="Last deliveries"
+                      TextColor="{StaticResource Secondary}"
+                      FontSize="15"
+                      FontAttributes="Bold"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center"/>
+
+                        <CollectionView ItemsSource="{Binding RecentShipments}"
+                                 Margin="10">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="dto:RecentShipmentDto">
+                                    <VerticalStackLayout Spacing="6">
+                                        <BoxView HeightRequest="7" BackgroundColor="#9227a3" />
+
+                                        <Label Text="{Binding ShipmentDate}" Style="{StaticResource SeparatedLabelStyle}" FontSize="16" FontAttributes="Bold"/>
+
+                                        <BoxView HeightRequest="1" BackgroundColor="#9227a3" />
+
+                                        <Label Text="{Binding SupplierName}" Style="{StaticResource SeparatedLabelStyle}"/>
+                                        
+                                        <BoxView HeightRequest="1" BackgroundColor="#9227a3" />
+
+                                        <Label Text="{Binding WarehouseName}" Style="{StaticResource SeparatedLabelStyle}"/>
+                                    </VerticalStackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Border>
+
+                <!--========================================= THE END :) =======================================================-->
+            </VerticalStackLayout>
+    </ScrollView>
+    </Grid>
+</ContentPage>

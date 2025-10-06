@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.LoginPage"
+             Title="Login">
+
+    <Grid >
+        <Image Source="warehouse_background.jpg"
+            Aspect="AspectFill"
+            Opacity="0.50"/>
+        <VerticalStackLayout Style="{StaticResource LoginContainerStyle}" VerticalOptions="Center">
+
+            <Image Source="logo.png"
+                       HorizontalOptions="Center"
+                       HeightRequest="100"
+                       WidthRequest="300"
+                       Aspect="AspectFit" />
+            <Entry x:Name="EntryLogin"
+                   Placeholder="Username"
+                   Keyboard="Default" 
+                   Style="{StaticResource EntryStyle}"/>
+
+            <Entry x:Name="EntryPassword"
+                   Placeholder="Password"
+                   IsPassword="True" 
+                   Style="{StaticResource EntryStyle}"/>
+
+            <Button Text="Login"
+                    Style="{StaticResource LoginButton3DStyle}"
+                    Clicked="OnLoginClicked" />
+
+            <Button Text="Guest Info"
+                    Style="{StaticResource LoginButton3DStyle}"
+                    Clicked="OnGuestInfoClicked"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

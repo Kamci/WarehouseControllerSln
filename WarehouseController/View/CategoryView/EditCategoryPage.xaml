@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.View.CategoryView.EditCategoryPage"
+             Title="EditCategoryPage"
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.CategoryVM"
+             x:DataType="vm:EditCategoryViewModel"
+             Shell.PresentationMode="Animated"
+             >
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+          Grid.Row="0"
+        VerticalOptions="Center"  
+        HorizontalOptions="Center"  
+        Padding="{OnPlatform Android=40, WinUI=0 }"  
+        BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0"  
+                   Source="add.png"  
+                   Command="{Binding AddItemCommand}"/>
+            <ImageButton  Grid.Column="1"  
+                   Source="refresh.png"  
+                   Command="{Binding LoadItemsCommand}"/>
+            <ImageButton  Grid.Column="2"  
+                   Source="about.png"  
+                   Command="{Binding AboutCommand}"  
+                   CommandParameter="{Binding SelectedShipment}"  
+                   IsEnabled="{Binding SelectedShipment, Converter={StaticResource NullToBoolConventer}}"/>
+        </Grid>
+        <Grid  Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout Margin="0,30,0,0" HorizontalOptions="Center">
+            <Border Style="{StaticResource MyContainerStyle}">
+                <VerticalStackLayout>
+
+                    <Label Text="Name"  Style="{StaticResource LabelTitleStyle}" />
+
+
+                    <Entry Text="{Binding Name, Mode=TwoWay}" Style="{StaticResource EntryStyle} "/>
+                </VerticalStackLayout>
+            </Border>
+            <HorizontalStackLayout Spacing="30" Margin="10" HorizontalOptions="Center">
+                <ImageButton   
+         Source="save.png"  
+         Command="{Binding SaveCommand}"/>
+                <ImageButton   
+         Source="cancel.png"  
+         Command="{Binding CancelCommand}"/>
+            </HorizontalStackLayout>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage> 

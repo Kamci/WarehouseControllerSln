@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"  
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"  
+             x:Class="WarehouseController.SupplierPage"  
+             xmlns:vm="clr-namespace:WarehouseController.ViewModel.SupplierVM;assembly=WarehouseController"  
+             xmlns:model="clr-namespace:WarehouseController.Model"  
+             x:DataType="vm:SupplierViewModel"  
+             Title="{Binding Title}">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+                Grid.Row="0"
+              VerticalOptions="Center"  
+              HorizontalOptions="Center"  
+              Padding="{OnPlatform Android=40, WinUI=0 }"  
+              BackgroundColor="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton Grid.Column="0"  
+                         Source="add.png"  
+                         Command="{Binding AddItemCommand}"/>
+            <ImageButton  Grid.Column="1"  
+                         Source="refresh.png"  
+                         Command="{Binding LoadItemsCommand}"/>
+            <ImageButton  Grid.Column="2"  
+                         Source="about.png"  
+                         Command="{Binding AboutCommand}"  
+                         CommandParameter="{Binding SelectedSupplier}"  
+                         IsEnabled="{Binding SelectedSupplier, Converter={StaticResource NullToBoolConventer}}"/>
+        </Grid>
+        <Grid  Grid.Row="1">
+            <ScrollView>
+                <VerticalStackLayout>
+                <Label HorizontalOptions="Center" Text="Available Suppliers" FontSize="20"  
+                   FontAttributes="Bold" Margin="20" />  
+            <CollectionView x:Name="SuppliersList" ItemsSource="{Binding Items}"  
+                            SelectionMode="Single" SelectedItem="{Binding SelectedSupplier}"  
+                            SelectionChanged="SuppliersList_SelectionChanged">  
+                <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Supplier">
+                                <Border Style="{StaticResource CardItemStyle}">
+                                    <Grid Padding="10" BackgroundColor="{StaticResource Primary}">
+                                        <VerticalStackLayout Spacing="10">
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Name:"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="100" />
+                                                    <Label Text="{Binding Name}"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="300" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Contact:"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="100" />
+                                                    <Label Text="{Binding Contact}"
+                                                           Style="{StaticResource LabelTitleStyle}" WidthRequest="300" />
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>  
+            </CollectionView>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>

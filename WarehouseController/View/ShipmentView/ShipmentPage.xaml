@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WarehouseController.ShipmentPage"
+             xmlns:conventers="clr-namespace:WarehouseController.Converters"  
+             xmlns:local="clr-namespace:WarehouseController.ViewModel.ShipmentVM;assembly=WarehouseController"  
+             xmlns:model="clr-namespace:WarehouseController.DTO"  
+             x:DataType="local:ShipmentViewModel"  
+             Title="{Binding Title}">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid ColumnSpacing="{OnPlatform Android=40, WinUI=0 }"  
+                  Grid.Row="0"
+                VerticalOptions="Center"  
+                HorizontalOptions="Center"  
+                Padding="{OnPlatform Android=40, WinUI=0 }"  
+                BackgroundColor="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <ImageButton Grid.Column="0"  
+                           Source="add.png"  
+                           Command="{Binding AddItemCommand}"/>
+                <ImageButton  Grid.Column="1"  
+                           Source="refresh.png"  
+                           Command="{Binding LoadItemsCommand}"/>
+                <ImageButton  Grid.Column="2"  
+                           Source="about.png"  
+                           Command="{Binding AboutCommand}"  
+                           CommandParameter="{Binding SelectedShipment}"  
+                           IsEnabled="{Binding SelectedShipment, Converter={StaticResource NullToBoolConventer}}"/>
+            </Grid>
+        <Grid  Grid.Row="1">
+      <ScrollView>
+        <VerticalStackLayout>
+
+            <Label HorizontalOptions="Center" Text="Available Shipments" FontSize="20"   
+                 FontAttributes="Bold" Margin="20" />
+            <CollectionView x:Name="ShipmentsList" ItemsSource="{Binding Items}"  
+                  SelectionMode="Single" SelectedItem="{Binding SelectedShipment}"   
+                  SelectionChanged="ShipmentsList_SelectionChanged">
+                <CollectionView.ItemTemplate >
+                            <DataTemplate x:DataType="model:ShipmentDTO">
+                                <Border Style="{StaticResource CardItemStyle}">
+                                    <Grid Padding="10" BackgroundColor="{StaticResource Primary}">
+                                        <VerticalStackLayout Spacing="10">
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Id:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding Id}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Supplier:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding SupplierName}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Warehouse:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding WarehouseName}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Date:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding ShipmentDate, StringFormat='{}{0:yyyy-MM-dd}'}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                            <Border Style="{StaticResource LabelBorderHeaderStyle}" WidthRequest="400">
+                                                <HorizontalStackLayout>
+                                                    <Label Text="Status:" Style="{StaticResource LabelTitleStyle}" WidthRequest="120"/>
+                                                    <Label Text="{Binding Status}" Style="{StaticResource LabelTitleStyle}" WidthRequest="300"/>
+                                                </HorizontalStackLayout>
+                                            </Border>
+
+                                        </VerticalStackLayout>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+        </Grid>
+    </Grid>
+</ContentPage>
